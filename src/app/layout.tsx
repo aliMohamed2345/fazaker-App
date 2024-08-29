@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-
+import { Inter , Cairo, } from "next/font/google";
+import "./globals.css"; 
+import'./../../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import Script from "next/script";
+import Nav from "./components/Home/Nav";
+import ScrollToTop from "./components/Home/ScrollToTop";
 const inter = Inter({ subsets: ["latin"] });
+const cairo = Cairo({ weight: "400", subsets: ["arabic"] });
+
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,8 +20,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" data-theme="light">
+      <body className={cairo.className}>
+        <Nav/>
+        <ScrollToTop/>
+        {children}
+      <Script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+          strategy="afterInteractive" // Loads the script after the page is interactive
+        />
+      </body>
     </html>
   );
 }
