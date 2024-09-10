@@ -1,5 +1,11 @@
+//======================
+//Variables
+//======================
 $base-font-size: 16px;
 $base-header-size: 2em;
+//======================
+//Light Mode Colors
+//======================
 html[data-theme="light"] {
   --primary-bg-color: #fff;
   --secondary-bg-color: #f2f2f2;
@@ -123,7 +129,9 @@ html[data-theme="light"] {
   --bs-form-invalid-color: #dc3545;
   --bs-form-invalid-border-color: #dc3545;
 }
-
+//======================
+//Dark Mode Colors
+//======================
 html[data-theme="dark"] {
   --primary-bg-color: #1b1b1d;
   --primary-text-color: #c4c9ce;
@@ -183,12 +191,9 @@ html[data-theme="dark"] {
   --bs-form-invalid-color: #ea868f;
   --bs-form-invalid-border-color: #ea868f;
 }
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
+//======================
+//Animations
+//======================
 @keyframes loading-skeleton {
   0% {
     transform: scale(1);
@@ -203,13 +208,45 @@ html[data-theme="dark"] {
     opacity: 0.8;
   }
 }
-@media (max-width: 480px) {
+//======================
+//Media Query
+//======================
+
+// Extra small screen sizes (e.g., very small mobile devices)
+@media (max-width: 360px) {
   p {
-    font-size: $base-font-size * 0.875; // Smaller font size for paragraphs
+    font-size: $base-font-size * 0.75;
   }
 
   h1 {
-    font-size: $base-header-size * 1.25; // Adjust header size
+    font-size: $base-header-size * 1;
+  }
+
+  h2 {
+    font-size: $base-header-size * 0.875;
+  }
+
+  h3 {
+    font-size: $base-header-size * 0.75;
+  }
+
+  h4 {
+    font-size: $base-header-size * 0.65;
+  }
+
+  h5,
+  h6 {
+    font-size: $base-header-size * 0.6;
+  }
+}
+
+@media (min-width: 361px) and (max-width: 480px) {
+  p {
+    font-size: $base-font-size * 0.875;
+  }
+
+  h1 {
+    font-size: $base-header-size * 1.25;
   }
 
   h2 {
@@ -233,11 +270,11 @@ html[data-theme="dark"] {
 // Medium screen sizes (e.g., tablets)
 @media (min-width: 481px) and (max-width: 768px) {
   p {
-    font-size: $base-font-size * 1; // Base font size for paragraphs
+    font-size: $base-font-size * 1;
   }
 
   h1 {
-    font-size: $base-header-size * 1.5; // Slightly larger header size
+    font-size: $base-header-size * 1.5;
   }
 
   h2 {
@@ -261,11 +298,11 @@ html[data-theme="dark"] {
 // Larger screen sizes (e.g., desktops)
 @media (min-width: 769px) {
   p {
-    font-size: $base-font-size * 1.125; // Larger font size for paragraphs
+    font-size: $base-font-size * 1.125;
   }
 
   h1 {
-    font-size: $base-header-size * 2; // Larger header size for desktop
+    font-size: $base-header-size * 2;
   }
 
   h2 {
@@ -285,7 +322,9 @@ html[data-theme="dark"] {
     font-size: $base-header-size * 1;
   }
 }
-
+//======================
+//Mixins
+//======================
 @mixin centerElementWithFlex {
   display: flex;
   align-items: center;
@@ -303,6 +342,14 @@ html[data-theme="dark"] {
   width: $width;
   background-color: $bg-color;
   border-radius: $border-radius;
+}
+///======================
+//Default styles
+//======================
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 html,
 body {
@@ -325,6 +372,14 @@ button:hover {
   transform: scale(1.05);
   transition: 0.3s ease all;
 }
+//======================
+//Styles
+//======================
+.disabled-btn {
+  pointer-events: none;
+  opacity: 0.7;
+  cursor: not-allowed;
+}
 
 nav {
   background-color: var(--primary-bg-color);
@@ -332,12 +387,6 @@ nav {
   overflow: hidden;
   top: 0;
   left: 0;
-}
-.Toast {
-  right: 10px;
-  bottom: 85px;
-  height: 30px;
-  width: 200px;
 }
 
 .navbar {
@@ -505,6 +554,10 @@ ul.nav-items li:hover a {
   height: 40px;
   transition: 0.3s;
 }
+.quran-loading-screen {
+  max-width: 280px;
+  height: 60px;
+}
 .reciters {
   .reciter {
     transition: 0.3s;
@@ -515,6 +568,7 @@ ul.nav-items li:hover a {
   }
 }
 .surah-container {
+  max-height: 180px;
   .surah-more-options {
     position: absolute;
     max-width: 130px;

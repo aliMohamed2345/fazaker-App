@@ -16,7 +16,6 @@ const SearchArea = ({ placeholder }: SearchAreaProps) => {
                         title="ادخل اسم القارئ"
                         className="bg-transparent rounded-1 border-0 border-bottom border-success text-secondary shadow-none w-100 text-center"
                         type="text"
-                        // placeholder='بحث باسم القارئ'
                         placeholder={placeholder}
                         name="text"
                         value={searchVal}

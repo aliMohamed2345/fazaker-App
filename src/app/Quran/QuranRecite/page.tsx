@@ -45,18 +45,18 @@ const QuranRecite = () => {
         <>
             <h2 className="text-center pt-5">تلاوه القران</h2>
             <p className='text-center pt-3 pb-3'>تشكيله منوعه وكبيره من كبار القراء للقران الكريم</p>
-            <SearchArea placeholder={'بحث باسم القارئ'} />
+            <SearchArea placeholder={'بحث'} />
             <div className="reciters d-flex flex-wrap gap-3 container mt-5 justify-content-center ">
-                {IsLoading ? <ReciterLoadingScreen Number={18} />
+                {IsLoading ? <ReciterLoadingScreen Number={30} />
                     :
-                    filteredReciters.sort().map((reciter, i) => {
+                    filteredReciters.sort().map((reciter) => {
                         let { id, name, moshaf } = reciter;
                         let selectedRewayh = moshaf.filter(moshaf => moshaf.name?.includes(`حفص عن عاصم - مرتل`))
                         let { server, surah_list, surah_total }: MoshafProps = selectedRewayh[0] || [];
                         return (
                             <Link key={id}
                                 href={{ pathname: `/Quran/QuranRecite/${name}`, query: { SurahLink: server, TotalSurah: surah_total, SurahList: surah_list, ReciterName: name } }}
-                                className='bg-secondary reciter p-3 rounded-3 col-3 text-center'>
+                                className='bg-secondary reciter p-2 p-sm-3  rounded-3 col-4 col-sm-3 text-center'>
                                 <p className='m-0'>{name}</p>
                             </Link>
                         )

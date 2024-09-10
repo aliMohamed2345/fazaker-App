@@ -23,6 +23,8 @@ import {
     handleSkipTimeBackward,
     handleSkipTimeForward,
     handleMuteBtn,
+    handleStepBackward,
+    handleStepForward
 } from "./functions";
 
 function ChangeVolumeIcon(mute: boolean, volume: number) {
@@ -31,23 +33,44 @@ function ChangeVolumeIcon(mute: boolean, volume: number) {
     else if (!mute && volume < 0.5 && volume > 0) return IoMdVolumeMute;
     else return IoMdVolumeOff;
 }
-
-const AudioPlayer = ({ isOpen, AudioSrc }: AudioPlayerProps) => {
+const AudioPlayer = ({ isOpen, AudioSrc, index, ListOfSurah }: AudioPlayerProps) => {
     const [Open, SetOpen] = useState<boolean>(isOpen);
-
-    const AudioRef = useRef<HTMLAudioElement>(null);
+    let [ActiveAudioSrc, setActiveAudioSrc] = useState<string>(AudioSrc);
     const [audioStates, setAudioStates] = useState<AudioStatesProps>(AudioStatesInitial);
 
+    const AudioRef = useRef<HTMLAudioElement>(null);
+
     useEffect(() => {
-        console.log("Open state changed:", Open);
+        if (Open && AudioRef.current) {
+            const audioElement = AudioRef.current;
+
+            // Ensure audio element is ready before attempting to play
+            const playAudio = async () => {
+                try {
+                    await audioElement.play();
+                } catch (error) {
+                    console.error("Auto-play failed:", error);
+                }
+                setAudioStates((prevState) => ({
+                    ...prevState,
+                    isPlay: true,
+                }));
+            };
+            playAudio();
+            //  Pause audio when the component is closed
+            return () => {
+                audioElement.pause();
+            };
+        }
+    }, [Open, AudioSrc, ActiveAudioSrc]);
+
+    useEffect(() => {
         if (AudioRef.current) {
             const audioElement = AudioRef.current;
 
             const handleLoadedMetadata = () => {
                 if (audioElement.duration > 0) {
                     const duration = formatTime(audioElement.duration);
-                    console.log("Metadata loaded. Duration:", duration);
-                    console.log("Can play through. Duration:", duration);
                     setAudioStates((prevState) => ({ ...prevState, duration }));
                 }
             };
@@ -101,21 +124,21 @@ const AudioPlayer = ({ isOpen, AudioSrc }: AudioPlayerProps) => {
             {Open && (
                 <div className="d-flex flex-column position-fixed w-100 gap-2 audio-player z-3">
                     <IoMdClose
+                        size={18}
                         onClick={() => {
-                            console.log("Close button clicked");
-                            SetOpen(false);
+                            SetOpen(!Open);
                         }}
                         className="close-btn"
-                        style={{ cursor: 'pointer', position: 'absolute', top: 10, right: 10 }}
                     />
-                    <audio src={AudioSrc} ref={AudioRef} preload="metadata" />
+                    <audio src={ActiveAudioSrc} ref={AudioRef} preload="metadata" />
                     <div className="upper-body d-flex justify-content-center align-items-center gap-3 mt-2">
                         <div className="controls d-flex align-items-center gap-2">
                             <FaBackward
                                 onClick={() => handleSkipTimeBackward(AudioRef, setAudioStates)}
                                 size={20}
+                                className="d-none d-sm-block"
                             />
-                            <FaStepBackward size={20} />
+                            <FaStepBackward size={20} onClick={() => handleStepBackward(setActiveAudioSrc, ListOfSurah, index)} className={`p-0 ${index === 0 ? 'disabled-btn' : ''}`} />
                             <button
                                 onClick={() => handlePlayBtn(AudioRef, audioStates, setAudioStates)}
                                 type="button"
@@ -124,10 +147,11 @@ const AudioPlayer = ({ isOpen, AudioSrc }: AudioPlayerProps) => {
                             >
                                 {audioStates.isPlay ? <FaPause size={25} /> : <FaPlay size={25} />}
                             </button>
-                            <FaStepForward size={20} />
+                            <FaStepForward size={20} className={`${index === ListOfSurah.length - 1 ? "disabled-btn" : ""}`} onClick={() => handleStepForward(setActiveAudioSrc, ListOfSurah, index)} />
                             <FaForward
                                 size={20}
                                 onClick={() => handleSkipTimeForward(AudioRef, setAudioStates)}
+                                className="d-none d-sm-block"
                             />
                         </div>
                         <div className="volume d-flex align-items-center gap-1 justify-content-start">

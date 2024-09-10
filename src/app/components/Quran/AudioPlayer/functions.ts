@@ -1,9 +1,11 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 
 export interface AudioPlayerProps {
     isOpen: boolean;
     AudioSrc: string;
+    index: number,
+    ListOfSurah: string[]
 }
 
 export interface AudioStatesProps {
@@ -21,7 +23,7 @@ export const AudioStatesInitial: AudioStatesProps = {
     duration: "00:00",
     currentTime: "00:00",
     volume: 0.3,
-    progress: 0
+    progress: 0,
 };
 
 export const formatTime = (time: number): string => {
@@ -209,6 +211,26 @@ export const surahNamesArabic: { [key: number]: string } = {
     112: "الإخلاص",
     113: "الفلق",
     114: "الناس"
-  };
+};
 
 
+export const handleStepBackward = (
+    setActiveAudioSrc: (src: string) => void,
+    ListOfSurah: string[],
+    index: number
+) => {
+    if (index > 0) {
+        setActiveAudioSrc(ListOfSurah[index - 1]);
+    }
+};
+
+export const handleStepForward = (
+    setActiveAudioSrc: (src: string) => void,
+    ListOfSurah: string[],
+    index: number
+) => {
+    if (index < ListOfSurah.length - 1) {
+        setActiveAudioSrc(ListOfSurah[index + 1]);
+    }
+    
+};

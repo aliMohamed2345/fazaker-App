@@ -182,12 +182,6 @@ html[data-theme=dark] {
   --bs-form-invalid-border-color: #ea868f;
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
 @keyframes loading-skeleton {
   0% {
     transform: scale(1);
@@ -202,7 +196,28 @@ html[data-theme=dark] {
     opacity: 0.8;
   }
 }
-@media (max-width: 480px) {
+@media (max-width: 360px) {
+  p {
+    font-size: 12px;
+  }
+  h1 {
+    font-size: 2em;
+  }
+  h2 {
+    font-size: 1.75em;
+  }
+  h3 {
+    font-size: 1.5em;
+  }
+  h4 {
+    font-size: 1.3em;
+  }
+  h5,
+  h6 {
+    font-size: 1.2em;
+  }
+}
+@media (min-width: 361px) and (max-width: 480px) {
   p {
     font-size: 14px;
   }
@@ -265,6 +280,12 @@ html[data-theme=dark] {
     font-size: 2em;
   }
 }
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
 html,
 body {
   scroll-behavior: smooth;
@@ -288,19 +309,18 @@ button:hover {
   transition: 0.3s ease all;
 }
 
+.disabled-btn {
+  pointer-events: none;
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
 nav {
   background-color: var(--primary-bg-color);
   color: var(--primary-text-color);
   overflow: hidden;
   top: 0;
   left: 0;
-}
-
-.Toast {
-  right: 10px;
-  bottom: 85px;
-  height: 30px;
-  width: 200px;
 }
 
 .navbar {
@@ -478,6 +498,11 @@ ul.nav-items li:hover a {
   transition: 0.3s;
 }
 
+.quran-loading-screen {
+  max-width: 280px;
+  height: 60px;
+}
+
 .reciters .reciter {
   transition: 0.3s;
 }
@@ -486,6 +511,9 @@ ul.nav-items li:hover a {
   color: var(--bs-green-hover);
 }
 
+.surah-container {
+  max-height: 180px;
+}
 .surah-container .surah-more-options {
   position: absolute;
   max-width: 130px;
