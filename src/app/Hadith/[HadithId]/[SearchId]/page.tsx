@@ -4,14 +4,14 @@ import { useEffect, useState } from "react";
 import { HadithProps } from "../page";
 import HadithContainer from "@/app/components/Hadith/HadithContainer";
 import SearchHadithComponent from "@/app/components/Hadith/SearchHadith";
-import HadithLoading from "@/app/components/Hadith/Loading";
+import HadithLoading from "@/app/components/Hadith/HadithLoading";
 interface searchParamsProps {
     searchParams: {
         HadithNum: number;
         Hadith: string;
         HadithBook: string
-        };
-    }
+    };
+}
 
 let InitialHadith: HadithProps = {
     number: 0,

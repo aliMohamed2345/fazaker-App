@@ -23,7 +23,6 @@ const Nav = () => {
         setTheme(newTheme);
         document.documentElement.setAttribute('data-theme', newTheme);
         localStorage.setItem('Theme', newTheme);
-        console.log(theme);
     }
 
     return (
@@ -53,7 +52,7 @@ const Nav = () => {
                             </button>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link fw-bolder p-3" href="/quran" aria-current="page">
+                            <Link className="nav-link fw-bolder p-3" href="/Quran" aria-current="page">
                                 القران
                             </Link>
                         </li>

@@ -4,9 +4,6 @@ import Image from "next/image";
 import PrayerTimeImg from '@/../public/Images/main/prayerTime.jpg'
 import Link from "next/link";
 
-
-
-
 const PrayerTimingSection = () => {
     return (<>
         <div className="prayer-time-section position-absolute pt-5 pb-5  ">
@@ -26,7 +23,7 @@ const PrayerTimingSection = () => {
                         أوقاتها المحددة، متيحًا لك الاستفادة من الأدوات الدقيقة والمحدثة باستمرار،
                         يمكنك الاعتماد على مواقيت الصلاة لضبط عباداتك بكل سهولة ويسر،
                         وتحقيق التوازن بين واجباتك الدينية والدنيوية.</p>
-                <Link href="/PrayerTiming" className="btn btn-success m-auto d-block w-25">الذهاب</Link>
+                    <Link href="/PrayerTiming" className="btn btn-success m-auto d-block w-25">الذهاب</Link>
                 </div>
             </div>
         </div>

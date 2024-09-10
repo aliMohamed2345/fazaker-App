@@ -2,7 +2,8 @@
 import { useEffect, useState } from 'react';
 import HadithContainer from '@/app/components/Hadith/HadithContainer';
 import SearchHadithComponent from '@/app/components/Hadith/SearchHadith';
-import HadithLoading from '@/app/components/Hadith/Loading';
+import HadithLoading from '@/app/components/Hadith/HadithLoading';
+
 import Pagination from '@/app/components/Hadith/Pagination';
 import { useParams } from 'next/navigation';
 interface searchParamsProps {
@@ -23,7 +24,7 @@ export interface HadithsProps {
 }
 const HadithId = ({ searchParams }: searchParamsProps) => {
     let Page: number = Number(useParams().HadithId);
-    let HadithPerPage = 50
+    let HadithPerPage = 30;
     let startingRange = (((Page - 1) * HadithPerPage) + 1)
     let EndingRange = HadithPerPage * Page;
     console.log(startingRange, EndingRange);
@@ -38,6 +39,7 @@ const HadithId = ({ searchParams }: searchParamsProps) => {
                 SetIsLoading(false);
             });
     }, []);
+  
     return (
         <>
             <p className="mb-5">hello</p>
@@ -53,7 +55,7 @@ const HadithId = ({ searchParams }: searchParamsProps) => {
                     })}
                 </div>
             }
-            <Pagination />
+            <Pagination Api={searchParams.Hadith}title={searchParams.HadithName}NumberOfHadith={searchParams.NumberOfHadith} HadithPerPage={HadithPerPage} />
         </>
     );
 };

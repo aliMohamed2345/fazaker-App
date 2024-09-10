@@ -1,3 +1,5 @@
+$base-font-size: 16px;
+$base-header-size: 2em;
 html[data-theme="light"] {
   --primary-bg-color: #fff;
   --secondary-bg-color: #f2f2f2;
@@ -135,6 +137,8 @@ html[data-theme="dark"] {
   --bs-secondary-color: rgba(222, 226, 230, 0.75);
   --bs-secondary-color-rgb: 222, 226, 230;
   --bs-secondary-bg: #343a40;
+  --bs-green: #198754;
+  --bs-green-hover: #176641;
   --bs-secondary-bg-rgb: 52, 58, 64;
   --bs-tertiary-color: rgba(222, 226, 230, 0.5);
   --bs-tertiary-color-rgb: 222, 226, 230;
@@ -199,6 +203,88 @@ html[data-theme="dark"] {
     opacity: 0.8;
   }
 }
+@media (max-width: 480px) {
+  p {
+    font-size: $base-font-size * 0.875; // Smaller font size for paragraphs
+  }
+
+  h1 {
+    font-size: $base-header-size * 1.25; // Adjust header size
+  }
+
+  h2 {
+    font-size: $base-header-size * 1.1;
+  }
+
+  h3 {
+    font-size: $base-header-size;
+  }
+
+  h4 {
+    font-size: $base-header-size * 0.875;
+  }
+
+  h5,
+  h6 {
+    font-size: $base-header-size * 0.75;
+  }
+}
+
+// Medium screen sizes (e.g., tablets)
+@media (min-width: 481px) and (max-width: 768px) {
+  p {
+    font-size: $base-font-size * 1; // Base font size for paragraphs
+  }
+
+  h1 {
+    font-size: $base-header-size * 1.5; // Slightly larger header size
+  }
+
+  h2 {
+    font-size: $base-header-size * 1.25;
+  }
+
+  h3 {
+    font-size: $base-header-size * 1.1;
+  }
+
+  h4 {
+    font-size: $base-header-size * 1;
+  }
+
+  h5,
+  h6 {
+    font-size: $base-header-size * 0.875;
+  }
+}
+
+// Larger screen sizes (e.g., desktops)
+@media (min-width: 769px) {
+  p {
+    font-size: $base-font-size * 1.125; // Larger font size for paragraphs
+  }
+
+  h1 {
+    font-size: $base-header-size * 2; // Larger header size for desktop
+  }
+
+  h2 {
+    font-size: $base-header-size * 1.75;
+  }
+
+  h3 {
+    font-size: $base-header-size * 1.5;
+  }
+
+  h4 {
+    font-size: $base-header-size * 1.25;
+  }
+
+  h5,
+  h6 {
+    font-size: $base-header-size * 1;
+  }
+}
 
 @mixin centerElementWithFlex {
   display: flex;
@@ -210,6 +296,13 @@ html[data-theme="dark"] {
   left: 50%;
   transform: translate(-50%, -50%);
   position: absolute;
+}
+@mixin progress($width, $height, $bg-color, $border-radius) {
+  height: $height;
+  max-width: 100%;
+  width: $width;
+  background-color: $bg-color;
+  border-radius: $border-radius;
 }
 html,
 body {
@@ -226,10 +319,19 @@ input,
 button {
   outline: none;
 }
+
+a:hover,
+button:hover {
+  transform: scale(1.05);
+  transition: 0.3s ease all;
+}
+
 nav {
   background-color: var(--primary-bg-color);
   color: var(--primary-text-color);
   overflow: hidden;
+  top: 0;
+  left: 0;
 }
 .Toast {
   right: 10px;
@@ -394,9 +496,156 @@ ul.nav-items li:hover a {
   background-size: 200% 100%;
   animation: loading-skeleton 1.5s ease-in-out infinite;
 }
-.hadith-search-bar{
+.hadith-search-bar {
   width: auto;
   background-color: var(--secondary-bg-color);
-  
 }
+.alpha-letter {
+  width: 40px;
+  height: 40px;
+  transition: 0.3s;
+}
+.reciters {
+  .reciter {
+    transition: 0.3s;
+    &:hover {
+      transform: scale(1.05);
+      color: var(--bs-green-hover);
+    }
+  }
+}
+.surah-container {
+  .surah-more-options {
+    position: absolute;
+    max-width: 130px;
+    height: 100px;
+    left: 0px;
+    top: 55px;
+    z-index: 4;
+    cursor: pointer;
+    background-color: var(--secondary-bg-color);
+    transition: opacity 0.3s ease, display 0.3s ease;
+    ul li:hover {
+      transition: 0.3s ease all;
+      background-color: var(--bs-green-hover);
+    }
+  }
+}
+.audio-player {
+  height: 120px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--secondary-bg-color);
+  .close-btn {
+    position: absolute;
+    color: var(--bs-green);
+    font-size: 25px;
+    top: 10px;
+    right: 17px;
+  }
+  svg {
+    cursor: pointer;
+  }
+  .upper-body {
+    .play {
+      width: 45px;
+      height: 45px;
+    }
+  }
+}
+.lower-body {
+  .full-progress {
+    @include progress(650px, 10px, var(--primary-bg-color), 0.375rem);
+  }
+  .real-progress {
+    height: 10px;
+    background-color: var(--bs-green);
+    border-radius: 0.375rem;
+  }
+}
+input[type="range"].volume-slider {
+  -webkit-appearance: none; /* Remove default appearance in WebKit browsers */
+  width: 100px; /* Width of the slider */
+  height: 8px; /* Height of the slider */
+  background: transparent; /* Remove background */
+  outline: none; /* Remove outline */
+  border-radius: 5px; /* Rounded corners */
+}
+input[type="range"].volume-slider::before {
+  content: "";
+  border-radius: 5px;
+  background-color: var(--bs-green);
+  width: var(--slider-before-width, 50%);
+  height: 8px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+}
+
+/* Style for the track of the slider */
+input[type="range"].volume-slider::-webkit-slider-runnable-track {
+  @include progress(100%, 8px, var(--primary-bg-color), 0.375rem);
+}
+
+/* Style for the thumb of the slider */
+input[type="range"].volume-slider::-webkit-slider-thumb {
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Style for the range input in Firefox */
+input[type="range"].volume-slider::-moz-range-track {
+  @include progress(100%, 8px, var(--primary-bg-color), 0.375rem);
+}
+
+input[type="range"].volume-slider::-moz-range-thumb {
+  opacity: 0;
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+/* Style for the range input in Edge and Internet Explorer */
+input[type="range"].volume-slider::-ms-track {
+  width: 100%;
+  height: 8px;
+  background: transparent; /* Remove background */
+  border-color: transparent; /* Remove border color */
+  color: transparent; /* Remove color */
+}
+
+input[type="range"].volume-slider::-ms-fill-lower {
+  background: var(--bs-green); /* Green color for the filled part */
+  border-radius: 5px; /* Rounded corners */
+}
+
+input[type="range"].volume-slider::-ms-fill-upper {
+  background: var(--primary-bg-color); /* Background color of the track */
+  border-radius: 5px; /* Rounded corners */
+}
+
+input[type="range"].volume-slider::-ms-thumb {
+  @include progress(20px, 20px, var(--bs-green), 0.375rem);
+  cursor: pointer; /* Pointer cursor on hover */
+}
+input[type="range"].progress-slider {
+  @include progress(400px, 8px, var(--primary-bg-color), 0.375rem);
+  -webkit-appearance: none; /* Remove default appearance in WebKit browsers */
+  outline: none; /* Remove outline */
+}
+input[type="range"].progress-slider::before {
+  content: "";
+  border-radius: 5px;
+  background-color: var(--bs-green);
+  width: var(--slider-before-width-progress, 0%);
+  height: 8px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+}
+input[type="range"].progress-slider::-webkit-slider-thumb {
+  opacity: 0;
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
 /*# sourceMappingURL=globals.css.map */

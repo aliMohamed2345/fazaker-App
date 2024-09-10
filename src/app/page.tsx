@@ -10,7 +10,7 @@ export default function Home() {
  <MainSection/>
  <AzkarSection/>
 <PrayerTimingSection/>
-<HadithSection/>
+{/* <HadithSection/> */}
 
 
  </>   

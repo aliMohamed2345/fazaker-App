@@ -1,3 +1,5 @@
+import { MouseEvent, RefObject } from "react";
+
 //interfaces
 export interface PrayerTimesProps {
     Fajr: string,
@@ -36,7 +38,7 @@ export function getDateFormat(): string {
     return `${Day}-${month}-${year}`;
 }
 //objects
-export let months = {
+export let months: { [key: string]: string } = {
     "January": "يناير",
     "February": "فبراير"
     , "March": "مارس",
@@ -63,3 +65,31 @@ export let InitialPrayerTimes: PrayerTimesProps = {
     Maghrib: '',
     Isha: '',
 }
+export let PrayerTimesInArabic: string[] = [`الفجر`, `الشروق`, `الظهر`, `العصر`, `المغرب`, `العشاء`]
+export const prayerNames: { [key: string]: string } = {
+    Fajr: 'الفجر',
+    Sunrise: 'الشروق',
+    Dhuhr: 'الظهر',
+    Asr: 'العصر',
+    Maghrib: 'المغرب',
+    Isha: 'العشاء',
+};
+export const handleSubmitBtn = (
+    e: MouseEvent<HTMLButtonElement>,
+    cityInput: RefObject<HTMLInputElement>,
+    countryInput: RefObject<HTMLInputElement>,
+    setInputForms: React.Dispatch<React.SetStateAction<InputFormsProps>>,
+    inputForms: InputFormsProps,
+    setErrorMessage: React.Dispatch<React.SetStateAction<string>>
+) => {
+    e.preventDefault();
+    const cityValue = cityInput.current?.value;
+    const countryValue = countryInput.current?.value;
+    if (cityValue && countryValue) {
+        localStorage.setItem("city", cityValue);
+        localStorage.setItem("country", countryValue);
+        setInputForms({ ...inputForms, city: cityValue, country: countryValue });
+    } else {
+        setErrorMessage("من فضلك ادخل القيم في حقول الادخال");
+    }
+};

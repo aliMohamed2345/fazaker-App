@@ -13,12 +13,9 @@ const sampleZekr: SampleZekrProps = {
     description: "من قالها حين يمسى أدى شكر يومه."
 }
 const AzkarSection = () => {
-    
+
     let { content, count, description } = sampleZekr;
     let [counter, setCounter] = useState<number>(count);
-    const handleClick = () => {
-        setCounter(prev => prev > 0 ? prev - 1 : prev = 0)
-    }
     return (<>
         <div className=" green-bg-color position-absolute">
             <h2 className="text-center  fw-bold mb-5">الاذكار</h2>
@@ -29,7 +26,7 @@ const AzkarSection = () => {
                             <p className="text-bold text-black">{content}</p>
                             <p className="text-start text-black-50 ">{description}</p>
                             <button
-                                onClick={handleClick}
+                                onClick={() => setCounter(prev => prev > 0 ? prev - 1 : prev = 0)}
                                 type="button"
                                 className={`btn btn-success rounded-circle ${counter > 0 ? "" : "disabled"}`}
                             >

@@ -16,7 +16,6 @@ let HadithSample: HadithSampleProps = {
 function HadithSection() {
 
     return (<>
-    //مجموعة من الأحاديث النبوية الموثوقة من كتب معروفة مثل صحيح البخاري وصحيح مسلم وموطأ الإمام مالك. الهدف هو توفير مرجع يساعدك في فهم تعاليم النبي ﷺ وتطبيقها في حياتك اليومية، بأسلوب بسيط وواضح.
     <div className="  position-absolute  Hadith-section w-100">
             <h2 className="text-center  fw-bold mb-5">الحديث الشريف</h2>
             <div className="container  Hadith-section  p-3 rounded-3 ">

@@ -13,7 +13,15 @@ const SearchHadithComponent = ({ Hadith, HadithBook, NumberOfHadith }: SearchHad
     return (
         <div className="hadith-search-bar p-2 rounded-4 mb-4 container w-75  ">
             <form className="d-flex align-items-center justify-content-center gap-3 flex-column flex-sm-row">
-                <label htmlFor="number">ابحث عن الحديث</label>
+                <Link
+                    href={{
+                        pathname: `/Hadith/${encodeURIComponent(Hadith)}/${searchVal}`,
+                        query: { HadithNum: searchVal, Hadith: Hadith, HadithBook: HadithBook }
+                    }}
+                    className={`btn-success btn ${searchVal && searchVal < NumberOfHadith ? '' : 'disabled'}`}
+                >
+                    <IoIosSearch size={20} />
+                </Link>
                 <div className="d-flex gap-4 align-items-center">
                     <input
                         onChange={(e) => SetSearchVal(+e.currentTarget.value)}
@@ -23,15 +31,7 @@ const SearchHadithComponent = ({ Hadith, HadithBook, NumberOfHadith }: SearchHad
                         min={1}
                         className="bg-transparent rounded-1 border-0  border-bottom border-success text-secondary shadow-none text-center"
                     />
-                    <Link
-                        href={{
-                            pathname: `/Hadith/${encodeURIComponent(Hadith)}/${searchVal}`,
-                            query: { HadithNum: searchVal, Hadith: Hadith, HadithBook: HadithBook }
-                        }}
-                        className={`btn-success btn ${searchVal && searchVal < NumberOfHadith ? '' : 'disabled'}`}
-                    >
-                        <IoIosSearch size={20} />
-                    </Link>
+                    <label htmlFor="number">ابحث عن الحديث</label>
                 </div>
             </form>
         </div>
