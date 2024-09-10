@@ -6,6 +6,7 @@ import { IoMdMore } from "react-icons/io";
 import { useState } from "react";
 import AudioPlayer from "@/app/components/Quran/AudioPlayer/AudioPlayer";
 import { surahNamesArabic } from "@/app/components/Quran/AudioPlayer/functions";
+import NotFound from "@/app/components/Quran/NotFound";
 
 interface ReciterIdProps {
   searchParams: {
@@ -23,6 +24,7 @@ const ReciterId = ({ searchParams }: ReciterIdProps) => {
     Array(ListOfSurah.length).fill(false)
   );
   const [activeSurah, setActiveSurah] = useState<string | null>(null);
+  const [searchVal, SetSearchVal] = useState<string>(""); // Search value state
 
   const toggleOptions = (index: number) => {
     setOpenOptions((prev) =>
@@ -30,15 +32,24 @@ const ReciterId = ({ searchParams }: ReciterIdProps) => {
     );
   };
 
+  // Filter Surahs based on search value
+  const filteredSurah = ListOfSurah.filter((surah) =>
+    surahNamesArabic[+surah].includes(searchVal)
+  );
+
   return (
     <div className="container">
       <h2 className="text-center mt-5 mb-5">{searchParams?.ReciterName}</h2>
-      <SearchArea placeholder={`البحث باسم السوره`} />
+      <SearchArea
+        searchVal={searchVal}
+        SetSearchVal={SetSearchVal}
+      />
       <div
         style={{ marginBottom: `130px` }}
         className="d-flex position-relative justify-content-center flex-wrap flex-row-reverse gap-4 col"
       >
-        {ListOfSurah.map((surah, i) => {
+        {!filteredSurah.length && <NotFound />}
+        {filteredSurah.map((surah, i) => {
           let correctedSurah: string =
             +surah < 10
               ? `00${surah}`
@@ -92,12 +103,17 @@ const ReciterId = ({ searchParams }: ReciterIdProps) => {
                 ListOfSurahLinks.map((surah, i) => {
                   if (surah === SurahLink) {
                     return (
-                      <AudioPlayer index={i} isOpen={true} AudioSrc={ListOfSurahLinks[i]} ListOfSurah={ListOfSurahLinks} />
+                      <AudioPlayer
+                        key={i}
+                        index={i}
+                        isOpen={true}
+                        AudioSrc={ListOfSurahLinks[i]}
+                        ListOfSurah={ListOfSurahLinks}
+                      />
                     );
                   }
                   return null; // Return null for non-matching cases
-                })
-              }
+                })}
             </div>
           );
         })}
