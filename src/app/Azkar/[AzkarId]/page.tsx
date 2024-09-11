@@ -67,8 +67,8 @@ const AzkarId = ({ searchParams }: SearchParamsProp) => {
                                 content={content}
                                 count={count}
                                 description={description}
-                                HandleCopyBtn={() => handleCopyBtn(content)} // Correctly passed as a function
-                                HandleCounterBtn={() => handleCounterBtn(i)} // Correctly passed as a function
+                                HandleCopyBtn={() => handleCopyBtn(content)} 
+                                HandleCounterBtn={() => handleCounterBtn(i)} 
                             />
                         );
                     })}

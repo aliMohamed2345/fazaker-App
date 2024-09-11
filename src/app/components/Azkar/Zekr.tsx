@@ -24,9 +24,9 @@ const Zekr = ({
                 className="container p-5 rounded-3 w-75 zekr mb-5 position-relative"
             >
                 <div className="text-center d-flex flex-column">
-                    <p className="zekr-content fs-6 fw-bold">{content}</p>
+                    <p className="zekr-content  fw-bold">{content}</p>
                 </div>
-                <p className="zekr-description text-end mt-3 text-white-50 fs-6">
+                <p className="zekr-description text-end mt-3 text-white-50 ">
                     {description}
                 </p>
                 <div className="buttons bg-secondary d-flex gap-3 p-2 rounded-4 align-items-center">

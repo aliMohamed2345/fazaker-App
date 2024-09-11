@@ -39,6 +39,7 @@ const ReciterId = ({ searchParams }: ReciterIdProps) => {
 
   return (
     <div className="container">
+      <p>2</p>
       <h2 className="text-center mt-5 mb-5">{searchParams?.ReciterName}</h2>
       <SearchArea
         searchVal={searchVal}
