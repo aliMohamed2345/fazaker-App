@@ -1,12 +1,12 @@
 'use client'
-import MoreOptionsSurah from "@/app/components/Quran/MoreOptionsSurah";
-import SearchArea from "@/app/components/Quran/SearchArea";
+import MoreOptionsSurah from "@/app/components/Quran/ListeningToQuran/MoreOptionsSurah";
+import SearchArea from "@/app/components/Quran/ListeningToQuran/SearchArea";
 import { FaPlay } from "react-icons/fa";
 import { IoMdMore } from "react-icons/io";
 import { useState } from "react";
 import AudioPlayer from "@/app/components/Quran/AudioPlayer/AudioPlayer";
 import { surahNamesArabic } from "@/app/components/Quran/AudioPlayer/functions";
-import NotFound from "@/app/components/Quran/NotFound";
+import NotFound from "@/app/components/Quran/ListeningToQuran/NotFound";
 
 interface ReciterIdProps {
   searchParams: {

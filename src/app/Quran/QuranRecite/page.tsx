@@ -1,10 +1,9 @@
 'use client';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import ReciterLoadingScreen from '@/app/components/Quran/QuranLoadingScreen';
-import RecitersSearchArea from '@/app/components/Quran/RecitersSearchArea';
-import NotFound from '@/app/components/Quran/NotFound';
-
+import NotFound from '@/app/components/Quran/ListeningToQuran/NotFound';
+import ReciterLoadingScreen from '@/app/components/Quran/ListeningToQuran/QuranLoadingScreen';
+import RecitersSearchArea from '@/app/components/Quran/ListeningToQuran/RecitersSearchArea';
 export interface MoshafProps {
     name?: string;
     server: string;
@@ -57,7 +56,7 @@ const QuranRecite = () => {
             {/* Pass searchVal and SetSearchVal to RecitersSearchArea */}
             <RecitersSearchArea searchVal={searchVal} SetSearchVal={SetSearchVal} />
             <div className="reciters d-flex flex-wrap gap-3 container mt-5 justify-content-center">
-                {!filteredReciters.length&&!IsLoading && <NotFound />}
+                {!filteredReciters.length && !IsLoading && <NotFound />}
                 {IsLoading ? (
                     <ReciterLoadingScreen Number={30} />
                 ) : (
