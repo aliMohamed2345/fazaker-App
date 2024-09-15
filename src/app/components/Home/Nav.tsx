@@ -26,9 +26,9 @@ const Nav = () => {
     }
 
     return (
-        <nav  className="navbar fixed-top w-100 p-0 z-3  navbar-expand-sm navbar-light bg-success">
+        <nav className="navbar fixed-top w-100 p-0 z-3  navbar-expand-sm navbar-light bg-success">
             <div className="container d-flex  flex-row-reverse align-items-center gap-3">
-                <Link className="navbar-brand fs-5  fw-bold m-0 flex-grow-3" href="/">فَذْكُر</Link>
+                <Link className="navbar-brand fw-bold m-0 flex-grow-3 fs-2" href="/">فَذْكُر</Link>
                 <button
                     className="navbar-toggler d-lg-none"
                     type="button"
@@ -43,11 +43,13 @@ const Nav = () => {
                 <div className="collapse navbar-collapse" id="collapsibleNavId">
                     <ul className="nav-items navbar-nav m-0">
                         <li className="nav-item d-flex align-items-center  justify-content-center">
-                            <button onClick={handleThemeBtn} style={{ width: `45px `, height: `45px`, transition: `0.3s` }} className={`btn ${theme === 'light' ? 'btn-outline-dark' : 'btn-outline-light'} me-3 rounded-circle d-flex align-items-center justify-content-center`}>
+                            <button onClick={handleThemeBtn}
+                            type="button"
+                                className={`btn ${theme === 'light' ? 'btn-outline-dark' : 'btn-outline-light'} me-3 rounded-circle d-flex align-items-center justify-content-center theme-btn`}>
                                 {theme === 'light' ? (
                                     <MdDarkMode color="white" fontSize={'25px'} />
                                 ) : (
-                                <MdOutlineWbSunny fontSize={'25px'}  color="black" />
+                                    <MdOutlineWbSunny fontSize={'25px'} color="black" />
                                 )}
                             </button>
                         </li>

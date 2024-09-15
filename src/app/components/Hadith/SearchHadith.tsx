@@ -12,7 +12,7 @@ const SearchHadithComponent = ({ Hadith, HadithBook, NumberOfHadith }: SearchHad
     let [searchVal, SetSearchVal] = useState<number | null>(null)
     return (
         <div className="hadith-search-bar p-2 rounded-4 mb-4 container w-75  ">
-            <form className="d-flex align-items-center justify-content-center gap-3 flex-column flex-sm-row">
+            <form className="d-flex align-items-center justify-content-center gap-5  ">
                 <Link
                     href={{
                         pathname: `/Hadith/${encodeURIComponent(Hadith)}/${searchVal}`,
@@ -26,12 +26,12 @@ const SearchHadithComponent = ({ Hadith, HadithBook, NumberOfHadith }: SearchHad
                     <input
                         onChange={(e) => SetSearchVal(+e.currentTarget.value)}
                         title="ادخل رقم الحديث"
+                        placeholder="ادخل رقم الحديث"
                         type="number"
                         name="number"
                         min={1}
                         className="bg-transparent rounded-1 border-0  border-bottom border-success text-secondary shadow-none text-center"
                     />
-                    <label htmlFor="number">ابحث عن الحديث</label>
                 </div>
             </form>
         </div>

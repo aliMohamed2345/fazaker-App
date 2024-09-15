@@ -15,8 +15,8 @@ const HadithCard = ({ image, title, NumberOfHadith, Api, page = 1, Key }: Hadith
         <div key={Key} className="card mw-100">
             <Image className="card-img-top" src={image} height={250} alt={title} sizes="cover" />
             <div className="card-body">
-                <h5 className="card-title text-center">{title}</h5>
-                <div className="d-flex align-items-center justify-content-between">
+                <h6 className="card-title text-center">{title}</h6>
+                <div className="d-flex align-items-center justify-content-between mt-4">
                     <p className='m-0'>{NumberOfHadith}</p>
                     <p className='m-0'>عدد الاحاديث</p>
                 </div>

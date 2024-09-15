@@ -78,7 +78,7 @@ const QuranRecite = () => {
                                         ReciterName: name,
                                     },
                                 }}
-                                className='bg-secondary reciter p-2 p-sm-3 rounded-3 col-4 col-sm-3 text-center'
+                                className=' reciter p-2 p-sm-3 rounded-3 col-4 col-sm-3 text-center'
                             >
                                 <p className='m-0'>{name}</p>
                             </Link>

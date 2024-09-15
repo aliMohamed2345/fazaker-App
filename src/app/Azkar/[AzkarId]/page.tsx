@@ -51,7 +51,6 @@ const AzkarId = ({ searchParams }: SearchParamsProp) => {
 
     return (
         <>
-            <h1>hello</h1>
             {isLoading ? (
                 <AzkarLoading Number={6} />
             ) : (

@@ -27,7 +27,6 @@ const HadithId = ({ searchParams }: searchParamsProps) => {
     let HadithPerPage = 30;
     let startingRange = (((Page - 1) * HadithPerPage) + 1)
     let EndingRange = HadithPerPage * Page;
-    console.log(startingRange, EndingRange);
     let [Hadiths, SetHadiths] = useState<HadithsProps>({ hadiths: [] });
     let [IsLoading, SetIsLoading] = useState<boolean>(true);
     let Api = `https://api.hadith.gading.dev/books/${searchParams.Hadith}?range=${startingRange}-${EndingRange}`;

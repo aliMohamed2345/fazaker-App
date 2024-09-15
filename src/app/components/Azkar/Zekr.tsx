@@ -1,11 +1,11 @@
 import { BiClipboard } from "react-icons/bi";
 
 interface ZekrProps {
-    index: number;
+    index?: number |undefined;
     content: string;
     count: number;
     description: string;
-    HandleCounterBtn: (index: number) => void;
+    HandleCounterBtn: (index: number|undefined) => void;
     HandleCopyBtn: (content: string) => void;
 }
 
@@ -21,17 +21,17 @@ const Zekr = ({
         <>
             <div
                 key={index}
-                className="container p-5 rounded-3 w-75 zekr mb-5 position-relative"
+                className="container p-5 rounded-3  zekr mb-5 position-relative"
             >
                 <div className="text-center d-flex flex-column">
                     <p className="zekr-content  fw-bold">{content}</p>
                 </div>
-                <p className="zekr-description text-end mt-3 text-white-50 ">
+                <p className="zekr-description text-end mt-3  ">
                     {description}
                 </p>
-                <div className="buttons bg-secondary d-flex gap-3 p-2 rounded-4 align-items-center">
+                <div className="buttons  d-flex gap-3 p-2 rounded-4 align-items-center">
                     <button
-                        title={`pls don't forget to add the specific count here `}
+                        title={`count `}
                         onClick={() => HandleCounterBtn(index)}  
                         type="button"
                         className={`btn btn-success ${+count === 0 ? "disabled" : ""} rounded-circle m-auto d-flex align-items-center justify-content-center`}

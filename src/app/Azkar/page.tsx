@@ -3,7 +3,6 @@ let AzkarCategories: string[] = [`أذكار الصباح`, `أذكار المس
 
 const Azkar = () => {
     return (<>
-        <h1>hello</h1>
         <div className="Azkar-content container h-100  position-relative ">
             <h1 className="text-center mt-5 mb-5">الاذكار</h1>
             <div className=" d-flex flex-column w-100 row-gap-3 justify-content-center">
