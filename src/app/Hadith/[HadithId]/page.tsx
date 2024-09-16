@@ -24,7 +24,7 @@ export interface HadithsProps {
 }
 const HadithId = ({ searchParams }: searchParamsProps) => {
     let Page: number = Number(useParams().HadithId);
-    let HadithPerPage = 30;
+    let HadithPerPage = 20;
     let startingRange = (((Page - 1) * HadithPerPage) + 1)
     let EndingRange = HadithPerPage * Page;
     let [Hadiths, SetHadiths] = useState<HadithsProps>({ hadiths: [] });

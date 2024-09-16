@@ -1,6 +1,7 @@
 import SurahNJuzOptions from "@/app/components/Quran/ReadingQuran/SurahNJuzOptions";
 import Link from "next/link";
 import { surahNamesArabic } from "@/app/components/Quran/AudioPlayer/functions";
+
 interface SurahProps {
 
 }

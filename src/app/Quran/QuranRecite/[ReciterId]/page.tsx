@@ -63,7 +63,7 @@ const ReciterId = ({ searchParams }: ReciterIdProps) => {
           return (
             <div
               key={i}
-              className="surah-container position-relative bg-secondary p-3 rounded-3 d-flex justify-content-between align-items-center col-4 col-sm-3 col-md-3 flex-sm-row-reverse flex-md-row-reverse flex-column gap-3 gap-md-2 gap-sm-2"
+              className="surah-container position-relative  p-3 rounded-3 d-flex justify-content-between align-items-center col-4 col-sm-3 col-md-3 flex-sm-row-reverse flex-md-row-reverse flex-column gap-3 gap-md-2 gap-sm-2"
             >
               <div className="for-small-sizes d-flex flex-row-reverse align-items-center  gap-5 gap-md-0 gap-sm-2">
                 <p className="m-0 ">{surahNamesArabic[+surah]}</p>

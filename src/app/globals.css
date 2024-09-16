@@ -2,9 +2,9 @@ html[data-theme=light] {
   --primary-bg-color: #fff;
   --secondary-bg-color: #f2f2f2;
   --Territory-bg-color: #d9d9d9;
-  --bs-danger: #dc3545;
   --bs-green: #198754;
   --bs-green-hover: #176641;
+  --bs-danger: #dc3545;
 }
 
 html[data-theme=dark] {
@@ -12,9 +12,9 @@ html[data-theme=dark] {
   --secondary-bg-color: #242526;
   --Territory-bg-color: #495057;
   --primary-text-color: #c4c9ce;
-  --bs-danger: #dc3545;
   --bs-green: #198754;
   --bs-green-hover: #176641;
+  --bs-danger: #dc3545;
 }
 
 @keyframes loading-skeleton {
@@ -126,6 +126,10 @@ body {
   scroll-behavior: smooth;
   max-width: 100vw;
   overflow-x: hidden;
+}
+
+ul {
+  list-style-type: none;
 }
 
 body {
@@ -391,8 +395,15 @@ ul.nav-items li:hover a {
   color: var(--bs-green-hover);
 }
 
+.reciter-search-area {
+  background-color: var(--secondary-bg-color);
+  transition: 0.3s ease all;
+}
+
 .surah-container {
   max-height: 180px;
+  background-color: var(--Territory-bg-color);
+  transition: 0.3s ease all;
 }
 .surah-container .surah-more-options {
   position: absolute;
@@ -446,12 +457,12 @@ ul.nav-items li:hover a {
 }
 
 input[type=range].volume-slider {
-  -webkit-appearance: none; /* Remove default appearance in WebKit browsers */
-  width: 100px; /* Width of the slider */
-  height: 8px; /* Height of the slider */
-  background: transparent; /* Remove background */
-  outline: none; /* Remove outline */
-  border-radius: 5px; /* Rounded corners */
+  -webkit-appearance: none;
+  width: 100px;
+  height: 8px;
+  background: transparent;
+  outline: none;
+  border-radius: 5px;
 }
 
 input[type=range].volume-slider::before {
@@ -580,6 +591,57 @@ input[type=range].progress-slider::-webkit-slider-thumb {
 
 .btns-info button {
   min-width: 150px;
+}
+
+.go-to-ayah-container {
+  background-color: var(--secondary-bg-color);
+  min-width: 300px;
+}
+.go-to-ayah-container .all-ayahs {
+  width: 270px;
+  height: 220px;
+  overflow-y: auto;
+  background-color: var(--bs-green);
+}
+.go-to-ayah-container .all-ayahs ul li {
+  background-color: var(--primary-bg-color);
+  min-width: 40px;
+  aspect-ratio: 1/1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  color: var(--bs-green);
+  font-size: 20px;
+  transition: 0.3s ease all;
+  cursor: pointer;
+  font-weight: bold;
+}
+.go-to-ayah-container .all-ayahs ul li:hover {
+  color: var(--primary-bg-color);
+  background-color: var(--bs-green-hover);
+}
+
+.page-info {
+  background-color: var(--secondary-bg-color);
+  top: 70px;
+  position: sticky;
+  z-index: 1;
+  transition: 0.2s ease all;
+}
+.page-info:hover {
+  background-color: var(--bs-green); /* Change background color on hover */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Add shadow on hover for emphasis */
+  transform: scale(1.05); /* Optional: slight scale up on hover for a zoom effect */
+  color: var(--secondary-bg-color);
+}
+
+.quran {
+  direction: rtl;
+  letter-spacing: 1.1;
+  line-height: 2;
+  font-weight: bold;
+  font-size: 20px;
 }
 
 /*# sourceMappingURL=globals.css.map */
