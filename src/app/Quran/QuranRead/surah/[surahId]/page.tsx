@@ -21,7 +21,7 @@ interface ayahsProps {
     number: number;
 }
 
-interface SurahIdProps {
+export interface SurahIdProps {
     name: string;
     number: number;
     numberOfAyahs: number;
@@ -29,10 +29,11 @@ interface SurahIdProps {
     ayahs: ayahsProps[];
 }
 export interface pageContentProps {
-    ayahs: { text: string }[]; // Array of AyahProps objects
+    ayahs: { text: string, numberInSurah: number }[]; // Array of AyahProps objects
     juz: number;
     hizbQuarter: number;
     page: number;
+
 }
 
 let InitialSurahData: SurahIdProps = {
@@ -48,7 +49,7 @@ const SurahId = () => {
     const surahNameArabic = useSearchParams().get('surahNameArabic');
     const SurahNumber = useSearchParams().get('SurahNumber');
     let api = `http://api.alquran.cloud/v1/surah/${SurahNumber}/ar.alafasy`;
-
+    console.log(SurahNumber);
     let totalPages =
         SurahData.ayahs.length > 0
             ? SurahData.ayahs[SurahData.ayahs.length - 1]?.page -
@@ -64,13 +65,14 @@ const SurahId = () => {
             ayahs: [],
             juz: 0,
             hizbQuarter: 0,
-            page: page
+            page: page,
+            // numberInSurah: 0
         };
 
         // Loop through ayahs and collect those that belong to the current page
         for (let ayah of SurahData.ayahs) {
             if (ayah.page === page) {
-                pageContent.ayahs.push({ text: ayah.text });
+                pageContent.ayahs.push({ text: ayah.text, numberInSurah: ayah.numberInSurah });
                 // Set juz and hizbQuarter for the first ayah in the page
                 if (pageContent.juz === 0) {
                     pageContent.juz = ayah.juz;
@@ -84,9 +86,7 @@ const SurahId = () => {
             pages.push(pageContent);
         }
     }
-
-    console.log(pages);
-
+    console.log(pages)
     // Check if there is any Sajda in the Surah
     const hasSajda = SurahData.ayahs.some(ayah => typeof ayah.sajda === 'object' || ayah.sajda === true);
 
@@ -113,7 +113,7 @@ const SurahId = () => {
                     {hasSajda ? "سجدة" : "لا توجد سجدة"}
                 </button>
             </div>
-            <div className="d-flex gap-5 justify-content-center align-items-center align-items-sm-center align-items-md-start container-lg mt-5 flex-column flex-md-row-reverse">
+            <div className="d-flex gap-3 justify-content-center align-items-center align-items-sm-center align-items-md-start container-lg mt-5 flex-column flex-md-row-reverse">
                 <GoToAyah numberOfAyahs={SurahData.numberOfAyahs} />
                 <QuranSection Pages={pages} />
             </div>

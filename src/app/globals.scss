@@ -1,3 +1,10 @@
+@font-face {
+  font-family: "Uthmani";
+  src: url("/public//fonts/UthmanTN_v2-0.ttf") format("opentype");
+  font-weight: bold;
+  font-style: normal;
+}
+
 //======================
 //Variables
 //======================
@@ -647,27 +654,57 @@ input[type="range"].progress-slider::-webkit-slider-thumb {
     }
   }
 }
-.page-info {
-  background-color: var(--secondary-bg-color);
-  top: 70px;
-  position: sticky;
-  z-index: 1;
-  transition: 0.2s ease all;
-  &:hover {
-      background-color: var(--bs-green); /* Change background color on hover */
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Add shadow on hover for emphasis */
-      transform: scale(
-        1.05
-      ); /* Optional: slight scale up on hover for a zoom effect */
-      color:var(--secondary-bg-color)
+.all-pages {
+  .page {
+    border: 3px solid var(--bs-green);
+    background-color: var(--Territory-bg-color);
+    min-height: 200px;
   }
-}
-.quran {
-  direction: rtl;
-  letter-spacing: 1.1;
-  line-height: 2;
-  font-weight: bold;
-  font-size: 20px;
+  .page-info {
+    background-color: var(--secondary-bg-color);
+    top: 70px;
+    position: sticky;
+    transition: 0.2s ease all;
+    &:hover {
+      background-color: var(--bs-green);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+      transform: scale(1.01);
+      color: var(--secondary-bg-color);
+    }
+  }
+  .quran {
+    font-family: "Uthmani", serif;
+    direction: rtl;
+    font-size: 30px;
+    font-weight: bold;
+    letter-spacing: 1.2;
+    line-height: 1.2;
+    .ayah.active {
+      background-color: var(--bs-green);
+    }
+    .ayah {
+      &.active {
+        background-color: var(--bs-green-hover);
+      }
+
+      transition: 0.3s ease all;
+      .ayah-symbol {
+        white-space: nowrap;  
+      }
+      .ayah-number {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        font-size: 9px;
+        transform: translate(-50%, -50%);
+      }
+      &:hover {
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: var(--primary-bg-color);
+      }
+    }
+  }
 }
 
 /*# sourceMappingURL=globals.css.map */

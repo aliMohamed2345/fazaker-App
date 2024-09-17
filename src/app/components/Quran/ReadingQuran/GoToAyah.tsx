@@ -1,12 +1,21 @@
+import { useState } from "react";
+
 interface GoToAyahProps {
     numberOfAyahs: number
 }
 
 const GoToAyah = ({ numberOfAyahs }: GoToAyahProps) => {
+    let [InputVal, SetInputVal] = useState<string>('');
+    console.log(InputVal);
     function RenderAllAyahs(numberOfAyahs: number) {
         let ayahList = [];
-        for (let ayah = 1; ayah <= numberOfAyahs; ayah++) {
-            ayahList.push(<li key={ayah}>{ayah}</li>);
+        if (!InputVal) {
+            for (let ayah = 1; ayah <= numberOfAyahs; ayah++) {
+                ayahList.push(<li key={ayah}><a href={`#ayah-${ayah-1}`}>{ayah}</a></li>);
+            }
+        }
+        else {
+            ayahList.push(<li key={InputVal}><a href={`#ayah-${InputVal}`}>{InputVal}</a></li>);
         }
         return ayahList;
     }
@@ -14,6 +23,8 @@ const GoToAyah = ({ numberOfAyahs }: GoToAyahProps) => {
         <div className=" p-3 rounded-3 go-to-ayah-container  d-flex flex-column justify-content-center align-items-center">
             <div className="search-area w-25 mw-100 flex-grow-1">
                 <input type="number"
+                    value={InputVal}
+                    onChange={e => SetInputVal(e.target.value)}
                     min={1}
                     max={numberOfAyahs}
                     className="bg-transparent  rounded-3 border-0 border-bottom border-success  text-center mw-100 w-100 "

@@ -24,7 +24,7 @@ const SurahNJuzOptions = () => {
                     href={{
                         pathname: `/Quran/QuranRead/juz`,
                         query: {},
-                    }}>مميزه بعلامه</Link>
+                    }}>علامه مرجعيه</Link>
                     
             </div>
         </div>
