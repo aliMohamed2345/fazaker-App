@@ -37,6 +37,17 @@ html[data-theme=dark] {
     opacity: 0.8;
   }
 }
+@keyframes scale {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 @media (max-width: 360px) {
   p {
     font-size: 12px;
@@ -662,20 +673,135 @@ input[type=range].progress-slider::-webkit-slider-thumb {
 .all-pages .quran .ayah.active {
   background-color: var(--bs-green-hover);
 }
+.all-pages .quran .ayah .ayah-options {
+  width: auto;
+  background-color: var(--primary-bg-color);
+  left: 50%;
+  top: -55px;
+}
+.all-pages .quran .ayah .ayah-options div {
+  padding: 5px;
+  border-radius: 10px;
+  color: var(--bs-green);
+}
+.all-pages .quran .ayah .ayah-options div:hover {
+  color: var(--primary-bg-color);
+  background-color: var(--bs-green);
+}
 .all-pages .quran .ayah .ayah-symbol {
   white-space: nowrap;
 }
 .all-pages .quran .ayah .ayah-number {
   position: absolute;
+  font-size: 9px;
   top: 50%;
   left: 50%;
-  font-size: 9px;
   transform: translate(-50%, -50%);
+  position: absolute;
 }
 .all-pages .quran .ayah:hover {
   border-radius: 5px;
   cursor: pointer;
   background-color: var(--primary-bg-color);
+}
+
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.tooltip-container span.tooltip-text {
+  position: absolute;
+  font-weight: bold;
+  visibility: hidden;
+  width: auto;
+  background-color: var(--bs-green-hover);
+  color: var(--secondary-bg-color);
+  text-align: center;
+  border-radius: 5px;
+  z-index: 3;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 12px;
+  padding: 5px;
+}
+
+.tooltip-container:hover span.tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+.tafsir-bg {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  opacity: 0;
+  transition: 0.1s ease all;
+  left: 0;
+  width: 100%;
+  z-index: -5;
+  height: 100%;
+}
+.tafsir-bg.active {
+  opacity: 1;
+  z-index: 1;
+}
+.tafsir-bg .tafsir-window {
+  background-color: var(--Territory-bg-color);
+  z-index: -4;
+  min-width: 300px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  transition: 0.2s ease all;
+  height: auto;
+  opacity: 0;
+}
+.tafsir-bg .tafsir-window .separator {
+  width: 100%;
+  height: 1px;
+  background-color: var(--primary-bg-color);
+}
+.tafsir-bg .tafsir-window .ayah {
+  font-family: "Uthmani", serif;
+  direction: rtl;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 1.2;
+  line-height: 1.2;
+  font-weight: bold;
+}
+.tafsir-bg .tafsir-window .tafsir {
+  font-family: "Uthmani", serif;
+  direction: rtl;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 1.2;
+  line-height: 1.2;
+}
+.tafsir-bg .tafsir-window .close-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 0px;
+  font-size: 20px;
+  top: 0px;
+  width: 50px;
+  background-color: transparent;
+  height: 50px;
+}
+.tafsir-bg .tafsir-window .close-btn:hover {
+  background-color: var(--primary-bg-color);
+}
+.tafsir-bg .tafsir-window.active {
+  opacity: 1;
+  z-index: 2;
 }
 
 /*# sourceMappingURL=globals.css.map */

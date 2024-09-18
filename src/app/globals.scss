@@ -50,6 +50,17 @@ html[data-theme="dark"] {
     opacity: 0.8;
   }
 }
+@keyframes scale {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 //======================
 //Media Query
 //======================
@@ -184,6 +195,14 @@ html[data-theme="dark"] {
   width: $width;
   background-color: $bg-color;
   border-radius: $border-radius;
+}
+@mixin UthmaniFont($font-size:16px) {
+  font-family: "Uthmani", serif;
+  direction: rtl;
+  font-size: $font-size;
+  font-weight: bold;
+  letter-spacing: 1.2;
+  line-height: 1.2;
 }
 ///======================
 //Default styles
@@ -673,12 +692,7 @@ input[type="range"].progress-slider::-webkit-slider-thumb {
     }
   }
   .quran {
-    font-family: "Uthmani", serif;
-    direction: rtl;
-    font-size: 30px;
-    font-weight: bold;
-    letter-spacing: 1.2;
-    line-height: 1.2;
+    @include UthmaniFont(30px);
     .ayah.active {
       background-color: var(--bs-green);
     }
@@ -686,23 +700,117 @@ input[type="range"].progress-slider::-webkit-slider-thumb {
       &.active {
         background-color: var(--bs-green-hover);
       }
+      .ayah-options {
+        width: auto;
+        background-color: var(--primary-bg-color);
+        left: 50%;
+        top: -55px;
+        div {
+          padding: 5px;
+          border-radius: 10px;
+          color: var(--bs-green);
+          &:hover {
+            color: var(--primary-bg-color);
+            background-color: var(--bs-green);
+          }
+        }
+      }
 
       transition: 0.3s ease all;
       .ayah-symbol {
-        white-space: nowrap;  
+        white-space: nowrap;
       }
       .ayah-number {
         position: absolute;
-        top: 50%;
-        left: 50%;
         font-size: 9px;
-        transform: translate(-50%, -50%);
+        @include centerElementWithPosition();
       }
       &:hover {
         border-radius: 5px;
         cursor: pointer;
         background-color: var(--primary-bg-color);
       }
+    }
+  }
+}
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.tooltip-container span.tooltip-text {
+  position: absolute;
+  font-weight: bold;
+  visibility: hidden;
+  width: auto;
+  background-color: var(--bs-green-hover);
+  color: var(--secondary-bg-color);
+  text-align: center;
+  border-radius: 5px;
+  z-index: 3;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 12px;
+  padding: 5px;
+}
+.tooltip-container:hover span.tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+.tafsir-bg {
+  &.active {
+    opacity: 1;
+    z-index: 1;
+  }
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  opacity: 0;
+  transition: 0.1s ease all;
+  left: 0;
+  width: 100%;
+  z-index: -5;
+  height: 100%;
+  .tafsir-window {
+    .separator{
+      width: 100%;
+      height: 1px;
+      background-color: var(--primary-bg-color)
+    }
+    .ayah{
+      @include UthmaniFont(20px);
+      font-weight: bold
+    }
+    .tafsir{
+      @include UthmaniFont()
+    }
+    .close-btn {
+      @include centerElementWithFlex();
+      position: absolute;
+      right: 0px;
+      font-size: 20px;
+      top: 0px;
+      width: 50px;
+      background-color: transparent;
+      height: 50px;
+      &:hover {
+        background-color: var(--primary-bg-color);
+      }
+    }
+    background-color: var(--Territory-bg-color);
+    z-index: -4;
+    min-width: 300px;
+    @include centerElementWithPosition();
+    transition: 0.2s ease all;
+    height: auto;
+    opacity: 0;
+    &.active {
+      opacity: 1;
+      z-index: 2;
     }
   }
 }

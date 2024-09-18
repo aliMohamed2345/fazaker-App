@@ -1,6 +1,8 @@
 'use client';
 import GoToAyah from '@/app/components/Quran/ReadingQuran/GoToAyah';
 import QuranSection from '@/app/components/Quran/ReadingQuran/QuranSection';
+import TafsirSection from '@/app/components/Quran/ReadingQuran/TafsirSection';
+import Loading from '@/app/loading';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
@@ -29,7 +31,7 @@ export interface SurahIdProps {
     ayahs: ayahsProps[];
 }
 export interface pageContentProps {
-    ayahs: { text: string, numberInSurah: number }[]; // Array of AyahProps objects
+    ayahs: { text: string, numberInSurah: number, audio: string }[]; // Array of AyahProps objects
     juz: number;
     hizbQuarter: number;
     page: number;
@@ -45,11 +47,11 @@ let InitialSurahData: SurahIdProps = {
 };
 
 const SurahId = () => {
-    let [SurahData, SetSurahData] = useState(InitialSurahData);
     const surahNameArabic = useSearchParams().get('surahNameArabic');
     const SurahNumber = useSearchParams().get('SurahNumber');
+    let [SurahData, SetSurahData] = useState(InitialSurahData);
+    let [IsLoading, SetIsLoading] = useState<boolean>(true);
     let api = `http://api.alquran.cloud/v1/surah/${SurahNumber}/ar.alafasy`;
-    console.log(SurahNumber);
     let totalPages =
         SurahData.ayahs.length > 0
             ? SurahData.ayahs[SurahData.ayahs.length - 1]?.page -
@@ -72,7 +74,7 @@ const SurahId = () => {
         // Loop through ayahs and collect those that belong to the current page
         for (let ayah of SurahData.ayahs) {
             if (ayah.page === page) {
-                pageContent.ayahs.push({ text: ayah.text, numberInSurah: ayah.numberInSurah });
+                pageContent.ayahs.push({ text: ayah.text, numberInSurah: ayah.numberInSurah, audio: ayah.audio });
                 // Set juz and hizbQuarter for the first ayah in the page
                 if (pageContent.juz === 0) {
                     pageContent.juz = ayah.juz;
@@ -86,37 +88,42 @@ const SurahId = () => {
             pages.push(pageContent);
         }
     }
-    console.log(pages)
     // Check if there is any Sajda in the Surah
     const hasSajda = SurahData.ayahs.some(ayah => typeof ayah.sajda === 'object' || ayah.sajda === true);
 
     useEffect(() => {
         fetch(api).then(res => res.json()).then(data => {
             SetSurahData(data.data);
+            SetIsLoading(false);
         });
     }, [SurahNumber]);
 
     return (
         <>
-            <h1 className='text-center mt-5 mb-3'>سُورَةُ {surahNameArabic} </h1>
-            <div className="btns-info d-flex align-items-center justify-content-around gap-5 flex-wrap">
-                <button type='button' title='عدد الايات' className='btn rounded-pill btn-outline-success p-3 fs-5'>
-                    {SurahData.numberOfAyahs} آية
-                </button>
-                <button type='button' className='btn rounded-pill btn-outline-success p-3 fs-5'>
-                    {SurahData.revelationType === "Meccan" ? "مكية" : "مدنية"}
-                </button>
-                <button type='button' className='btn rounded-pill btn-outline-success p-3 fs-5'>
-                    صفحه {totalPages}
-                </button>
-                <button type='button' className='btn rounded-pill btn-outline-success p-3 fs-5'>
-                    {hasSajda ? "سجدة" : "لا توجد سجدة"}
-                </button>
-            </div>
-            <div className="d-flex gap-3 justify-content-center align-items-center align-items-sm-center align-items-md-start container-lg mt-5 flex-column flex-md-row-reverse">
-                <GoToAyah numberOfAyahs={SurahData.numberOfAyahs} />
-                <QuranSection Pages={pages} />
-            </div>
+            {IsLoading ? < Loading Width='100px' /> :
+                <><h1 className='text-center mt-5 mb-3'>سُورَةُ {surahNameArabic} </h1><div className="btns-info d-flex align-items-center justify-content-around gap-5 flex-wrap">
+                    <button type='button' title='عدد الايات' className='btn rounded-pill btn-outline-success p-3 fs-5'>
+                        {SurahData.numberOfAyahs} آية
+                    </button>
+                    <button type='button' className='btn rounded-pill btn-outline-success p-3 fs-5'>
+                        {SurahData.revelationType === "Meccan" ? "مكية" : "مدنية"}
+                    </button>
+                    <button type='button' className='btn rounded-pill btn-outline-success p-3 fs-5'>
+                        صفحه {totalPages}
+                    </button>
+                    <button type='button' className='btn rounded-pill btn-outline-success p-3 fs-5'>
+                        {hasSajda ? "سجدة" : "لا توجد سجدة"}
+                    </button>
+                </div>
+                    {/* <TafsirSection IsOpen={true}/>     */}
+                    <div className="d-flex gap-3 justify-content-center align-items-center align-items-sm-center align-items-md-start container-lg mt-5 flex-column flex-md-row-reverse">
+                        <GoToAyah numberOfAyahs={SurahData.numberOfAyahs} />
+                        <QuranSection Pages={pages} />
+                    </div>
+
+
+                </>
+            }
         </>
     );
 };

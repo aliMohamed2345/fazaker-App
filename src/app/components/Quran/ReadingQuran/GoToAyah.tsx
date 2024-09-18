@@ -6,7 +6,6 @@ interface GoToAyahProps {
 
 const GoToAyah = ({ numberOfAyahs }: GoToAyahProps) => {
     let [InputVal, SetInputVal] = useState<string>('');
-    console.log(InputVal);
     function RenderAllAyahs(numberOfAyahs: number) {
         let ayahList = [];
         if (!InputVal) {
@@ -21,7 +20,7 @@ const GoToAyah = ({ numberOfAyahs }: GoToAyahProps) => {
     }
     return (<>
         <div className=" p-3 rounded-3 go-to-ayah-container  d-flex flex-column justify-content-center align-items-center">
-            <div className="search-area w-25 mw-100 flex-grow-1">
+            <div className="search-area w-100 mw-100 flex-grow-1">
                 <input type="number"
                     value={InputVal}
                     onChange={e => SetInputVal(e.target.value)}
