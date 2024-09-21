@@ -196,7 +196,7 @@ html[data-theme="dark"] {
   background-color: $bg-color;
   border-radius: $border-radius;
 }
-@mixin UthmaniFont($font-size:16px) {
+@mixin UthmaniFont($font-size: 16px) {
   font-family: "Uthmani", serif;
   direction: rtl;
   font-size: $font-size;
@@ -766,27 +766,26 @@ input[type="range"].progress-slider::-webkit-slider-thumb {
     opacity: 1;
     z-index: 1;
   }
-  background-color: rgba(0, 0, 0, 0.5);
-  position: absolute;
   top: 0;
-  opacity: 0;
-  transition: 0.1s ease all;
   left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: 0.3s ease all;
   width: 100%;
   z-index: -5;
   height: 100%;
   .tafsir-window {
-    .separator{
+    .separator {
       width: 100%;
       height: 1px;
-      background-color: var(--primary-bg-color)
+      background-color: var(--primary-bg-color);
     }
-    .ayah{
+    .ayah {
       @include UthmaniFont(20px);
-      font-weight: bold
+      font-weight: bold;
     }
-    .tafsir{
-      @include UthmaniFont()
+    .tafsir {
+      @include UthmaniFont();
     }
     .close-btn {
       @include centerElementWithFlex();
@@ -803,14 +802,36 @@ input[type="range"].progress-slider::-webkit-slider-thumb {
     }
     background-color: var(--Territory-bg-color);
     z-index: -4;
-    min-width: 300px;
+    min-width: 80vw;
+
     @include centerElementWithPosition();
-    transition: 0.2s ease all;
-    height: auto;
+    transition: 0.8s ease all;
+    height: 550px;
+    overflow-y: auto;
     opacity: 0;
     &.active {
       opacity: 1;
       z-index: 2;
+    }
+  }
+}
+.sign {
+  transition: 0.3s ease all;
+  &:hover {
+    transform: scale(1.05);
+  }
+  background-color: var(--Territory-bg-color);
+  svg {
+    color: var(--bs-green-hover);
+  }
+  .ayah-info {
+    width: 70%;
+    .ayah {
+      direction:rtl;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+      white-space: nowrap;
     }
   }
 }

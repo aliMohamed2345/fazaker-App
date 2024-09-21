@@ -58,7 +58,6 @@ const SurahId = () => {
             SurahData.ayahs[0]?.page +
             1
             : 0;
-
     let pages: pageContentProps[] = [];
 
     // Loop through each page between the start and end page
@@ -115,10 +114,10 @@ const SurahId = () => {
                         {hasSajda ? "سجدة" : "لا توجد سجدة"}
                     </button>
                 </div>
-                    {/* <TafsirSection IsOpen={true}/>     */}
+                    {/* <TafsirSection IsOpen={true} SurahNumber={+SurahNumber!} /> */}
                     <div className="d-flex gap-3 justify-content-center align-items-center align-items-sm-center align-items-md-start container-lg mt-5 flex-column flex-md-row-reverse">
                         <GoToAyah numberOfAyahs={SurahData.numberOfAyahs} />
-                        <QuranSection Pages={pages} />
+                        <QuranSection Pages={pages} SurahNumber={+SurahNumber!} />
                     </div>
 
 

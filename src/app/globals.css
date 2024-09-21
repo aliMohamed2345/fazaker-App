@@ -736,12 +736,11 @@ input[type=range].progress-slider::-webkit-slider-thumb {
 }
 
 .tafsir-bg {
-  background-color: rgba(0, 0, 0, 0.5);
-  position: absolute;
   top: 0;
-  opacity: 0;
-  transition: 0.1s ease all;
   left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: 0.3s ease all;
   width: 100%;
   z-index: -5;
   height: 100%;
@@ -753,13 +752,14 @@ input[type=range].progress-slider::-webkit-slider-thumb {
 .tafsir-bg .tafsir-window {
   background-color: var(--Territory-bg-color);
   z-index: -4;
-  min-width: 300px;
+  min-width: 80vw;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   position: absolute;
-  transition: 0.2s ease all;
-  height: auto;
+  transition: 0.8s ease all;
+  height: 550px;
+  overflow-y: auto;
   opacity: 0;
 }
 .tafsir-bg .tafsir-window .separator {
@@ -802,6 +802,27 @@ input[type=range].progress-slider::-webkit-slider-thumb {
 .tafsir-bg .tafsir-window.active {
   opacity: 1;
   z-index: 2;
+}
+
+.sign {
+  transition: 0.3s ease all;
+  background-color: var(--Territory-bg-color);
+}
+.sign:hover {
+  transform: scale(1.05);
+}
+.sign svg {
+  color: var(--bs-green-hover);
+}
+.sign .ayah-info {
+  width: 70%;
+}
+.sign .ayah-info .ayah {
+  direction: rtl;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  white-space: nowrap;
 }
 
 /*# sourceMappingURL=globals.css.map */

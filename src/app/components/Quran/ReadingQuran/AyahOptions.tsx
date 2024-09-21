@@ -3,11 +3,14 @@ import { BiClipboard } from "react-icons/bi";
 import { handleCopyBtn } from "@/app/Azkar/[AzkarId]/page";
 import { useRef, useState } from "react";
 import { FaRegBookmark, FaBookmark } from "react-icons/fa";
+import TafsirSection from "./TafsirSection";
 
 interface AyahOptionsProps {
     IsOpen: boolean;
     AudioSrc: string;
     Ayah: string;
+    SurahNumber: number,
+    AyahNumber: number
 }
 
 const handlePlayBtn = (
@@ -25,21 +28,25 @@ const handlePlayBtn = (
     }
 };
 
-const AyahOptions = ({ IsOpen, AudioSrc, Ayah }: AyahOptionsProps) => {
+const AyahOptions = ({ IsOpen, AudioSrc, Ayah, SurahNumber, AyahNumber }: AyahOptionsProps) => {
     const [IsPlaying, SetIsPlaying] = useState<boolean>(false);
     const [AyahSaved, SetAyahSaved] = useState<boolean>(false);
+    const [OpenTafsir, SetOpenTafsir] = useState<boolean>(false)
     const AudioRef = useRef<HTMLAudioElement>(null);
 
     return (
         <>
             {IsOpen && (
                 <>
+                    {
+                        OpenTafsir && <TafsirSection IsOpen={OpenTafsir} SurahNumber={SurahNumber} AyahNumber={AyahNumber} />
+                    }
                     <audio src={AudioSrc} ref={AudioRef}></audio>
                     <div
                         className="ayah-options position-absolute p-1 rounded-3 d-flex align-items-center gap-1 justify-content-between"
                         onClick={(e) => e.stopPropagation()} // Prevent closing when clicking on options
                     >
-                        <div className="tooltip-container" onClick={() => SetAyahSaved(prev => !prev)}>
+                        <div className="tooltip-container" onClick={() => SetOpenTafsir(!OpenTafsir)}>
                             <FaBook />
                             <span className="tooltip-text">تفسير</span>
                         </div>
@@ -53,7 +60,7 @@ const AyahOptions = ({ IsOpen, AudioSrc, Ayah }: AyahOptionsProps) => {
                         </div>
                         <div className="tooltip-container" onClick={() => SetAyahSaved(prev => !prev)}>
                             {AyahSaved ? <FaBookmark /> : <FaRegBookmark />}
-                            <span className="tooltip-text">{AyahSaved ?  "الغاء" : "حفظ"}</span>
+                            <span className="tooltip-text">{AyahSaved ? "الغاء" : "حفظ"}</span>
                         </div>
                     </div>
                 </>

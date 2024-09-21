@@ -5,7 +5,7 @@ import { surahNamesArabic } from "@/app/components/Quran/AudioPlayer/functions";
 const Surah = () => {
     return (<>
         <h1 className="pt-5 text-center pb-3">قرائه القران</h1>
-        <SurahNJuzOptions />
+        <SurahNJuzOptions activeNumber={1} />
         <div className="container col  mt-5 d-flex flex-wrap justify-content-center reading-quran-content gap-3 flex-row-reverse">
             {Object.entries(surahNamesArabic)
                 .map(([SurahNumber, surahNameArabic]) => {
