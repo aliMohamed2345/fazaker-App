@@ -8,6 +8,10 @@ let options = [{
     name: "قرائه القران",
     pathname: `Quran/QuranRead/surah`
 }
+,{
+    name:"البحث",
+    pathname:`Quran/QuranSearch`
+}
 ]
 const Quran = () => {
     return (<>

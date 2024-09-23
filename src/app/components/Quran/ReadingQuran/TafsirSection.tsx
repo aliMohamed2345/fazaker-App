@@ -26,7 +26,7 @@ const TafsirSection = ({ IsOpen, SurahNumber, AyahNumber }: TafsirSectionProps) 
     let [ArabicOptions, SetArabicOptions] = useState<boolean>(true);
     let [EnglishOptions, SetEnglishOptions] = useState<boolean>(false);
     let [CurrentSurah, SetCurrentSurah] = useState(AyahNumber)
-
+    //Apis
     const TafsirArabicApi = `https://quranenc.com/api/v1/translation/aya/arabic_moyassar/${SurahNumber}/${CurrentSurah}`;
     const TafsirEnglishApi = `https://quranenc.com/api/v1/translation/aya/english_saheeh/${SurahNumber}/${CurrentSurah}`;
     useEffect(() => {

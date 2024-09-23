@@ -65,7 +65,6 @@ html[data-theme="dark"] {
 //Media Query
 //======================
 
-// Extra small screen sizes (e.g., very small mobile devices)
 @media (max-width: 360px) {
   p {
     font-size: $base-font-size * 0.75;
@@ -120,7 +119,6 @@ html[data-theme="dark"] {
   }
 }
 
-// Medium screen sizes (e.g., tablets)
 @media (min-width: 481px) and (max-width: 768px) {
   p {
     font-size: $base-font-size * 1;
@@ -432,7 +430,6 @@ ul.nav-items li:hover a {
     var(--secondary-bg-color) 50%,
     var(--primary-text-color) 75%
   );
-  //for light mode background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
   background-size: 200% 100%;
   animation: loading-skeleton 1.5s ease-in-out infinite;
 }
@@ -614,22 +611,29 @@ input[type="range"].progress-slider::-webkit-slider-thumb {
 }
 .surah-juz-container {
   background-color: var(--secondary-bg-color);
-  width: 350px;
+  width: 50vw;
   height: 150px;
   .options-bg {
     background-color: var(--primary-bg-color);
-    width: 300px;
-    height: 75px;
-    a {
-      width: 98px;
-      height: 75px;
-      background-color: var(--Territory-bg-color);
-    }
-    a.active {
+    width: 90%;
+    height: 50%;
+  }
+  a {
+    width: 49.5%;
+    height: 100%;
+    background-color: var(--Territory-bg-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transition: background-color 0.3s;
+
+    &.active {
       background-color: var(--bs-green);
     }
   }
 }
+
 .reading-quran-content {
   a {
     background-color: var(--Territory-bg-color);
@@ -764,11 +768,11 @@ input[type="range"].progress-slider::-webkit-slider-thumb {
 .tafsir-bg {
   &.active {
     opacity: 1;
-    z-index: 1;
+    z-index: 4;
   }
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.8);
   opacity: 0;
   transition: 0.3s ease all;
   width: 100%;
@@ -825,15 +829,36 @@ input[type="range"].progress-slider::-webkit-slider-thumb {
     color: var(--bs-green-hover);
   }
   .ayah-info {
+    .info p {
+      font-size: 15px;
+    }
     width: 70%;
     .ayah {
-      direction:rtl;
+      @include UthmaniFont(16);
       overflow: hidden;
       text-overflow: ellipsis;
-      width: 100%;
       white-space: nowrap;
     }
   }
 }
-
+.search-ayah {
+  p{
+    margin: 0;
+  }
+  .search-area {
+    background-color: var(--secondary-bg-color);
+    & input::placeholder {
+      font-size: 20px;
+    }
+  }
+}
+.search-result {
+  background-color: var(--Territory-bg-color);
+  @include UthmaniFont(30px);
+  .info p{
+    font-size: 16px;
+    margin: 0;
+    
+  }
+}
 /*# sourceMappingURL=globals.css.map */

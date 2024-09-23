@@ -1,20 +1,41 @@
-import { pageContentProps } from "@/app/Quran/QuranRead/surah/[surahId]/page";
 import { useState } from "react";
-import AyahOptions from "@/app/components/Quran/ReadingQuran/AyahOptions";
-import TafsirSection from "./TafsirSection";
-
+import AyahOptions from "./AyahOptions/AyahOptions";
+import { pageContentProps } from "./FunctionsAndObjects";
 interface QuranSectionProps {
     Pages: pageContentProps[];
     SurahNumber: number;
 }
+// Calculate hizb based on hizbQuarter
+function calculateHizb(hizbQuarter: number): string {
+    const hizb = Math.floor(hizbQuarter / 4);
+    const fraction = hizbQuarter % 4;
+    switch (true) {
+        case hizbQuarter > 4 && fraction === 3:
+            return `ثلاثة ارباع الحزب ${hizb}`;
+        case hizbQuarter > 4 && fraction === 2:
+            return `نصف الحزب ${hizb}`;
+        case hizbQuarter > 4 && fraction === 1:
+            return `ربع الحزب ${hizb}`;
+        case hizbQuarter > 4 && fraction === 0:
+            return `الحزب ${hizb + 1}`;
+        case hizbQuarter < 4 && fraction === 3:
+            return `ثلاثة ارباع الحزب الاول`;
+        case hizbQuarter < 4 && fraction === 2:
+            return `نصف الحزب الاول`;
+        case hizbQuarter < 4 && fraction === 1:
+            return `ربع الحزب الاول`;
+        default:
+            return `1`;
+    }
+}
 
 const QuranSection = ({ Pages, SurahNumber }: QuranSectionProps) => {
     const [AyahOptionsState, SetAyahOptionsState] = useState<{ [key: number]: boolean }>({});
+    const [SavedAyahs, SetSavedAyahs] = useState<{ [key: number]: boolean }>({});
 
     // Toggle ayah options
     function toggleAyahOptions(ayahNumber: number) {
         SetAyahOptionsState((prev) => ({
-            // Set other ayahs to false and toggle clicked ayah
             ...Object.keys(prev).reduce((acc, key) => {
                 acc[+(key)] = false;
                 return acc;
@@ -23,29 +44,16 @@ const QuranSection = ({ Pages, SurahNumber }: QuranSectionProps) => {
         }));
     }
 
-    // Calculate hizb based on hizbQuarter
-    function calculateHizb(hizbQuarter: number): string {
-        const hizb = Math.floor(hizbQuarter / 4);
-        const fraction = hizbQuarter % 4;
-        switch (true) {
-            case hizbQuarter > 4 && fraction === 3:
-                return `ثلاثة ارباع الحزب ${hizb}`;
-            case hizbQuarter > 4 && fraction === 2:
-                return `نصف الحزب ${hizb}`;
-            case hizbQuarter > 4 && fraction === 1:
-                return `ربع الحزب ${hizb}`;
-            case hizbQuarter > 4 && fraction === 0:
-                return `الحزب ${hizb + 1}`;
-            case hizbQuarter < 4 && fraction === 3:
-                return `ثلاثة ارباع الحزب الاول`;
-            case hizbQuarter < 4 && fraction === 2:
-                return `نصف الحزب الاول`;
-            case hizbQuarter < 4 && fraction === 1:
-                return `ربع الحزب الاول`;
-            default:
-                return `1`;
-        }
+    // Handle saving ayah
+    function handleSaveAyah(ayahNumber: number) {
+        SetSavedAyahs((prev) => ({
+            ...prev,
+            [ayahNumber]: !prev[ayahNumber],
+        }));
     }
+
+
+
 
     return (
         <div className="d-flex flex-column all-pages">
@@ -61,7 +69,7 @@ const QuranSection = ({ Pages, SurahNumber }: QuranSectionProps) => {
                             <p
                                 id={`ayah-${ayah.numberInSurah}`}
                                 onClick={() => toggleAyahOptions(ayah.numberInSurah)}
-                                className={`d-inline position-relative ayah ${AyahOptionsState[ayah.numberInSurah] ? "active" : ""}`}
+                                className={`d-inline ${SavedAyahs[ayah.numberInSurah] ? 'bg-danger' : ''} position-relative ayah ${AyahOptionsState[ayah.numberInSurah] ? "active" : ""}`}
                                 key={ayah.numberInSurah}
                             >
                                 {ayah.text}
@@ -74,12 +82,9 @@ const QuranSection = ({ Pages, SurahNumber }: QuranSectionProps) => {
                                             Ayah={ayah.text}
                                             SurahNumber={SurahNumber}
                                             AyahNumber={ayah.numberInSurah}
+                                            IsSaved={SavedAyahs[ayah.numberInSurah]}
+                                            onSave={() => handleSaveAyah(ayah.numberInSurah)}
                                         />
-                                        {/* <TafsirSection
-                                            IsOpen={AyahOptionsState[ayah.numberInSurah]}
-                                            SurahNumber={SurahNumber}
-                                            AyahNumber={ayah.numberInSurah}
-                                        /> */}
                                     </>
                                 )}
 

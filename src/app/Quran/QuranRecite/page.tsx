@@ -56,7 +56,7 @@ const QuranRecite = () => {
             {/* Pass searchVal and SetSearchVal to RecitersSearchArea */}
             <RecitersSearchArea searchVal={searchVal} SetSearchVal={SetSearchVal} />
             <div className="reciters d-flex flex-wrap gap-3 container mt-5 justify-content-center">
-                {!filteredReciters.length && !IsLoading && <NotFound />}
+                {!filteredReciters.length && !IsLoading && <NotFound text='لا يوجد قارئ بهذا الاسم' />}
                 {IsLoading ? (
                     <ReciterLoadingScreen Number={30} />
                 ) : (

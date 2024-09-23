@@ -580,20 +580,25 @@ input[type=range].progress-slider::-webkit-slider-thumb {
 
 .surah-juz-container {
   background-color: var(--secondary-bg-color);
-  width: 350px;
+  width: 50vw;
   height: 150px;
 }
 .surah-juz-container .options-bg {
   background-color: var(--primary-bg-color);
-  width: 300px;
-  height: 75px;
+  width: 90%;
+  height: 50%;
 }
-.surah-juz-container .options-bg a {
-  width: 98px;
-  height: 75px;
+.surah-juz-container a {
+  width: 49.5%;
+  height: 100%;
   background-color: var(--Territory-bg-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: background-color 0.3s;
 }
-.surah-juz-container .options-bg a.active {
+.surah-juz-container a.active {
   background-color: var(--bs-green);
 }
 
@@ -738,7 +743,7 @@ input[type=range].progress-slider::-webkit-slider-thumb {
 .tafsir-bg {
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.8);
   opacity: 0;
   transition: 0.3s ease all;
   width: 100%;
@@ -747,7 +752,7 @@ input[type=range].progress-slider::-webkit-slider-thumb {
 }
 .tafsir-bg.active {
   opacity: 1;
-  z-index: 1;
+  z-index: 4;
 }
 .tafsir-bg .tafsir-window {
   background-color: var(--Territory-bg-color);
@@ -817,12 +822,46 @@ input[type=range].progress-slider::-webkit-slider-thumb {
 .sign .ayah-info {
   width: 70%;
 }
+.sign .ayah-info .info p {
+  font-size: 15px;
+}
 .sign .ayah-info .ayah {
+  font-family: "Uthmani", serif;
   direction: rtl;
+  font-size: 16;
+  font-weight: bold;
+  letter-spacing: 1.2;
+  line-height: 1.2;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 100%;
   white-space: nowrap;
+}
+
+.search-ayah p {
+  margin: 0;
+}
+.search-ayah .search-area {
+  background-color: var(--secondary-bg-color);
+}
+.search-ayah .search-area input::-moz-placeholder {
+  font-size: 20px;
+}
+.search-ayah .search-area input::placeholder {
+  font-size: 20px;
+}
+
+.search-result {
+  background-color: var(--Territory-bg-color);
+  font-family: "Uthmani", serif;
+  direction: rtl;
+  font-size: 30px;
+  font-weight: bold;
+  letter-spacing: 1.2;
+  line-height: 1.2;
+}
+.search-result .info p {
+  font-size: 16px;
+  margin: 0;
 }
 
 /*# sourceMappingURL=globals.css.map */

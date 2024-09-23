@@ -1,50 +1,12 @@
 'use client';
+import { InitialSurahData, pageContentProps } from '@/app/components/Quran/ReadingQuran/FunctionsAndObjects';
 import GoToAyah from '@/app/components/Quran/ReadingQuran/GoToAyah';
 import QuranSection from '@/app/components/Quran/ReadingQuran/QuranSection';
-import TafsirSection from '@/app/components/Quran/ReadingQuran/TafsirSection';
 import Loading from '@/app/loading';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-interface sajdaProps {
-    id: number;
-    recommended: boolean;
-    obligatory: boolean;
-}
 
-interface ayahsProps {
-    audio: string;
-    hizbQuarter: number;
-    page: number;
-    text: string;
-    juz: number;
-    sajda: boolean | sajdaProps;
-    numberInSurah: number;
-    number: number;
-}
-
-export interface SurahIdProps {
-    name: string;
-    number: number;
-    numberOfAyahs: number;
-    revelationType: string;
-    ayahs: ayahsProps[];
-}
-export interface pageContentProps {
-    ayahs: { text: string, numberInSurah: number, audio: string }[]; // Array of AyahProps objects
-    juz: number;
-    hizbQuarter: number;
-    page: number;
-
-}
-
-let InitialSurahData: SurahIdProps = {
-    name: '',
-    number: 0,
-    numberOfAyahs: 0,
-    revelationType: '',
-    ayahs: []
-};
 
 const SurahId = () => {
     const surahNameArabic = useSearchParams().get('surahNameArabic');
@@ -69,11 +31,10 @@ const SurahId = () => {
             page: page,
             // numberInSurah: 0
         };
-
         // Loop through ayahs and collect those that belong to the current page
         for (let ayah of SurahData.ayahs) {
             if (ayah.page === page) {
-                pageContent.ayahs.push({ text: ayah.text, numberInSurah: ayah.numberInSurah, audio: ayah.audio });
+                pageContent.ayahs.push({ text: ayah.text, numberInSurah: ayah.numberInSurah, audio: ayah.audio, IsSaved: false });
                 // Set juz and hizbQuarter for the first ayah in the page
                 if (pageContent.juz === 0) {
                     pageContent.juz = ayah.juz;
@@ -96,7 +57,6 @@ const SurahId = () => {
             SetIsLoading(false);
         });
     }, [SurahNumber]);
-
     return (
         <>
             {IsLoading ? < Loading Width='100px' /> :
