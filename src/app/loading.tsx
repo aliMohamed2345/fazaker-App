@@ -5,7 +5,7 @@ interface LoadingProps {
     MarginTop?: string;
 }
 
-function Loading({ Width = "2.5rem", Height = Width, Color = "text-success", MarginTop = '0px' }: LoadingProps) {
+function Loading({ Width = "80px", Height = Width, Color = "text-success", MarginTop = '0px' }: LoadingProps) {
     return (
         <div
             className="d-flex justify-content-center align-items-center fs-1"

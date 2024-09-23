@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { surahNamesArabic } from '@/app/components/Quran/AudioPlayer/functions';
 import Link from 'next/link';
@@ -19,28 +19,22 @@ interface ResultsProps {
 
 interface SearchDataProps {
     results: ResultsProps[];
-    total_results: number;
-    total_pages: number
 }
 
 const initialSearchData: SearchDataProps = {
     results: [],
-    total_pages: 0,
-    total_results: 0
 };
 
 const QuranSearch = () => {
     const [inputVal, setInputVal] = useState('');
-    const [currentPage, SetCurrentPage] = useState<number>(1);
     const [searchData, setSearchData] = useState<SearchDataProps>(initialSearchData);
     const [loading, setLoading] = useState(false);
     const [searched, setSearched] = useState(false);
-    const searchSize: number = 50;
     const handleSearch = async () => {
         if (!inputVal) return;
         setLoading(true);
         setSearched(true);
-        const api = `https://api.quran.com/api/v4/search?q=${inputVal}&size=${searchSize}&page=${currentPage}`;
+        const api = `https://api.quran.com/api/v4/search?q=${inputVal}&size=50`;
         try {
             const res = await fetch(api);
             const data = await res.json();
@@ -51,7 +45,17 @@ const QuranSearch = () => {
             setLoading(false);
         }
     };
-    console.log(searchData);
+    useEffect(() => {
+        let SaveSearch = localStorage.getItem(`SearchQuranWords`);
+        if (SaveSearch) {
+            setInputVal(SaveSearch);
+        }
+    }, [])
+    useEffect(() => {
+        if (inputVal) {
+            localStorage.setItem('SearchQuranWords', inputVal);
+        }
+    }, [inputVal])
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         handleSearch();

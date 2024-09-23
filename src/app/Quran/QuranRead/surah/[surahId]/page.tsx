@@ -5,6 +5,7 @@ import QuranSection from '@/app/components/Quran/ReadingQuran/QuranSection';
 import Loading from '@/app/loading';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 
 
@@ -59,7 +60,7 @@ const SurahId = () => {
     }, [SurahNumber]);
     return (
         <>
-            {IsLoading ? < Loading Width='100px' /> :
+            {IsLoading ? < Loading /> :
                 <><h1 className='text-center mt-5 mb-3'>سُورَةُ {surahNameArabic} </h1><div className="btns-info d-flex align-items-center justify-content-around gap-5 flex-wrap">
                     <button type='button' title='عدد الايات' className='btn rounded-pill btn-outline-success p-3 fs-5'>
                         {SurahData.numberOfAyahs} آية
@@ -79,8 +80,16 @@ const SurahId = () => {
                         <GoToAyah numberOfAyahs={SurahData.numberOfAyahs} />
                         <QuranSection Pages={pages} SurahNumber={+SurahNumber!} />
                     </div>
-
-
+                    <div className="navigate-surahs d-flex align-items-center justify-content-around mt-3 mb-5">
+                            <button
+                                title="previous"
+                                type="button"
+                                className={`btn p-3 rounded-circle btn-outline-success`} ><FaArrowLeft size={25} /></button>
+                            <button
+                                title="previous"
+                                type="button"
+                                className={`btn p-3 rounded-circle btn-outline-success`} ><FaArrowRight size={25} /></button>
+                        </div>
                 </>
             }
         </>

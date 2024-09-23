@@ -10,7 +10,7 @@ let options = [{
 }
 ,{
     name:"البحث",
-    pathname:`Quran/QuranSearch`
+    pathname:`Quran/QuranSearch/`
 }
 ]
 const Quran = () => {

@@ -6,7 +6,6 @@ import { FaBookmark } from "react-icons/fa";
 import { surahNamesArabic } from "@/app/components/Quran/AudioPlayer/functions";
 import Link from "next/link";
 import NotFound from "@/app/components/Quran/ListeningToQuran/NotFound";
-import Loading from "@/app/loading";
 import SignLoadingScreen from "@/app/components/Quran/ReadingQuran/SignLoadingScreen";
 
 const Surah = () => {
