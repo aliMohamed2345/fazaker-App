@@ -3,13 +3,15 @@ import { InitialSurahData, pageContentProps } from '@/app/components/Quran/Readi
 import GoToAyah from '@/app/components/Quran/ReadingQuran/GoToAyah';
 import QuranSection from '@/app/components/Quran/ReadingQuran/QuranSection';
 import Loading from '@/app/loading';
-import { useSearchParams } from 'next/navigation';
+import Link from 'next/link';
+import { useParams, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-
+import { surahNamesArabic } from '@/app/components/Quran/AudioPlayer/functions';
 
 
 const SurahId = () => {
+    let currentPage = +useParams().surahId;
     const surahNameArabic = useSearchParams().get('surahNameArabic');
     const SurahNumber = useSearchParams().get('SurahNumber');
     let [SurahData, SetSurahData] = useState(InitialSurahData);
@@ -22,7 +24,7 @@ const SurahId = () => {
             1
             : 0;
     let pages: pageContentProps[] = [];
-
+    console.log(currentPage);
     // Loop through each page between the start and end page
     for (let page = SurahData.ayahs[0]?.page; page <= SurahData.ayahs[SurahData.ayahs.length - 1]?.page; page++) {
         let pageContent: pageContentProps = {
@@ -81,15 +83,23 @@ const SurahId = () => {
                         <QuranSection Pages={pages} SurahNumber={+SurahNumber!} />
                     </div>
                     <div className="navigate-surahs d-flex align-items-center justify-content-around mt-3 mb-5">
-                            <button
-                                title="previous"
-                                type="button"
-                                className={`btn p-3 rounded-circle btn-outline-success`} ><FaArrowLeft size={25} /></button>
-                            <button
-                                title="previous"
-                                type="button"
-                                className={`btn p-3 rounded-circle btn-outline-success`} ><FaArrowRight size={25} /></button>
-                        </div>
+                        <Link
+                            href={{
+                                pathname: `/Quran/QuranRead/surah/${currentPage - 1}`,
+                                query: { SurahNumber: currentPage - 1, surahNameArabic: surahNamesArabic[currentPage - 1] }
+                            }}
+                            title="السوره السابقه"
+                            type="button"
+                            className={`btn p-3 rounded-circle btn-outline-success ${currentPage - 1 === 0 ? `disabled` : ``}`} ><FaArrowLeft size={25} /></Link>
+                        <Link
+                            href={{
+                                pathname: `/Quran/QuranRead/surah/${currentPage + 1}`,
+                                query: { SurahNumber: currentPage + 1, surahNameArabic: surahNamesArabic[currentPage + 1] }
+                            }}
+                            title="السوره التاليه"
+                            type="button"
+                            className={`btn p-3 rounded-circle btn-outline-success ${currentPage + 1 === 115 ? `disabled` : ``}`} ><FaArrowRight size={25} /></Link>
+                    </div>
                 </>
             }
         </>

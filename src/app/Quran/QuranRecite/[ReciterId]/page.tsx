@@ -49,7 +49,7 @@ const ReciterId = ({ searchParams }: ReciterIdProps) => {
         style={{ marginBottom: `130px` }}
         className="d-flex position-relative justify-content-center flex-wrap flex-row-reverse gap-4 col"
       >
-        {!filteredSurah.length && <NotFound />}
+        {!filteredSurah.length && <NotFound text="لا توجد سوره بهذا الاسم" />}
         {filteredSurah.map((surah, i) => {
           let correctedSurah: string =
             +surah < 10
