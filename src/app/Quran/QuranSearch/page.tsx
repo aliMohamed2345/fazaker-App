@@ -1,4 +1,4 @@
-'use client';
+'use client'
 import { useEffect, useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { surahNamesArabic } from '@/app/components/Quran/AudioPlayer/functions';
@@ -30,6 +30,7 @@ const QuranSearch = () => {
     const [searchData, setSearchData] = useState<SearchDataProps>(initialSearchData);
     const [loading, setLoading] = useState(false);
     const [searched, setSearched] = useState(false);
+
     const handleSearch = async () => {
         if (!inputVal) return;
         setLoading(true);
@@ -45,17 +46,20 @@ const QuranSearch = () => {
             setLoading(false);
         }
     };
+
     useEffect(() => {
-        let SaveSearch = localStorage.getItem(`SearchQuranWords`);
+        let SaveSearch = localStorage.getItem('SearchQuranWords');
         if (SaveSearch) {
             setInputVal(SaveSearch);
         }
-    }, [])
+    }, []);
+
     useEffect(() => {
         if (inputVal) {
             localStorage.setItem('SearchQuranWords', inputVal);
         }
-    }, [inputVal])
+    }, [inputVal]);
+
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         handleSearch();
@@ -82,9 +86,9 @@ const QuranSearch = () => {
                     <SignLoadingScreen Number={10} />
                 ) : searchData.results.length > 0 ? (
                     searchData.results.map((result, index) => {
-                        const surahNumber = result.verse_key.split(':')[0];
-                        const surah = surahNamesArabic[surahNumber];
-                        const ayah = result.verse_key.split(':')[1];
+                        const [surahNumberString, ayah] = result.verse_key.split(':');
+                        const surahNumber = parseInt(surahNumberString, 10); // Convert the surahNumber to an integer
+                        const surah = surahNamesArabic[surahNumber]; // Now we use surahNumber as a number
 
                         return (
                             <Link

@@ -1,4 +1,3 @@
-import Nav from "./components/Home/Nav";
 import MainSection from "./components/Home/MainSection";
 import AzkarSection from "./components/Home/AzkarSection";
 import PrayerTimingSection from "./components/Home/PrayerTimingSection";

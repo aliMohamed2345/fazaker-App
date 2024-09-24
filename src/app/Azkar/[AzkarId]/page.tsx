@@ -2,7 +2,7 @@
 import AzkarLoading from "@/app/components/Azkar/AzkarLoading";
 import Zekr from "@/app/components/Azkar/Zekr";
 import { useEffect, useState } from "react";
-
+import { copyToClipboard } from "@/app/utils/handleCopyBtn";
 interface SearchParamsProp {
     searchParams: {
         name: string;
@@ -16,9 +16,6 @@ interface CategoryDataProps {
     category?: string; // Add this property if it's used for filtering in the API data.
 }
 
-export function handleCopyBtn(content: string) {
-    navigator.clipboard.writeText(content);
-}
 const AzkarId = ({ searchParams }: SearchParamsProp) => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [categoryData, setCategoryData] = useState<CategoryDataProps[]>([]);
@@ -66,8 +63,8 @@ const AzkarId = ({ searchParams }: SearchParamsProp) => {
                                 content={content}
                                 count={count}
                                 description={description}
-                                HandleCopyBtn={() => handleCopyBtn(content)} 
-                                HandleCounterBtn={() => handleCounterBtn(i)} 
+                                HandleCopyBtn={() => copyToClipboard(content)}
+                                HandleCounterBtn={() => handleCounterBtn(i)}
                             />
                         );
                     })}

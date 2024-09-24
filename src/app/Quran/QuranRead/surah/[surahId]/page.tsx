@@ -24,7 +24,6 @@ const SurahId = () => {
             1
             : 0;
     let pages: pageContentProps[] = [];
-    console.log(currentPage);
     // Loop through each page between the start and end page
     for (let page = SurahData.ayahs[0]?.page; page <= SurahData.ayahs[SurahData.ayahs.length - 1]?.page; page++) {
         let pageContent: pageContentProps = {
@@ -80,7 +79,7 @@ const SurahId = () => {
                     {/* <TafsirSection IsOpen={true} SurahNumber={+SurahNumber!} /> */}
                     <div className="d-flex gap-3 justify-content-center align-items-center align-items-sm-center align-items-md-start container-lg mt-5 flex-column flex-md-row-reverse">
                         <GoToAyah numberOfAyahs={SurahData.numberOfAyahs} />
-                        <QuranSection Pages={pages} SurahNumber={+SurahNumber!} />
+                        <QuranSection Pages={pages} SurahNumber={+SurahNumber!} SurahName={surahNameArabic!} />
                     </div>
                     <div className="navigate-surahs d-flex align-items-center justify-content-around mt-3 mb-5">
                         <Link

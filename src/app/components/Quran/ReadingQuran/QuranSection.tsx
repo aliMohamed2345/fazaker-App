@@ -4,6 +4,7 @@ import { pageContentProps } from "./FunctionsAndObjects";
 interface QuranSectionProps {
     Pages: pageContentProps[];
     SurahNumber: number;
+    SurahName: string
 }
 // Calculate hizb based on hizbQuarter
 function calculateHizb(hizbQuarter: number): string {
@@ -29,7 +30,7 @@ function calculateHizb(hizbQuarter: number): string {
     }
 }
 
-const QuranSection = ({ Pages, SurahNumber }: QuranSectionProps) => {
+const QuranSection = ({ Pages, SurahNumber, SurahName }: QuranSectionProps) => {
     const [AyahOptionsState, SetAyahOptionsState] = useState<{ [key: number]: boolean }>({});
     const [SavedAyahs, SetSavedAyahs] = useState<{ [key: number]: boolean }>({});
 
@@ -81,9 +82,8 @@ const QuranSection = ({ Pages, SurahNumber }: QuranSectionProps) => {
                                             AudioSrc={ayah.audio}
                                             Ayah={ayah.text}
                                             SurahNumber={SurahNumber}
+                                            SurahName={SurahName}
                                             AyahNumber={ayah.numberInSurah}
-                                            IsSaved={SavedAyahs[ayah.numberInSurah]}
-                                            onSave={() => handleSaveAyah(ayah.numberInSurah)}
                                         />
                                     </>
                                 )}

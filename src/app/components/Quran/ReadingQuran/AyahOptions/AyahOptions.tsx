@@ -1,6 +1,6 @@
 import { FaPlay, FaPause, FaBook } from "react-icons/fa";
 import { BiClipboard } from "react-icons/bi";
-import { handleCopyBtn } from "@/app/Azkar/[AzkarId]/page";
+import { copyToClipboard } from "@/app/utils/handleCopyBtn";
 import { useRef, useState, useEffect } from "react";
 import { FaRegBookmark, FaBookmark } from "react-icons/fa";
 import TafsirSection from "../TafsirSection";
@@ -61,7 +61,7 @@ const AyahOptions = ({ IsOpen, AudioSrc, Ayah, SurahNumber, AyahNumber, SurahNam
                             <FaBook />
                             <span className="tooltip-text">تفسير</span>
                         </div>
-                        <div className="tooltip-container" onClick={() => handleCopyBtn(Ayah)}>
+                        <div className="tooltip-container" onClick={() => copyToClipboard(Ayah)}>
                             <BiClipboard />
                             <span className="tooltip-text">نسخ</span>
                         </div>

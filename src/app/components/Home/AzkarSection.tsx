@@ -1,7 +1,7 @@
 'use client'
 import { useState } from "react";
 import Link from "next/link";
-import { handleCopyBtn } from "@/app/Azkar/[AzkarId]/page";
+import { copyToClipboard } from "@/app/utils/handleCopyBtn";
 import { BiClipboard } from "react-icons/bi";
 interface SampleZekrProps {
     content: string;
@@ -37,7 +37,7 @@ const AzkarSection = () => {
                                 </button>
                                 <button
                                     title={`Copy Text`}
-                                    onClick={() => handleCopyBtn(content)}
+                                    onClick={() => copyToClipboard(content)}
                                     type="button"
                                     className="btn btn-success rounded-circle m-auto d-flex align-items-center justify-content-center"
                                 >
