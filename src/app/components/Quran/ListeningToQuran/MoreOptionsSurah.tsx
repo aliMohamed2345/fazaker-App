@@ -5,15 +5,12 @@ import { copyToClipboard } from "@/app/utils/handleCopyBtn";
 import { IoMdClipboard } from "react-icons/io";
 import { IoMdDownload } from "react-icons/io";
 
-interface MoreOptionsSurahProps {
-    isOptionsOpened: boolean;
-    AudioSrc: string;
-    SurahName: string;
-    ReciterName: string;
-}
-
-const MoreOptionsSurah = ({ isOptionsOpened, AudioSrc, SurahName, ReciterName }: MoreOptionsSurahProps) => {
-    // Properly type the ref
+import { useSelector } from "react-redux";
+import { RootState } from "@/app/redux/store";
+const MoreOptionsSurah = ({ isOptionsOpened }: { isOptionsOpened: boolean }) => {
+    let AudioSrc = useSelector((state: RootState) => state.AudioPlayerOptionsSlice.OptionsAudioSrc)
+    let SurahName = useSelector((state: RootState) => state.AudioPlayerOptionsSlice.OptionsSurahName)
+    let ReciterName = useSelector((state: RootState) => state.AudioPlayerOptionsSlice.ReciterName)
     const DownloadFileName = `سورة ${SurahName} للقارئ ${ReciterName}`;
 
     const handleDownloadBtn = async () => {

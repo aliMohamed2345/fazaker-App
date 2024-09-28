@@ -4,18 +4,19 @@ import { copyToClipboard } from "@/app/utils/handleCopyBtn";
 import { useRef, useState, useEffect } from "react";
 import { FaRegBookmark, FaBookmark } from "react-icons/fa";
 import TafsirSection from "../TafsirSection";
-import { AyahOptionsProps, handlePlayBtn, isAyahSaved, removeFromLocalStorage, saveToLocalStorage } from "./functions";
-import { useSelector } from "react-redux";
+import { handlePlayBtn, isAyahSaved, removeFromLocalStorage, saveToLocalStorage } from "./functions";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/app/redux/store";
-
-const AyahOptions = ({ IsOpen, AudioSrc, Ayah, AyahNumber }: AyahOptionsProps) => {
+import { setAyahData } from "@/app/redux/Slices/AyahDataSlice";
+const AyahOptions = ({ AyahNumber }: { AyahNumber: number }) => {
     let SurahNumber = useSelector((state: RootState) => state.ReadingQuran.SurahNumber);
     let SurahName = useSelector((state: RootState) => state.ReadingQuran.SurahName);
+    const { IsOpen, AudioSrc, Ayah } = useSelector((state: RootState) => state.AyahData.ayahs[AyahNumber])
     const [IsPlaying, SetIsPlaying] = useState<boolean>(false);
     const [AyahSaved, SetAyahSaved] = useState<boolean>(false); // Initially not saved
     const [OpenTafsir, SetOpenTafsir] = useState<boolean>(false);
     const AudioRef = useRef<HTMLAudioElement>(null);
-
+    let dispatch = useDispatch();
     // Check if the ayah is already saved when component mounts
     useEffect(() => {
         const alreadySaved = isAyahSaved(AyahNumber, SurahNumber);
@@ -52,7 +53,6 @@ const AyahOptions = ({ IsOpen, AudioSrc, Ayah, AyahNumber }: AyahOptionsProps) =
                     {OpenTafsir && (
                         <TafsirSection
                             IsOpen={OpenTafsir}
-                            SurahNumber={SurahNumber}
                             AyahNumber={AyahNumber}
                         />
                     )}

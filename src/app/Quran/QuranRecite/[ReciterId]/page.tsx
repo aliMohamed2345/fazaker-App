@@ -1,13 +1,13 @@
 'use client'
 import MoreOptionsSurah from "@/app/components/Quran/ListeningToQuran/MoreOptionsSurah";
-import SearchArea from "@/app/components/Quran/ListeningToQuran/SearchArea";
 import { FaPlay } from "react-icons/fa";
 import { IoMdMore } from "react-icons/io";
 import { useState } from "react";
 import AudioPlayer from "@/app/components/Quran/AudioPlayer/AudioPlayer";
 import { surahNamesArabic } from "@/app/components/Quran/AudioPlayer/functions";
-import NotFound from "@/app/components/Quran/ListeningToQuran/NotFound";
-
+import { useDispatch } from "react-redux";
+import { SetIndex, SetAudioSrc, SetIsOpen, SetListOfSurah } from "@/app/redux/Slices/AudioPlayerSlice";
+import { SetReciterName, SetOptionsAudioSrc, SetOptionsSurahName } from "@/app/redux/Slices/AudioPlayerOptionsSlice";
 interface ReciterIdProps {
   searchParams: {
     SurahLink: string;
@@ -18,39 +18,36 @@ interface ReciterIdProps {
 }
 
 const ReciterId = ({ searchParams }: ReciterIdProps) => {
+  let dispatch = useDispatch();
   const ListOfSurah = searchParams.SurahList.split(",");
   let ListOfSurahLinks: string[] = [];
   const [openOptions, setOpenOptions] = useState<boolean[]>(
     Array(ListOfSurah.length).fill(false)
   );
   const [activeSurah, setActiveSurah] = useState<string | null>(null);
-  const [searchVal, SetSearchVal] = useState<string>(""); // Search value state
 
   const toggleOptions = (index: number) => {
     setOpenOptions((prev) =>
       prev.map((isOpen, i) => (i === index ? !isOpen : isOpen))
     );
   };
-
-  // Filter Surahs based on search value
-  const filteredSurah = ListOfSurah.filter((surah) =>
-    surahNamesArabic[+surah].includes(searchVal)
-  );
+  const handlePlayClick = (index: number, SurahLink: string) => {
+    setActiveSurah(SurahLink)
+    dispatch(SetIsOpen(true));
+    dispatch(SetIndex(index));
+    dispatch(SetAudioSrc(SurahLink));
+    dispatch(SetListOfSurah(ListOfSurahLinks));
+  };
 
   return (
     <div className="container">
       <p>2</p>
       <h2 className="text-center mt-5 mb-5">{searchParams?.ReciterName}</h2>
-      <SearchArea
-        searchVal={searchVal}
-        SetSearchVal={SetSearchVal}
-      />
       <div
         style={{ marginBottom: `130px` }}
         className="d-flex position-relative justify-content-center flex-wrap flex-row-reverse gap-4 col"
       >
-        {!filteredSurah.length && <NotFound text="لا توجد سوره بهذا الاسم" />}
-        {filteredSurah.map((surah, i) => {
+        {ListOfSurah.map((surah, i) => {
           let correctedSurah: string =
             +surah < 10
               ? `00${surah}`
@@ -60,6 +57,10 @@ const ReciterId = ({ searchParams }: ReciterIdProps) => {
           let SurahLink = `${searchParams.SurahLink}${correctedSurah}.mp3`;
           ListOfSurahLinks.push(SurahLink);
 
+          dispatch(SetReciterName(searchParams?.ReciterName))
+          dispatch(SetOptionsAudioSrc(SurahLink))
+          dispatch(SetOptionsSurahName(surahNamesArabic[+surah]))
+          //dispatch here 
           return (
             <div
               key={i}
@@ -89,31 +90,20 @@ const ReciterId = ({ searchParams }: ReciterIdProps) => {
                   type="button"
                   title="play"
                   className="bg-success text-white p-3 p-sm-2 p-md-2 d-flex align-items-center btn justify-content-center rounded-circle"
-                  onClick={() => setActiveSurah(SurahLink)}
+                  onClick={() => handlePlayClick(i, SurahLink)}
                 >
                   <FaPlay />
                 </button>
               </div>
-              <MoreOptionsSurah
-                isOptionsOpened={openOptions[i]}
-                AudioSrc={SurahLink}
-                SurahName={surahNamesArabic[+surah]}
-                ReciterName={searchParams?.ReciterName}
-              />
+              <MoreOptionsSurah isOptionsOpened={openOptions[i]}/>
               {activeSurah === SurahLink &&
-                ListOfSurahLinks.map((surah, i) => {
+                ListOfSurahLinks.map((surah) => {
                   if (surah === SurahLink) {
                     return (
-                      <AudioPlayer
-                        key={i}
-                        index={i}
-                        isOpen={true}
-                        AudioSrc={ListOfSurahLinks[i]}
-                        ListOfSurah={ListOfSurahLinks}
-                      />
+                      <AudioPlayer />
                     );
                   }
-                  return null; // Return null for non-matching cases
+                  return null;
                 })}
             </div>
           );

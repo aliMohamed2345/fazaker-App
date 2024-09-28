@@ -5,6 +5,9 @@ import ZekrSlice from "./Slices/ZekrSlice";
 import HadithCardSlice from "./Slices/HadithCardSlice";
 import HadithContainerSlice from "./Slices/HadithContainerSlice";
 import ReadingQuranSlice from "./Slices/ReadingQuranSlice";
+import AyahDataSlice from "./Slices/AyahDataSlice";
+import AudioPlayerSlice from "./Slices/AudioPlayerSlice";
+import AudioPlayerOptionsSlice from "./Slices/AudioPlayerOptionsSlice";
 const RootReducers = combineReducers({
     SearchHadith: SearchHadithSlice,
     Pagination: PaginationSlice,
@@ -12,6 +15,9 @@ const RootReducers = combineReducers({
     HadithCard: HadithCardSlice,
     HadithContainerSlice: HadithContainerSlice,
     ReadingQuran: ReadingQuranSlice,
+    AyahData: AyahDataSlice,
+    AudioPlayer: AudioPlayerSlice,
+    AudioPlayerOptionsSlice: AudioPlayerOptionsSlice ,
 })
 
 export const store = configureStore({

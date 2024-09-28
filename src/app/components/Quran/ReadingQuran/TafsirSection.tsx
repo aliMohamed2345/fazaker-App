@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
 import { IoMdClose } from "react-icons/io";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-
+import { useSelector } from "react-redux";
+import { RootState } from "@/app/redux/store";
 interface TafsirSectionProps {
-    IsOpen: boolean;
-    SurahNumber?: number;
-    AyahNumber?: number;
+    IsOpen: boolean,
+    AyahNumber: number
 }
-
 interface ArabicDataProps {
     arabic_text: string;
     translation: string;
@@ -18,7 +17,8 @@ interface EnglishDataProps {
     translation: string;
 }
 
-const TafsirSection = ({ IsOpen, SurahNumber, AyahNumber }: TafsirSectionProps) => {
+const TafsirSection = ({ IsOpen, AyahNumber }: TafsirSectionProps) => {
+    let SurahNumber = useSelector((state: RootState) => state.ReadingQuran.SurahNumber);
     //hooks
     let [ArabicData, SetArabicData] = useState<ArabicDataProps>({ arabic_text: '', translation: '' });
     let [EnglishData, SetEnglishData] = useState<EnglishDataProps>({ arabic_text: '', translation: '' });
@@ -50,7 +50,6 @@ const TafsirSection = ({ IsOpen, SurahNumber, AyahNumber }: TafsirSectionProps) 
             fetch(TafsirEnglishApi)
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data.result);
                     let { arabic_text, translation } = data.result;
                     SetEnglishData({ arabic_text, translation });
                 })
@@ -73,8 +72,6 @@ const TafsirSection = ({ IsOpen, SurahNumber, AyahNumber }: TafsirSectionProps) 
     function handleBackgroundClick() {
         setIsWindowOpen(false);
     }
-    console.log(ArabicData);
-    console.log(EnglishData);
     return (
         <>
             {IsWindowOpen && (

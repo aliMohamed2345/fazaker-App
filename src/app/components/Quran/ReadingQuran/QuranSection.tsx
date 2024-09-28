@@ -1,7 +1,8 @@
 import { useState } from "react";
 import AyahOptions from "./AyahOptions/AyahOptions";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/app/redux/store";
+import { setAyahData } from "@/app/redux/Slices/AyahDataSlice";
 
 // Calculate hizb based on hizbQuarter
 function calculateHizb(hizbQuarter: number): string {
@@ -28,19 +29,20 @@ function calculateHizb(hizbQuarter: number): string {
 }
 
 const QuranSection = () => {
-    let Pages = useSelector((state: RootState) => state.ReadingQuran.page)
-    console.log(Pages);
+    const dispatch = useDispatch();
+    const Pages = useSelector((state: RootState) => state.ReadingQuran.page);
 
     const [AyahOptionsState, SetAyahOptionsState] = useState<{ [key: number]: boolean }>({});
 
     // Toggle ayah options
     function toggleAyahOptions(ayahNumber: number) {
+        // dispatch(setAyahData({ ayahNumber: ayahNumber, data: {} }));
         SetAyahOptionsState((prev) => ({
             ...Object.keys(prev).reduce((acc, key) => {
-                acc[+(key)] = false;
+                acc[+(key)] = false; // Close all other ayah options
                 return acc;
             }, {} as { [key: number]: boolean }),
-            [ayahNumber]: !prev[ayahNumber],
+            [ayahNumber]: !prev[ayahNumber], // Toggle the clicked ayah
         }));
     }
 
@@ -54,32 +56,37 @@ const QuranSection = () => {
                         <p className="m-0">صفحه: {page.page}</p>
                     </div>
                     <div className="quran text-center">
-                        {page.ayahs.map((ayah) => (
-                            <p
-                                id={`ayah-${ayah.numberInSurah}`}
-                                onClick={() => toggleAyahOptions(ayah.numberInSurah)}
-                                className={`d-inline position-relative ayah ${AyahOptionsState[ayah.numberInSurah] ? "active" : ""}`}
-                                key={ayah.numberInSurah}
-                            >
-                                {ayah.text}
+                        {page.ayahs.map((ayah) => {
+                            dispatch(setAyahData({
+                                ayahNumber: ayah.numberInSurah,
+                                data: {
+                                    IsOpen: AyahOptionsState[ayah.numberInSurah],
+                                    AudioSrc: ayah.audio,
+                                    Ayah: ayah.text,
+                                }
+                            }))
+                            return (
+                                <p
+                                    id={`ayah-${ayah.numberInSurah}`}
+                                    onClick={() => toggleAyahOptions(ayah.numberInSurah)}
+                                    className={`d-inline position-relative ayah ${AyahOptionsState[ayah.numberInSurah] ? "active" : ""}`}
+                                    key={ayah.numberInSurah}
+                                >
+                                    {ayah.text}
 
-                                {AyahOptionsState[ayah.numberInSurah] && (
-                                    <>
+                                    {AyahOptionsState[ayah.numberInSurah] && (
                                         <AyahOptions
-                                            IsOpen={AyahOptionsState[ayah.numberInSurah]}
-                                            AudioSrc={ayah.audio}
-                                            Ayah={ayah.text}
                                             AyahNumber={ayah.numberInSurah}
                                         />
-                                    </>
-                                )}
+                                    )}
 
-                                <span className="ayah-symbol position-relative d-inline mx-1">
-                                    ۝
-                                    <span className="ayah-number">{ayah.numberInSurah}</span>
-                                </span>
-                            </p>
-                        ))}
+                                    <span className="ayah-symbol position-relative d-inline mx-1">
+                                        ۝
+                                        <span className="ayah-number">{ayah.numberInSurah}</span>
+                                    </span>
+                                </p>
+                            );
+                        })}
                         <p className="text-center text-success fw-bold m-0 pt-4 fs-5">{page.page}</p>
                     </div>
                 </div>

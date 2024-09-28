@@ -1,4 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "@/app/redux/store";
 import {
     FaPlay,
     FaPause,
@@ -15,7 +17,6 @@ import {
     IoMdClose,
 } from "react-icons/io";
 import {
-    AudioPlayerProps,
     AudioStatesProps,
     formatTime,
     AudioStatesInitial,
@@ -33,12 +34,15 @@ function ChangeVolumeIcon(mute: boolean, volume: number) {
     else if (!mute && volume < 0.5 && volume > 0) return IoMdVolumeMute;
     else return IoMdVolumeOff;
 }
-const AudioPlayer = ({ isOpen, AudioSrc, index, ListOfSurah }: AudioPlayerProps) => {
+const AudioPlayer = () => {
+    let { isOpen, AudioSrc, index, listOfSurah } = useSelector((state: RootState) => state.AudioPlayer)
     const [Open, SetOpen] = useState<boolean>(isOpen);
     let [ActiveAudioSrc, setActiveAudioSrc] = useState<string>(AudioSrc);
     const [audioStates, setAudioStates] = useState<AudioStatesProps>(AudioStatesInitial);
 
     const AudioRef = useRef<HTMLAudioElement>(null);
+
+
 
     useEffect(() => {
         if (Open && AudioRef.current) {
@@ -138,7 +142,7 @@ const AudioPlayer = ({ isOpen, AudioSrc, index, ListOfSurah }: AudioPlayerProps)
                                 size={20}
                                 className="d-none d-sm-block"
                             />
-                            <FaStepBackward size={20} onClick={() => handleStepBackward(setActiveAudioSrc, ListOfSurah, index)} className={`p-0 ${index === 0 ? 'disabled-btn' : ''}`} />
+                            <FaStepBackward size={20} onClick={() => handleStepBackward(setActiveAudioSrc, listOfSurah, index)} className={`p-0 ${index === 0 ? 'disabled-btn' : ''}`} />
                             <button
                                 onClick={() => handlePlayBtn(AudioRef, audioStates, setAudioStates)}
                                 type="button"
@@ -147,7 +151,7 @@ const AudioPlayer = ({ isOpen, AudioSrc, index, ListOfSurah }: AudioPlayerProps)
                             >
                                 {audioStates.isPlay ? <FaPause size={25} /> : <FaPlay size={25} />}
                             </button>
-                            <FaStepForward size={20} className={`${index === ListOfSurah.length - 1 ? "disabled-btn" : ""}`} onClick={() => handleStepForward(setActiveAudioSrc, ListOfSurah, index)} />
+                            <FaStepForward size={20} className={`${index === listOfSurah.length - 1 ? "disabled-btn" : ""}`} onClick={() => handleStepForward(setActiveAudioSrc, listOfSurah, index)} />
                             <FaForward
                                 size={20}
                                 onClick={() => handleSkipTimeForward(AudioRef, setAudioStates)}

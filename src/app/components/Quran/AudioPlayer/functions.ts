@@ -1,12 +1,6 @@
 
 import React from "react";
 
-export interface AudioPlayerProps {
-    isOpen: boolean;
-    AudioSrc: string;
-    index: number,
-    ListOfSurah: string[]
-}
 
 export interface AudioStatesProps {
     isPlay: boolean;
