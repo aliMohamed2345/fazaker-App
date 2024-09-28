@@ -1,16 +1,15 @@
+import { RootState } from "@/app/redux/store";
 import { useState } from "react";
-
-interface GoToAyahProps {
-    numberOfAyahs: number
-}
-
-const GoToAyah = ({ numberOfAyahs }: GoToAyahProps) => {
+import { useSelector } from "react-redux";
+const GoToAyah = () => {
     let [InputVal, SetInputVal] = useState<string>('');
+    let numberOfAyahs = useSelector((state: RootState) => state.ReadingQuran.numberOfAyahs)
+    console.log(numberOfAyahs);
     function RenderAllAyahs(numberOfAyahs: number) {
         let ayahList = [];
         if (!InputVal) {
             for (let ayah = 1; ayah <= numberOfAyahs; ayah++) {
-                ayahList.push(<li key={ayah}><a href={`#ayah-${ayah-1}`}>{ayah}</a></li>);
+                ayahList.push(<li key={ayah}><a href={`#ayah-${ayah - 1}`}>{ayah}</a></li>);
             }
         }
         else {

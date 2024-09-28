@@ -1,24 +1,25 @@
 import Link from "next/link";
 import { useState } from "react";
 import { IoIosSearch } from "react-icons/io";
+import {  useSelector } from "react-redux";
+import { RootState } from "@/app/redux/store"; 
 
-interface SearchHadithProps {
-    Hadith: string,
-    HadithBook?: string,
-    NumberOfHadith: number
-}
+const SearchHadithComponent = () => {
+    const Hadith = useSelector((state: RootState) => state.SearchHadith.Hadith);
+    const NumberOfHadith = useSelector((state: RootState) => state.SearchHadith.NumberOfHadith);
+    const HadithBook = useSelector((state: RootState) => state.SearchHadith.HadithBook);
 
-const SearchHadithComponent = ({ Hadith, HadithBook, NumberOfHadith }: SearchHadithProps) => {
-    let [searchVal, SetSearchVal] = useState<number | null>(null)
+    const [searchVal, SetSearchVal] = useState<number | null>(null);
+
     return (
-        <div className="hadith-search-bar p-2 rounded-4 mb-4 container w-75  ">
-            <form className="d-flex align-items-center justify-content-center gap-5  ">
+        <div className="hadith-search-bar p-2 rounded-4 mb-4 container w-75">
+            <form className="d-flex align-items-center justify-content-center gap-5">
                 <Link
                     href={{
                         pathname: `/Hadith/${encodeURIComponent(Hadith)}/${searchVal}`,
-                        query: { HadithNum: searchVal, Hadith: Hadith, HadithBook: HadithBook }
+                        query: { HadithNum: searchVal, Hadith, HadithBook }
                     }}
-                    className={`btn-success btn ${searchVal && searchVal < NumberOfHadith ? '' : 'disabled'}`}
+                    className={`btn-success btn ${searchVal && searchVal > 0 && searchVal <= NumberOfHadith ? '' : 'disabled'}`}
                 >
                     <IoIosSearch size={20} />
                 </Link>
@@ -30,7 +31,7 @@ const SearchHadithComponent = ({ Hadith, HadithBook, NumberOfHadith }: SearchHad
                         type="number"
                         name="number"
                         min={1}
-                        className="bg-transparent rounded-1 border-0  border-bottom border-success text-secondary shadow-none text-center"
+                        className="bg-transparent rounded-1 border-0 border-bottom border-success text-secondary shadow-none text-center"
                     />
                 </div>
             </form>

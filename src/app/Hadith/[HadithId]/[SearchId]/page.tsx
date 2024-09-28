@@ -5,6 +5,7 @@ import { HadithProps } from "../page";
 import HadithContainer from "@/app/components/Hadith/HadithContainer";
 import SearchHadithComponent from "@/app/components/Hadith/SearchHadith";
 import HadithLoading from "@/app/components/Hadith/HadithLoading";
+
 interface searchParamsProps {
     searchParams: {
         HadithNum: number;
@@ -32,9 +33,8 @@ const SearchHadith = ({ searchParams }: searchParamsProps) => {
     let { number, arab } = Hadith;
     return (<>
         <div className="container">
-            <h1 className="mb-5">hello</h1>
             <h1 className="mt-5 mb-5 text-center">{searchParams.HadithBook}</h1>
-            <SearchHadithComponent Hadith={searchParams.Hadith} HadithBook={searchParams.HadithBook} NumberOfHadith={searchParams.HadithNum} />
+            <SearchHadithComponent />
             {IsLoading ? <HadithLoading /> :
                 <HadithContainer NumberOfHadith={number} HadithContent={arab} />
             }

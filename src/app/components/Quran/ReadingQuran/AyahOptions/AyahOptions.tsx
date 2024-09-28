@@ -5,8 +5,12 @@ import { useRef, useState, useEffect } from "react";
 import { FaRegBookmark, FaBookmark } from "react-icons/fa";
 import TafsirSection from "../TafsirSection";
 import { AyahOptionsProps, handlePlayBtn, isAyahSaved, removeFromLocalStorage, saveToLocalStorage } from "./functions";
+import { useSelector } from "react-redux";
+import { RootState } from "@/app/redux/store";
 
-const AyahOptions = ({ IsOpen, AudioSrc, Ayah, SurahNumber, AyahNumber, SurahName }: AyahOptionsProps) => {
+const AyahOptions = ({ IsOpen, AudioSrc, Ayah, AyahNumber }: AyahOptionsProps) => {
+    let SurahNumber = useSelector((state: RootState) => state.ReadingQuran.SurahNumber);
+    let SurahName = useSelector((state: RootState) => state.ReadingQuran.SurahName);
     const [IsPlaying, SetIsPlaying] = useState<boolean>(false);
     const [AyahSaved, SetAyahSaved] = useState<boolean>(false); // Initially not saved
     const [OpenTafsir, SetOpenTafsir] = useState<boolean>(false);

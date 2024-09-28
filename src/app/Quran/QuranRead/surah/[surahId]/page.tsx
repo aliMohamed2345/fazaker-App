@@ -8,14 +8,15 @@ import { useParams, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { surahNamesArabic } from '@/app/components/Quran/AudioPlayer/functions';
-
-
+import { useDispatch } from 'react-redux';
+import { SetSurahName, SetSurahNumber, SetNumberOfAyahs, SetPages } from '@/app/redux/Slices/ReadingQuranSlice';
 const SurahId = () => {
     let currentPage = +useParams().surahId;
     const surahNameArabic = useSearchParams().get('surahNameArabic');
     const SurahNumber = useSearchParams().get('SurahNumber');
     let [SurahData, SetSurahData] = useState(InitialSurahData);
     let [IsLoading, SetIsLoading] = useState<boolean>(true);
+    let dispatch = useDispatch()
     let api = `http://api.alquran.cloud/v1/surah/${SurahNumber}/ar.alafasy`;
     let totalPages =
         SurahData.ayahs.length > 0
@@ -31,7 +32,6 @@ const SurahId = () => {
             juz: 0,
             hizbQuarter: 0,
             page: page,
-            // numberInSurah: 0
         };
         // Loop through ayahs and collect those that belong to the current page
         for (let ayah of SurahData.ayahs) {
@@ -50,6 +50,7 @@ const SurahId = () => {
             pages.push(pageContent);
         }
     }
+
     // Check if there is any Sajda in the Surah
     const hasSajda = SurahData.ayahs.some(ayah => typeof ayah.sajda === 'object' || ayah.sajda === true);
 
@@ -59,6 +60,12 @@ const SurahId = () => {
             SetIsLoading(false);
         });
     }, [SurahNumber]);
+
+    //dispatching to the store
+    dispatch(SetSurahNumber(+SurahNumber!));
+    dispatch(SetSurahName(surahNameArabic!));
+    dispatch(SetNumberOfAyahs(SurahData.numberOfAyahs));
+    dispatch(SetPages(pages))
     return (
         <>
             {IsLoading ? < Loading /> :
@@ -76,10 +83,9 @@ const SurahId = () => {
                         {hasSajda ? "سجدة" : "لا توجد سجدة"}
                     </button>
                 </div>
-                    {/* <TafsirSection IsOpen={true} SurahNumber={+SurahNumber!} /> */}
                     <div className="d-flex gap-3 justify-content-center align-items-center align-items-sm-center align-items-md-start container-lg mt-5 flex-column flex-md-row-reverse">
-                        <GoToAyah numberOfAyahs={SurahData.numberOfAyahs} />
-                        <QuranSection Pages={pages} SurahNumber={+SurahNumber!} SurahName={surahNameArabic!} />
+                        <GoToAyah />
+                        <QuranSection  />
                     </div>
                     <div className="navigate-surahs d-flex align-items-center justify-content-around mt-3 mb-5">
                         <Link

@@ -11,7 +11,6 @@ export default function Home() {
       <AzkarSection />
       <PrayerTimingSection />
       <HadithSection />
-<h6>Made by :eloy mansor</h6>
 
     </>
   );

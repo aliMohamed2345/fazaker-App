@@ -5,6 +5,7 @@ import './../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import Script from "next/script";
 import Nav from "./components/Home/Nav";
 import ScrollToTop from "./components/Home/ScrollToTop";
+import ReduxProvider from "./ReduxProvider";
 const cairo = Cairo({ weight: "400", subsets: ["arabic"] });
 
 
@@ -21,13 +22,15 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="light">
       <body className={cairo.className}>
-        <Nav />
-        <ScrollToTop />
-        {children}
-        <Script
-          src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-          strategy="afterInteractive"
-        />
+        <ReduxProvider>
+          <Nav />
+          <ScrollToTop />
+          {children}
+          <Script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+            strategy="afterInteractive"
+          />
+        </ReduxProvider>
       </body>
     </html>
   );

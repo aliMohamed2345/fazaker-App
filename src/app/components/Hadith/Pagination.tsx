@@ -1,15 +1,14 @@
 import { PiArrowFatRightThin, PiArrowFatLeftThin } from "react-icons/pi";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { useSelector } from "react-redux";
+import { RootState } from "@/app/redux/store";
 
-interface PaginationProps {
-    Api: string;
-    title: string;
-    NumberOfHadith: number;
-    HadithPerPage: number;
-}
-
-const Pagination = ({ Api, title, NumberOfHadith, HadithPerPage }: PaginationProps) => {
+const Pagination = () => {
+    const Api = useSelector((state: RootState) => state.Pagination.Api)
+    const title = useSelector((state: RootState) => state.Pagination.title)
+    const NumberOfHadith = useSelector((state: RootState) => state.SearchHadith.NumberOfHadith)
+    const HadithPerPage = useSelector((state: RootState) => state.Pagination.HadithPerPage)
     const currentPage = Number(useParams().HadithId);
     const totalPages = Math.ceil(NumberOfHadith / HadithPerPage);
     // Calculate previous and next page numbers

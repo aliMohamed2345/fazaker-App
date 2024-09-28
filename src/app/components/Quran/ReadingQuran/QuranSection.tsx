@@ -1,11 +1,8 @@
 import { useState } from "react";
 import AyahOptions from "./AyahOptions/AyahOptions";
-import { pageContentProps } from "./FunctionsAndObjects";
-interface QuranSectionProps {
-    Pages: pageContentProps[];
-    SurahNumber: number;
-    SurahName: string
-}
+import { useSelector } from "react-redux";
+import { RootState } from "@/app/redux/store";
+
 // Calculate hizb based on hizbQuarter
 function calculateHizb(hizbQuarter: number): string {
     const hizb = Math.floor(hizbQuarter / 4);
@@ -30,9 +27,11 @@ function calculateHizb(hizbQuarter: number): string {
     }
 }
 
-const QuranSection = ({ Pages, SurahNumber, SurahName }: QuranSectionProps) => {
+const QuranSection = () => {
+    let Pages = useSelector((state: RootState) => state.ReadingQuran.page)
+    console.log(Pages);
+
     const [AyahOptionsState, SetAyahOptionsState] = useState<{ [key: number]: boolean }>({});
-    const [SavedAyahs, SetSavedAyahs] = useState<{ [key: number]: boolean }>({});
 
     // Toggle ayah options
     function toggleAyahOptions(ayahNumber: number) {
@@ -44,17 +43,6 @@ const QuranSection = ({ Pages, SurahNumber, SurahName }: QuranSectionProps) => {
             [ayahNumber]: !prev[ayahNumber],
         }));
     }
-
-    // Handle saving ayah
-    function handleSaveAyah(ayahNumber: number) {
-        SetSavedAyahs((prev) => ({
-            ...prev,
-            [ayahNumber]: !prev[ayahNumber],
-        }));
-    }
-
-
-
 
     return (
         <div className="d-flex flex-column all-pages">
@@ -70,7 +58,7 @@ const QuranSection = ({ Pages, SurahNumber, SurahName }: QuranSectionProps) => {
                             <p
                                 id={`ayah-${ayah.numberInSurah}`}
                                 onClick={() => toggleAyahOptions(ayah.numberInSurah)}
-                                className={`d-inline ${SavedAyahs[ayah.numberInSurah] ? 'bg-danger' : ''} position-relative ayah ${AyahOptionsState[ayah.numberInSurah] ? "active" : ""}`}
+                                className={`d-inline position-relative ayah ${AyahOptionsState[ayah.numberInSurah] ? "active" : ""}`}
                                 key={ayah.numberInSurah}
                             >
                                 {ayah.text}
@@ -81,8 +69,6 @@ const QuranSection = ({ Pages, SurahNumber, SurahName }: QuranSectionProps) => {
                                             IsOpen={AyahOptionsState[ayah.numberInSurah]}
                                             AudioSrc={ayah.audio}
                                             Ayah={ayah.text}
-                                            SurahNumber={SurahNumber}
-                                            SurahName={SurahName}
                                             AyahNumber={ayah.numberInSurah}
                                         />
                                     </>

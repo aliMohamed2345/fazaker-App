@@ -2,9 +2,7 @@ export interface AyahOptionsProps {
     IsOpen: boolean;
     AudioSrc: string;
     Ayah: string;
-    SurahNumber: number;
     AyahNumber: number;
-    SurahName: string;
 }
 export const removeFromLocalStorage = (ayahNumber: number, surahNumber: number) => {
     let savedAyahs = getSavedAyahsFromLocalStorage();
