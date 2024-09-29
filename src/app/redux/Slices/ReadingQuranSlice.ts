@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-export interface sajdaProps {
+interface sajdaProps {
     id: number;
     recommended: boolean;
     obligatory: boolean;
 }
-export interface ayahsProps {
+interface ayahsProps {
     audio: string;
     hizbQuarter: number;
     page: number;
@@ -13,13 +13,6 @@ export interface ayahsProps {
     sajda: boolean | sajdaProps;
     numberInSurah: number;
     number: number;
-}
-interface SurahIdProps {
-    name: string;
-    number: number;
-    numberOfAyahs: number;
-    revelationType: string;
-    ayahs: ayahsProps[];
 }
 export interface pageContentProps {
     ayahs: { text: string, numberInSurah: number, audio: string, IsSaved: boolean }[]; // Array of AyahProps objects
@@ -31,13 +24,13 @@ export interface pageContentProps {
 interface ReadingQuranProps {
     SurahNumber: number,
     SurahName: string,
-    numberOfAyahs: number,
+    // numberOfAyahs: number,
     page: pageContentProps[]
 }
 let initialState: ReadingQuranProps = {
     SurahName: '',
     SurahNumber: 0,
-    numberOfAyahs: 0,
+    // numberOfAyahs: 0,
     page: []
 }
 let ReadingQuranSlice = createSlice({
@@ -50,9 +43,9 @@ let ReadingQuranSlice = createSlice({
         SetSurahNumber(state, action: PayloadAction<number>) {
             state.SurahNumber = action.payload
         },
-        SetNumberOfAyahs(state, action: PayloadAction<number>) {
-            state.numberOfAyahs = action.payload
-        },
+        // SetNumberOfAyahs(state, action: PayloadAction<number>) {
+        // state.numberOfAyahs = action.payload
+        // }
         SetPages(state, action: PayloadAction<pageContentProps[]>) {
             state.page = action.payload;
         }
@@ -60,4 +53,4 @@ let ReadingQuranSlice = createSlice({
     }
 })
 export default ReadingQuranSlice.reducer;
-export let { SetSurahName, SetSurahNumber, SetNumberOfAyahs, SetPages } = ReadingQuranSlice.actions
+export let { SetSurahName, SetSurahNumber, SetPages } = ReadingQuranSlice.actions
