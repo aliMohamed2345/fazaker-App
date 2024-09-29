@@ -8,7 +8,6 @@ interface HadithContainerProps {
 const HadithContainer = ({ KeyVal }: HadithContainerProps) => {
     // Get the specific Hadith data using the index KeyVal
     const Hadiths = useSelector((state: RootState) => state.HadithContainerSlice.KeyVal[KeyVal]);
-    console.log(Hadiths);
     const { number, arab } = Hadiths;
     return (
         <div key={KeyVal} className="hadith p-3 rounded-4 d-flex flex-column">

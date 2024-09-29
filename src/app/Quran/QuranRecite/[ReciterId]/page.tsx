@@ -33,10 +33,10 @@ const ReciterId = ({ searchParams }: ReciterIdProps) => {
   };
   const handlePlayClick = (index: number, SurahLink: string) => {
     setActiveSurah(SurahLink)
-    dispatch(SetIsOpen(true));
-    dispatch(SetIndex(index));
-    dispatch(SetAudioSrc(SurahLink));
-    dispatch(SetListOfSurah(ListOfSurahLinks));
+    dispatch(SetIsOpen(true))
+    dispatch(SetIndex(index))
+    dispatch(SetAudioSrc(SurahLink))
+    dispatch(SetListOfSurah(ListOfSurahLinks))
   };
 
   return (
@@ -56,11 +56,7 @@ const ReciterId = ({ searchParams }: ReciterIdProps) => {
                 : `${surah}`;
           let SurahLink = `${searchParams.SurahLink}${correctedSurah}.mp3`;
           ListOfSurahLinks.push(SurahLink);
-
-          dispatch(SetReciterName(searchParams?.ReciterName))
-          dispatch(SetOptionsAudioSrc(SurahLink))
-          dispatch(SetOptionsSurahName(surahNamesArabic[+surah]))
-          //dispatch here 
+          dispatch(SetReciterName(searchParams?.ReciterName), SetOptionsAudioSrc(SurahLink), SetOptionsSurahName(surahNamesArabic[+surah]))
           return (
             <div
               key={i}
@@ -95,7 +91,7 @@ const ReciterId = ({ searchParams }: ReciterIdProps) => {
                   <FaPlay />
                 </button>
               </div>
-              <MoreOptionsSurah isOptionsOpened={openOptions[i]}/>
+              <MoreOptionsSurah isOptionsOpened={openOptions[i]} />
               {activeSurah === SurahLink &&
                 ListOfSurahLinks.map((surah) => {
                   if (surah === SurahLink) {

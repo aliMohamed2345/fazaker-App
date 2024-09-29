@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/app/redux/store";
-import { setAzkar, decrementCount } from "@/app/redux/Slices/ZekrSlice";
+import { setAzkar } from "@/app/redux/Slices/ZekrSlice";
 import AzkarLoading from "@/app/components/Azkar/AzkarLoading";
 import Zekr from "@/app/components/Azkar/Zekr";
 

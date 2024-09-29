@@ -8,7 +8,7 @@ const HadithCard = ({ Key }: { Key: number }) => {
     let { api, image, numberOfHadith, title } = HadithCard;
     return (
         <div key={Key} className="card mw-100">
-            <Image className="card-img-top" src={image} height={250} alt={title} sizes="cover" />
+            <Image className="card-img-top" src={image} height={250} alt={title} sizes="cover" loading='lazy' />
             <div className="card-body">
                 <h6 className="card-title text-center">{title}</h6>
                 <div className="d-flex align-items-center justify-content-between mt-4">

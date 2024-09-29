@@ -62,10 +62,10 @@ const SurahId = () => {
     }, [SurahNumber]);
 
     //dispatching to the store
-    dispatch(SetSurahNumber(+SurahNumber!));
-    dispatch(SetSurahName(surahNameArabic!));
-    dispatch(SetNumberOfAyahs(SurahData.numberOfAyahs));
     dispatch(SetPages(pages))
+    dispatch(SetNumberOfAyahs(SurahData.numberOfAyahs))
+    dispatch(SetSurahNumber(+SurahNumber!))
+    dispatch(SetSurahName(surahNameArabic!))
     return (
         <>
             {IsLoading ? < Loading /> :
@@ -85,7 +85,7 @@ const SurahId = () => {
                 </div>
                     <div className="d-flex gap-3 justify-content-center align-items-center align-items-sm-center align-items-md-start container-lg mt-5 flex-column flex-md-row-reverse">
                         <GoToAyah />
-                        <QuranSection  />
+                        <QuranSection />
                     </div>
                     <div className="navigate-surahs d-flex align-items-center justify-content-around mt-3 mb-5">
                         <Link

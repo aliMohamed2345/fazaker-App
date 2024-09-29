@@ -15,6 +15,7 @@ const PrayerTimingSection = () => {
                         src={PrayerTimeImg}
                         objectFit="cover"
                         alt="مواقيت الصلاه "
+                        loading="lazy"
                     />
                     <p className="text-center">في هذا القسم المخصص لمواقيت
                         الصلاة، نقدم لك دليلاً شاملاً لأوقات الصلوات الخمس

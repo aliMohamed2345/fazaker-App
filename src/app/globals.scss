@@ -3,6 +3,7 @@
   src: url("/public//fonts/UthmanTN_v2-0.ttf") format("opentype");
   font-weight: bold;
   font-style: normal;
+  font-display: swap;
 }
 
 //======================
@@ -11,7 +12,7 @@
 $base-font-size: 16px;
 $base-header-size: 2em;
 $responsive-landing-page-width: 85vw;
-$landing-page-button-width: 18vw;
+$landing-page-button-width: 25vw;
 //======================
 //Light Mode Colors
 //======================
@@ -326,6 +327,7 @@ ul.nav-items li:hover a {
       }
       a {
         width: $landing-page-button-width;
+        max-width: 100%;
       }
       svg {
         color: var(--bs-green);
@@ -400,7 +402,11 @@ ul.nav-items li:hover a {
 }
 .Azkar-option {
   background-color: var(--Territory-bg-color);
+  a {
+    width: $landing-page-button-width;
+  }
 }
+
 .azkar-window {
   div:nth-child(1) {
     margin-top: 40px;
@@ -447,7 +453,7 @@ ul.nav-items li:hover a {
   }
 }
 .loading-skeleton {
-  max-height: 150px;
+  min-height: 150px;
 
   background: linear-gradient(
     90deg,
@@ -460,6 +466,9 @@ ul.nav-items li:hover a {
 }
 .hadith-search-bar {
   background-color: var(--secondary-bg-color);
+  input{
+    width: 70vw;
+  }
 }
 .hadith {
   background-color: var(--Territory-bg-color);

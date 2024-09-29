@@ -48,7 +48,7 @@ const QuranRecite = () => {
     const filteredReciters = ReciterData
         .filter(reciter => reciter.name.includes(searchVal)) // Filter based on search value
         .filter(reciter => reciter.moshaf.some(moshaf => moshaf.name?.includes('حفص عن عاصم')));
-    console.log(filteredReciters.length);
+
     return (
         <>
             <h2 className="text-center pt-5">تلاوه القران</h2>

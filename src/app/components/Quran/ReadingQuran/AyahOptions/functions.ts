@@ -1,9 +1,3 @@
-export interface AyahOptionsProps {
-    IsOpen: boolean;
-    AudioSrc: string;
-    Ayah: string;
-    AyahNumber: number;
-}
 export const removeFromLocalStorage = (ayahNumber: number, surahNumber: number) => {
     let savedAyahs = getSavedAyahsFromLocalStorage();
     savedAyahs = savedAyahs.filter((ayah: any) => ayah.ayahNumber !== ayahNumber || ayah.surahNumber !== surahNumber);

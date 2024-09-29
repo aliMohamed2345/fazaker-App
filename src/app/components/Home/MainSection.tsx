@@ -12,7 +12,7 @@ const MainSection = () => {
                     alt="hero image"
                     objectFit="cover"
                     loading="lazy"
-                />
+                />  
             </div>
             <div className="bg-green position-absolute">
 
@@ -21,6 +21,7 @@ const MainSection = () => {
                         src={Img}
                         width={150}
                         height={150}
+                        loading="lazy"
                         alt="لا اله الا الله محمد رسول الله "
                     />
                     <h1 className=" fw-bold ">فَذْكُر</h1>

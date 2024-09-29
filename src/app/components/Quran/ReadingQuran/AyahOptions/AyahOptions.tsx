@@ -7,7 +7,6 @@ import TafsirSection from "../TafsirSection";
 import { handlePlayBtn, isAyahSaved, removeFromLocalStorage, saveToLocalStorage } from "./functions";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/app/redux/store";
-import { setAyahData } from "@/app/redux/Slices/AyahDataSlice";
 const AyahOptions = ({ AyahNumber }: { AyahNumber: number }) => {
     let SurahNumber = useSelector((state: RootState) => state.ReadingQuran.SurahNumber);
     let SurahName = useSelector((state: RootState) => state.ReadingQuran.SurahName);

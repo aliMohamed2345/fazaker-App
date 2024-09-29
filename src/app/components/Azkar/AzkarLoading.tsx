@@ -4,7 +4,7 @@ interface AzkarLoadingProps {
 
 const AzkarLoading = ({ Number = 1 }: AzkarLoadingProps) => {
     return (
-        <div className="container gap-3 d-flex flex-column h-50 justify-content-center pt-5">
+        <div className="container gap-3 d-flex flex-column h-75 justify-content-center pt-5">
             {Array.from({ length: Number }).map((_, index) => (
                 <div
                     key={index}

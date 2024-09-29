@@ -3,6 +3,7 @@
   src: url("/public//fonts/UthmanTN_v2-0.ttf") format("opentype");
   font-weight: bold;
   font-style: normal;
+  font-display: swap;
 }
 html[data-theme=light] {
   --primary-bg-color: #fff;
@@ -260,7 +261,8 @@ ul.nav-items li:hover a {
   word-spacing: 1px;
 }
 .quran-section .quran-sections .section a {
-  width: 18vw;
+  width: 25vw;
+  max-width: 100%;
 }
 .quran-section .quran-sections .section svg {
   color: var(--bs-green);
@@ -284,7 +286,7 @@ ul.nav-items li:hover a {
   background-color: var(--secondary-bg-color);
 }
 .azkar-area .azkar-section a {
-  width: 18vw;
+  width: 25vw;
 }
 .azkar-area .azkar-section .azkar-left-section {
   background-color: var(--Territory-bg-color);
@@ -314,7 +316,7 @@ ul.nav-items li:hover a {
   transition: 0.3s ease all;
 }
 .prayer-time-section .prayer-time-area a {
-  width: 18vw;
+  width: 25vw;
 }
 .prayer-time-section .prayer-time-area img {
   width: 45vw;
@@ -328,7 +330,7 @@ ul.nav-items li:hover a {
   background-color: var(--Territory-bg-color);
 }
 .Hadith-section a {
-  width: 18vw;
+  width: 25vw;
 }
 .Hadith-section .Hadith-left-section {
   background-color: var(--primary-bg-color);
@@ -340,6 +342,9 @@ ul.nav-items li:hover a {
 
 .Azkar-option {
   background-color: var(--Territory-bg-color);
+}
+.Azkar-option a {
+  width: 25vw;
 }
 
 .azkar-window div:nth-child(1) {
@@ -386,7 +391,7 @@ ul.nav-items li:hover a {
 }
 
 .loading-skeleton {
-  max-height: 150px;
+  min-height: 150px;
   background: linear-gradient(90deg, var(--primary-text-color) 25%, var(--secondary-bg-color) 50%, var(--primary-text-color) 75%);
   background-size: 200% 100%;
   animation: loading-skeleton 1.5s ease-in-out infinite;
@@ -394,6 +399,9 @@ ul.nav-items li:hover a {
 
 .hadith-search-bar {
   background-color: var(--secondary-bg-color);
+}
+.hadith-search-bar input {
+  width: 70vw;
 }
 
 .hadith {

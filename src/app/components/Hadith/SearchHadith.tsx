@@ -12,14 +12,14 @@ const SearchHadithComponent = () => {
     const [searchVal, SetSearchVal] = useState<number | null>(null);
 
     return (
-        <div className="hadith-search-bar p-2 rounded-4 mb-4 container w-75">
-            <form className="d-flex align-items-center justify-content-center gap-5">
+        <div className="hadith-search-bar p-2 rounded-4 mb-4 container ">
+            <form className="d-flex align-items-center justify-content-between  ">
                 <Link
                     href={{
                         pathname: `/Hadith/${encodeURIComponent(Hadith)}/${searchVal}`,
                         query: { HadithNum: searchVal, Hadith, HadithBook }
                     }}
-                    className={`btn-success btn ${searchVal && searchVal > 0 && searchVal <= NumberOfHadith ? '' : 'disabled'}`}
+                    className={`btn-success btn rounded-pill ${searchVal && searchVal > 0 && searchVal <= NumberOfHadith ? '' : 'disabled'}`}
                 >
                     <IoIosSearch size={20} />
                 </Link>

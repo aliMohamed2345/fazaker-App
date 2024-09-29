@@ -6,8 +6,6 @@ let AzkarCategories: string[] = [
 ];
 
 const Azkar = () => {
-
-
     return (
         <div className="Azkar-content container h-100 position-relative mb-5">
             <h1 className="text-center mt-5 mb-5">الاذكار</h1>
