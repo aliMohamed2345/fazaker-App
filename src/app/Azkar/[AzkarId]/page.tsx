@@ -5,7 +5,7 @@ import { RootState } from "@/app/redux/store";
 import { setAzkar } from "@/app/redux/Slices/ZekrSlice";
 import AzkarLoading from "@/app/components/Azkar/AzkarLoading";
 import Zekr from "@/app/components/Azkar/Zekr";
-
+import styles from '@/app/components/Azkar/Azkar.module.css'
 interface SearchParamsProp {
     searchParams: {
         name: string;
@@ -39,7 +39,7 @@ const AzkarId = ({ searchParams }: SearchParamsProp) => {
             {isLoading ? (
                 <AzkarLoading Number={8} />
             ) : (
-                <div className="azkar-window d-flex align-items-center justify-content-center flex-wrap mt-5">
+                <div className={`${styles.azkarWindow} d-flex align-items-center justify-content-center flex-wrap mt-5`}>
                     {azkar.map((_, i) => {
                         return (
                             <Zekr index={i} />

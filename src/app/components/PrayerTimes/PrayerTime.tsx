@@ -1,7 +1,7 @@
 import { prayerNames } from "./Functions"; // Ensure the correct path is used
 
 interface PrayerTimeProps {
-    prayerKey: string; // Changed from `key` to `prayerKey` to avoid using the reserved prop name
+    prayerKey: string; 
     time: string;
 }
 

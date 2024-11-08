@@ -1,18 +1,18 @@
 import Link from "next/link";
 import { useState } from "react";
 import { IoIosSearch } from "react-icons/io";
-import {  useSelector } from "react-redux";
-import { RootState } from "@/app/redux/store"; 
+import { useSelector } from "react-redux";
+import { RootState } from "@/app/redux/store";
+import styles from './Hadith.module.css'
 
 const SearchHadithComponent = () => {
     const Hadith = useSelector((state: RootState) => state.SearchHadith.Hadith);
     const NumberOfHadith = useSelector((state: RootState) => state.SearchHadith.NumberOfHadith);
     const HadithBook = useSelector((state: RootState) => state.SearchHadith.HadithBook);
-
     const [searchVal, SetSearchVal] = useState<number | null>(null);
 
     return (
-        <div className="hadith-search-bar p-2 rounded-4 mb-4 container ">
+        <div className={`${styles.hadithSearchBar} p-2 rounded-4 mb-4 container `}>
             <form className="d-flex align-items-center justify-content-between  ">
                 <Link
                     href={{

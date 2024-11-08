@@ -1,16 +1,16 @@
-import MainSection from "./components/Home/MainSection";
-import AzkarSection from "./components/Home/AzkarSection";
-import PrayerTimingSection from "./components/Home/PrayerTimingSection";
-import HadithSection from "./components/Home/HadithSection";
-import QuranSection from "./components/Home/QuranSection";
+import AzkarSection from "./components/Home/LandingPage/AzkarSection";
+import HadithSection from "./components/Home/LandingPage/HadithSection";
+import MainSection from "./components/Home/LandingPage/MainSection";
+import PrayerTimingSection from "./components/Home/LandingPage/PrayerTimingSection";
+import QuranSection from "./components/Home/LandingPage/QuranSection";
 export default function Home() {
   return (
     <>
       <MainSection />
       <QuranSection />
-      <AzkarSection />
-      <PrayerTimingSection />
       <HadithSection />
+      <PrayerTimingSection />
+      <AzkarSection />
 
     </>
   );

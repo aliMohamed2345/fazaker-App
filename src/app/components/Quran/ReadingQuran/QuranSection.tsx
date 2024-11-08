@@ -1,3 +1,4 @@
+'use client'
 import { useState } from "react";
 import AyahOptions from "./AyahOptions/AyahOptions";
 import { useDispatch, useSelector } from "react-redux";

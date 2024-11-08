@@ -17,7 +17,7 @@ const Hadith = () => {
                     مجموعة من الأحاديث الصحيحة من مصادر معتمدة مثل موطأ الإمام مالك، صحيح البخاري، وصحيح مسلم، بالإضافة إلى العديد من الكتب الأخرى التي تناولت السنة النبوية
                 </p>
             </div>
-            <div className="cards d-flex align-items-center justify-content-center gap-5 flex-row flex-wrap">
+            <div className=" d-flex align-items-center justify-content-center gap-5 flex-row flex-wrap">
                 {hadithCards.map((_, i: number) => { // Specify types for map parameters
                     return (
                         <HadithCard Key={i} />

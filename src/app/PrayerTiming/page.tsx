@@ -58,7 +58,7 @@ const PrayerTiming = () => {
         <div className="container text-center">
             <h1 className="mt-5">مواقيت الصلاه</h1>
             <form className="d-flex mt-5 justify-content-center gap-5 flex-column">
-                <div className="country d-flex gap-4 justify-content-center">
+                <div className=" d-flex gap-4 justify-content-center">
                     <label>ادخل اسم الدوله</label>
                     <input
                         ref={countryInput}
@@ -70,7 +70,7 @@ const PrayerTiming = () => {
                         placeholder="اسم الدوله"
                     />
                 </div>
-                <div className="city d-flex justify-content-center gap-4">
+                <div className=" d-flex justify-content-center gap-4">
                     <label>ادخل اسم البلده</label>
                     <input
                         ref={cityInput}
@@ -108,7 +108,7 @@ const PrayerTiming = () => {
                             </p>
                         </div>
                     </div>
-                    <div className="prayer-times w-100 mw-100 d-flex flex-column gap-4 mb-5">
+                    <div className=" w-100 mw-100 d-flex flex-column gap-4 mb-5">
                         {Object.entries(prayerTimes)
                             .filter(([key]) => PrayerTimesInArabic.includes(prayerNames[key])) // Check if the Arabic name exists in PrayerTimesInArabic
                             .map(([key, time]) => (

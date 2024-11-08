@@ -24,15 +24,13 @@ const SearchHadith = ({ searchParams }: searchParamsProps) => {
     let [Hadith, SetHadith] = useState<HadithProps>(InitialHadith);
     let [IsLoading, SetIsLoading] = useState<boolean>(true)
     let dispatch = useDispatch();
-    let Api = `https://api.hadith.gading.dev/books/${searchParams.Hadith}/${searchParams.HadithNum}`
     useEffect(() => {
-        fetch(Api)
+        fetch(`${process.env.NEXT_PUBLIC_HADITH_API}/${searchParams.Hadith}/${searchParams.HadithNum}`)
             .then((res) => res.json()).then(data => {
                 SetHadith(data.data.contents);
                 SetIsLoading(false)
             });
     }, [])
-    // let { number, arab } = Hadith;
     dispatch(SetHadithContent([Hadith]))
     return (<>
         <div className="container">

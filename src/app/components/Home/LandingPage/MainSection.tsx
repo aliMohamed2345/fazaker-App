@@ -1,22 +1,23 @@
 import Image from "next/image";
 import Img from '@/../public/Images/main/hero-img-1.png'
 import HeroImageBg from '@/../public/Images/main/hero-img-back-1.jpg'
-
+import styles from './LandingPage.module.css';
 const MainSection = () => {
 
     return (<>
-        <main className="position-relative main-section">
-            <div className="bg-image position-relative">
+        <main className={`position-relative ${styles.mainSection}`}>
+            <div className={`${styles.bgImg} position-relative`}>
                 <Image
                     src={HeroImageBg}
                     alt="hero image"
                     objectFit="cover"
                     loading="lazy"
-                />  
+                />
             </div>
-            <div className="bg-green position-absolute">
+            <div className={`${styles.bgGreen} position-absolute`}>
 
-                <div className="description d-flex align-items-center justify-content-end  gap-4 flex-column text-center  container rounded-5 p-4">
+                <div
+                    className={`${styles.description} position-absolute  start-50 top-50 translate-middle d-flex align-items-center justify-content-end  gap-4 flex-column text-center  container rounded-5 p-4`}>
                     <Image
                         src={Img}
                         width={150}

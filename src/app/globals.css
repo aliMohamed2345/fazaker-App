@@ -232,162 +232,8 @@ ul.nav-items li:hover a {
   background-color: var(--bs-gray-600);
 }
 
-.main-section {
-  margin-top: 45px;
-}
-.main-section .bg-green {
-  top: 0;
-  left: 0;
-  background-color: rgba(25, 135, 84, 0.3607843137);
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-}
-.main-section .bg-img {
-  position: relative;
-  max-width: 100vw;
-  min-height: 100%;
-}
-.main-section .bg-img img {
-  top: 0;
-  left: 0;
-  z-index: 5;
-}
-
-.quran-section .quran-sections .section {
-  background-color: var(--Territory-bg-color);
-}
-.quran-section .quran-sections .section p {
-  word-spacing: 1px;
-}
-.quran-section .quran-sections .section a {
-  width: 25vw;
-  max-width: 100%;
-}
-.quran-section .quran-sections .section svg {
-  color: var(--bs-green);
-}
-
-.description {
-  width: 85vw;
-  background-color: var(--secondary-bg-color);
-  transition: 0.3s ease all;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  position: absolute;
-}
-
-.azkar-area {
-  background-color: var(--Territory-bg-color);
-}
-.azkar-area .azkar-section {
-  width: 85vw;
-  background-color: var(--secondary-bg-color);
-}
-.azkar-area .azkar-section a {
-  width: 25vw;
-}
-.azkar-area .azkar-section .azkar-left-section {
-  background-color: var(--Territory-bg-color);
-}
-.azkar-area .azkar-section .azkar-left-section .buttons {
-  bottom: -30px;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: var(--secondary-bg-color);
-}
-.azkar-area .azkar-section .azkar-left-section .buttons button {
-  width: 40px;
-  height: 40px;
-}
-
 .prayer {
   background-color: var(--Territory-bg-color);
-}
-
-.prayer-time-section {
-  background-color: var(--secondary-bg-color);
-}
-.prayer-time-section .prayer-time-area {
-  width: 85vw;
-  background-color: var(--Territory-bg-color);
-  transition: 0.3s ease all;
-}
-.prayer-time-section .prayer-time-area a {
-  width: 25vw;
-}
-.prayer-time-section .prayer-time-area img {
-  width: 45vw;
-  background-size: cover;
-}
-.prayer-time-section a {
-  width: 30vw;
-}
-
-.Hadith-section {
-  background-color: var(--Territory-bg-color);
-}
-.Hadith-section a {
-  width: 25vw;
-}
-.Hadith-section .Hadith-left-section {
-  background-color: var(--primary-bg-color);
-}
-.Hadith-section .Hadith-content {
-  width: 85vw;
-  background-color: var(--secondary-bg-color);
-}
-
-.Azkar-option {
-  background-color: var(--Territory-bg-color);
-}
-.Azkar-option a {
-  width: 25vw;
-}
-
-.azkar-window div:nth-child(1) {
-  margin-top: 40px;
-}
-.azkar-window .zekr-content h1 {
-  top: 20%;
-  color: white;
-}
-.azkar-window .zekr {
-  background-color: var(--Territory-bg-color);
-}
-.azkar-window .zekr p.zekr-description {
-  color: var(--primary-text-color);
-}
-.azkar-window .zekr .buttons {
-  bottom: -30px;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: var(--secondary-bg-color);
-}
-.azkar-window .zekr .buttons button {
-  width: 40px;
-  height: 40px;
-}
-
-.card {
-  width: 275px;
-  transition: 0.3s ease all;
-  background-color: var(--secondary-bg-color);
-}
-.card .card::before {
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: 2;
-  width: 100%;
-  height: 100%;
-  background-color: var(--bs-green);
-}
-.card .card-body {
-  color: var(--primary-text-color);
 }
 
 .loading-skeleton {
@@ -395,23 +241,6 @@ ul.nav-items li:hover a {
   background: linear-gradient(90deg, var(--primary-text-color) 25%, var(--secondary-bg-color) 50%, var(--primary-text-color) 75%);
   background-size: 200% 100%;
   animation: loading-skeleton 1.5s ease-in-out infinite;
-}
-
-.hadith-search-bar {
-  background-color: var(--secondary-bg-color);
-}
-.hadith-search-bar input {
-  width: 70vw;
-}
-
-.hadith {
-  background-color: var(--Territory-bg-color);
-}
-.hadith .hadith-number {
-  max-width: 70px;
-  width: 40px;
-  background-color: var(--bs-green);
-  color: var(--primary-text-color);
 }
 
 .alpha-letter {
@@ -735,36 +564,6 @@ input[type=range].progress-slider::-webkit-slider-thumb {
   border-radius: 5px;
   cursor: pointer;
   background-color: var(--primary-bg-color);
-}
-
-.tooltip-container {
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-}
-
-.tooltip-container span.tooltip-text {
-  position: absolute;
-  font-weight: bold;
-  visibility: hidden;
-  width: auto;
-  background-color: var(--bs-green-hover);
-  color: var(--secondary-bg-color);
-  text-align: center;
-  border-radius: 5px;
-  z-index: 3;
-  bottom: 125%;
-  left: 50%;
-  transform: translateX(-50%);
-  opacity: 0;
-  transition: opacity 0.3s;
-  font-size: 12px;
-  padding: 5px;
-}
-
-.tooltip-container:hover span.tooltip-text {
-  visibility: visible;
-  opacity: 1;
 }
 
 .tafsir-bg {

@@ -62,7 +62,7 @@ const HadithId = ({ searchParams }: searchParamsProps) => {
             <h1 className="text-center mt-5">{searchParams.HadithName}</h1>
             <SearchHadithComponent />
             {IsLoading ? <HadithLoading Number={6} /> :
-                <div className="hadiths container gap-3 d-flex flex-column justify-content-center">
+                <div className=" container gap-3 d-flex flex-column justify-content-center">
                     {Hadiths.hadiths.map((_, i) => (
                         <HadithContainer KeyVal={i} />
                     ))}

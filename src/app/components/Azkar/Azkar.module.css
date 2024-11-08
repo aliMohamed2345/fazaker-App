@@ -1,0 +1,30 @@
+.AzkarOption {
+  background-color: var(--Territory-bg-color);
+}
+.AzkarOption a {
+  width: 25vw;
+}
+
+.azkarWindow div:nth-child(1) {
+  margin-top: 40px;
+}
+.azkarWindow .zekrContent h1 {
+  top: 20%;
+  color: white;
+}
+.zekr {
+  background-color: var(--Territory-bg-color);
+}
+.zekrDescription {
+  color: var(--primary-text-color);
+}
+.buttons {
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--secondary-bg-color);
+}
+.buttons button {
+  width: 40px;
+  height: 40px;
+}
