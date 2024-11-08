@@ -38,7 +38,7 @@ const PrayerTiming = () => {
     useEffect(() => {
         if (inputForms.city && inputForms.country) {
             fetch(
-                `https://api.aladhan.com/v1/timingsByCity/${getDateFormat()}?city=${inputForms.city}&country=${inputForms.country}&method=8`
+                `${process.env.NEXT_PUBLIC_PRAYER_TIME_API}/${getDateFormat()}?city=${inputForms.city}&country=${inputForms.country}&method=8`
             )
                 .then((res) => res.json())
                 .then((data) => {
@@ -112,7 +112,7 @@ const PrayerTiming = () => {
                         {Object.entries(prayerTimes)
                             .filter(([key]) => PrayerTimesInArabic.includes(prayerNames[key])) // Check if the Arabic name exists in PrayerTimesInArabic
                             .map(([key, time]) => (
-                                <PrayerTime prayerKey={key} time={time} />
+                                <PrayerTime prayerKey={key} time={time}  />
                             ))}
                     </div>
                 </>

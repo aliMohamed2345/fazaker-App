@@ -35,9 +35,8 @@ const QuranSearch = () => {
         if (!inputVal) return;
         setLoading(true);
         setSearched(true);
-        const api = `https://api.quran.com/api/v4/search?q=${inputVal}&size=50`;
         try {
-            const res = await fetch(api);
+            const res = await fetch(`${process.env.NEXT_PUBLIC_QURAN_SEARCH}?q=${inputVal}&size=50`);
             const data = await res.json();
             setSearchData(data.search || { results: [] });
         } catch (error) {

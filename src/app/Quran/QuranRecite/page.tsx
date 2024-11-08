@@ -29,8 +29,7 @@ const QuranRecite = () => {
     const [searchVal, SetSearchVal] = useState<string>(''); // Search value state
 
     useEffect(() => {
-        const api: string = `https://www.mp3quran.net/api/v3/reciters?language=ar`;
-        fetch(api)
+        fetch(`${process.env.NEXT_PUBLIC_QURAN_RECITE}`)
             .then(res => res.json())
             .then((data: RecitersDataProps) => {
                 setReciterData(data.reciters);

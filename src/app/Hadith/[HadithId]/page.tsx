@@ -36,9 +36,8 @@ const HadithId = ({ searchParams }: searchParamsProps) => {
     let HadithPerPage = 20;
     let startingRange = (((Page - 1) * HadithPerPage) + 1);
     let EndingRange = HadithPerPage * Page;
-    let Api = `https://api.hadith.gading.dev/books/${searchParams.Hadith}?range=${startingRange}-${EndingRange}`;
+    let Api = `${process.env.NEXT_PUBLIC_HADITH_API}/${searchParams.Hadith}?range=${startingRange}-${EndingRange}`;
     let dispatch = useDispatch();
-
     // Dispatching to the store
     dispatch(SetHadith(searchParams.Hadith));
     dispatch(SetHadithBook(searchParams.HadithName));

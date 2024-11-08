@@ -17,12 +17,8 @@ const AzkarId = ({ searchParams }: SearchParamsProp) => {
     const azkar = useSelector((state: RootState) => state.Zekr.azkar);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const category: string = searchParams.name;
-
-    const AzkarApi: string =
-        `https://raw.githubusercontent.com/nawafalqari/azkar-api/56df51279ab6eb86dc2f6202c7de26c8948331c1/azkar.json`;
-
     useEffect(() => {
-        fetch(AzkarApi)
+        fetch(`${process.env.NEXT_PUBLIC_AZKAR_API}`)
             .then((res) => res.json())
             .then((data) => {
                 // Check if the first element is an array and flatten it if needed
@@ -36,7 +32,7 @@ const AzkarId = ({ searchParams }: SearchParamsProp) => {
                 }
                 setIsLoading(false);
             }).catch((error) => { console.log(`فشل عمليه الجلب :${error}`); setIsLoading(false) }).finally(() => setIsLoading(false));
-    }, [AzkarApi, category, dispatch]);
+    }, [process.env.NEXT_PUBLIC_AZKAR_API, category, dispatch]);
 
     return (
         <>

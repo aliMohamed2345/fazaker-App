@@ -20,7 +20,7 @@ const SurahId = () => {
     const [IsLoading, SetIsLoading] = useState<boolean>(true);
     const dispatch = useDispatch();
 
-    const api = `http://api.alquran.cloud/v1/surah/${SurahNumber}/ar.alafasy`;
+    // const api = `${process.env.NEXT_PUBLIC_QURAN_READING}/${SurahNumber}/ar.alafasy`;
 
     // Memoize page calculation to avoid recalculating on every render
     const pages = useMemo(() => {
@@ -70,14 +70,14 @@ const SurahId = () => {
     // Fetch Surah data when SurahNumber changes
     useEffect(() => {
         const fetchSurahData = async () => {
-            const response = await fetch(api);
+            const response = await fetch(`${process.env.NEXT_PUBLIC_QURAN_READING}/${SurahNumber}/ar.alafasy`);
             const data = await response.json();
             SetSurahData(data.data);
             SetIsLoading(false);
         };
 
         fetchSurahData();
-    }, [SurahNumber, api]);
+    }, [SurahNumber]);
 
     // Dispatching actions to Redux store (moved inside useEffect to avoid re-dispatching on every render)
     useEffect(() => {
