@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@bootstrap-styled/utils": "^1.8.1",
     "@reduxjs/toolkit": "^2.2.7",
     "bootstrap": "^5.3.3",
     "eslint": "^9.11.1",

@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { MdDarkMode, MdOutlineWbSunny } from "react-icons/md";
 
-
 type Theme = 'light' | 'dark';
 
 const Nav = () => {

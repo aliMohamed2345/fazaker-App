@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Cairo } from "next/font/google";
 import "./globals.css";
-import './../../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import './../../node_modules/bootstrap/dist/css/bootstrap-utilities.css'
 import Script from "next/script";
 import Nav from "./components/Home/Nav";
 import ScrollToTop from "./components/Home/ScrollToTop";
