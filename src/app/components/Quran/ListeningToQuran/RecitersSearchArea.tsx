@@ -1,5 +1,3 @@
-import Link from "next/link";
-import { IoIosSearch } from "react-icons/io";
 
 interface RecitersSearchAreaProps {
     searchVal: string;
@@ -13,7 +11,7 @@ const RecitersSearchArea = ({
     return (
         <>
             <div
-                style={{ backgroundColor: "var(--secondary-bg-color)" }}
+
                 className="p-3 mb-5 rounded-4 mb-4 container w-50"
             >
                 <form className="align-items-center justify-content-center gap-2 flex-column flex-sm-row">

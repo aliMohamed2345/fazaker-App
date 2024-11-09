@@ -4,7 +4,7 @@ import Link from "next/link";
 import { surahNamesArabic } from "@/app/components/Quran/AudioPlayer/functions";
 import { useState } from "react";
 import NotFound from "@/app/components/Quran/ListeningToQuran/NotFound";
-
+import styles from '../../../components/Quran/ReadingQuran/ReadingQuran.module.css'
 const Surah = () => {
     const [SearchVal, SetSearchVal] = useState<string>('')
 
@@ -34,7 +34,7 @@ const Surah = () => {
                     </div>
                 </form>
             </div>
-            <div className="container col mt-5 d-flex flex-wrap justify-content-center reading-quran-content gap-3 flex-row-reverse">
+            <div className={`"container col mt-5 d-flex flex-wrap justify-content-center ${styles.readingQuranContent} gap-3 flex-row-reverse`}>
                 {filteredSurahs.length > 0 ? (
                     filteredSurahs.map(([SurahNumber, surahNameArabic]) => (
                         <Link

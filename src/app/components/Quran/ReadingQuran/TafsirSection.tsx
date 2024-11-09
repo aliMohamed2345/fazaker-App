@@ -3,6 +3,7 @@ import { IoMdClose } from "react-icons/io";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { RootState } from "@/app/redux/store";
+import styles from './ReadingQuran.module.css'
 interface TafsirSectionProps {
     IsOpen: boolean,
     AyahNumber: number
@@ -27,8 +28,8 @@ const TafsirSection = ({ IsOpen, AyahNumber }: TafsirSectionProps) => {
     let [EnglishOptions, SetEnglishOptions] = useState<boolean>(false);
     let [CurrentSurah, SetCurrentSurah] = useState(AyahNumber)
     //Apis
-    const TafsirArabicApi = `https://quranenc.com/api/v1/translation/aya/arabic_moyassar/${SurahNumber}/${CurrentSurah}`;
-    const TafsirEnglishApi = `https://quranenc.com/api/v1/translation/aya/english_saheeh/${SurahNumber}/${CurrentSurah}`;
+    const TafsirArabicApi = `${process.env.NEXT_PUBLIC_TAFSIR_ARABIC_API}${SurahNumber}/${CurrentSurah}`;
+    const TafsirEnglishApi = `${process.env.NEXT_PUBLIC_TAFSIR_ENGLISH_API}/${SurahNumber}/${CurrentSurah}`;
     useEffect(() => {
         setIsWindowOpen(IsOpen);
     }, [IsOpen]);
@@ -76,23 +77,23 @@ const TafsirSection = ({ IsOpen, AyahNumber }: TafsirSectionProps) => {
         <>
             {IsWindowOpen && (
                 <div
-                    className={`tafsir-bg ${IsOpen ? `active` : ``} position-fixed d-flex flex-column justify-content-center `}
+                    className={`${styles.tafsirBg} ${IsOpen ? `${styles.active}` : ``} position-fixed d-flex flex-column justify-content-center `}
                     onClick={handleBackgroundClick}
                 >
                     <div
-                        className={`tafsir-window p-4 rounded-4 ${IsOpen ? `active` : ``}`}
+                        className={`${styles.tafsirWindow} p-4 rounded-4 ${IsOpen ? `${styles.active}` : ``}`}
                         onClick={(e) => e.stopPropagation()}
                     >
                         <button
                             title="close"
                             type="button"
                             onClick={() => setIsWindowOpen(false)}
-                            className="btn close-btn rounded-circle p-0"
+                            className={`btn ${styles.closeBtn} rounded-circle p-0`}
                         >
                             <IoMdClose />
                         </button>
-                        <p className="ayah quran mt-5 text-end">{ArabicOptions ? ArabicData.arabic_text : EnglishData.arabic_text}</p>
-                        <div className="separator my-4"></div>
+                        <p className={`${styles.ayah} ${styles.quran} mt-5 text-end`}>{ArabicOptions ? ArabicData.arabic_text : EnglishData.arabic_text}</p>
+                        <div className={`${styles.separator} my-4`}></div>
                         <div className="lang gap-4 d-flex justify-content-end">
                             <button
                                 onClick={HandleArabicBtn}
@@ -112,7 +113,7 @@ const TafsirSection = ({ IsOpen, AyahNumber }: TafsirSectionProps) => {
                         {ArabicOptions && (
                             <>
                                 <h5 className="text-end mb-4 mt-4 fw-bold">تفسير</h5>
-                                <p className="tafsir pt-4 fw-bold">{ArabicData.translation}</p>
+                                <p className={`${styles.tafsir} pt-4 fw-bold`}>{ArabicData.translation}</p>
                             </>
                         )}
 
@@ -122,7 +123,7 @@ const TafsirSection = ({ IsOpen, AyahNumber }: TafsirSectionProps) => {
                                 <p className="translation">{EnglishData.translation}</p>
                             </>
                         )}
-                        <div className="navigate-ayahs d-flex align-items-center justify-content-around mt-2">
+                        <div className=" d-flex align-items-center justify-content-around mt-2">
                             <button
                                 title="previous"
                                 onClick={() => SetCurrentSurah(prev => prev! + 1)}
@@ -135,7 +136,7 @@ const TafsirSection = ({ IsOpen, AyahNumber }: TafsirSectionProps) => {
                                 className={`btn p-3 rounded-circle btn-outline-success`} ><FaArrowLeft size={25} /></button>
                         </div>
                     </div>
-                </div>
+                </div >
             )}
         </>
     );

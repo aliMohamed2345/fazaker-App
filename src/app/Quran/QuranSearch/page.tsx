@@ -5,7 +5,7 @@ import { surahNamesArabic } from '@/app/components/Quran/AudioPlayer/functions';
 import Link from 'next/link';
 import NotFound from '@/app/components/Quran/ListeningToQuran/NotFound';
 import SignLoadingScreen from '@/app/components/Quran/ReadingQuran/SignLoadingScreen';
-
+import styles from './QuranSearch.module.css'
 interface WordsProps {
     text: string;
     highlight: null | boolean;
@@ -65,7 +65,7 @@ const QuranSearch = () => {
     };
 
     return (
-        <div className="container search-ayah">
+        <div className="container ">
             <h1 className="text-center mt-5">البحث</h1>
             <form onSubmit={handleSubmit} className="search-area d-flex gap-3 align-items-center p-3 rounded-4">
                 <button type="submit" title="بحث" className={`btn btn-success ${!inputVal ? 'disabled' : ''}`}>
@@ -100,7 +100,7 @@ const QuranSearch = () => {
                                     },
                                     hash: `ayah-${ayah}`, // Using the ayah number as hash
                                 }}
-                                className="search-result flex-column p-3 rounded-2 d-flex align-items-start justify-content-center"
+                                className={`${styles.searchResult} flex-column p-3 rounded-2 d-flex align-items-start justify-content-center`}
                             >
                                 <p className="ayah">
                                     {result.words.map((word, i) => (
@@ -112,7 +112,7 @@ const QuranSearch = () => {
                                         </span>
                                     ))}
                                 </p>
-                                <div className="info d-flex gap-2">
+                                <div className={`${styles.info} d-flex gap-2`}>
                                     <p>{ayah},</p>
                                     <p>سوره {surah}</p>
                                 </div>

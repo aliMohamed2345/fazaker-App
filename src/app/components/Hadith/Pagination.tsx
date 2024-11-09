@@ -5,10 +5,8 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/app/redux/store";
 
 const Pagination = () => {
-    const Api = useSelector((state: RootState) => state.Pagination.Api)
-    const title = useSelector((state: RootState) => state.Pagination.title)
+    const { Api, title, HadithPerPage } = useSelector((state: RootState) => state.Pagination)
     const NumberOfHadith = useSelector((state: RootState) => state.SearchHadith.NumberOfHadith)
-    const HadithPerPage = useSelector((state: RootState) => state.Pagination.HadithPerPage)
     const currentPage = Number(useParams().HadithId);
     const totalPages = Math.ceil(NumberOfHadith / HadithPerPage);
     // Calculate previous and next page numbers

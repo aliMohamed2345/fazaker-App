@@ -1,0 +1,19 @@
+.searchArea {
+  background-color: var(--secondary-bg-color);
+}
+.searchArea input::placeholder {
+  font-size: 20px;
+}
+.searchResult {
+  background-color: var(--Territory-bg-color);
+  font-family: "Uthmani", serif;
+  direction: rtl;
+  font-size: 30px;
+  font-weight: bold;
+  letter-spacing: 1.2;
+  line-height: 1.2;
+}
+.info p {
+  font-size: 16px;
+  margin: 0;
+}

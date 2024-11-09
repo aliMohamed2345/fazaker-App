@@ -1,0 +1,239 @@
+.tafsirBg {
+  background-color: rgba(0, 0, 0, 0.8);
+  transition: 0.3s ease all;
+  width: 100%;
+  z-index: -5;
+  opacity: 0;
+  left: 0;
+  top: 0;
+  height: 100%;
+}
+.tafsirBg.active {
+  opacity: 1;
+  z-index: 4;
+}
+.tafsirWindow {
+  background-color: var(--Territory-bg-color);
+  z-index: -4;
+  min-width: 80vw;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  transition: 0.8s ease all;
+  height: 550px;
+  overflow-y: auto;
+  opacity: 0;
+}
+.separator {
+  width: 100%;
+  height: 1px;
+  background-color: var(--primary-bg-color);
+}
+.ayah {
+  font-family: "Uthmani", serif;
+  direction: rtl;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 1.2;
+  line-height: 1.2;
+  font-weight: bold;
+}
+.tafsir {
+  font-family: "Uthmani", serif;
+  direction: rtl;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 1.2;
+  line-height: 1.2;
+}
+.closeBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 0px;
+  font-size: 20px;
+  top: 0px;
+  width: 50px;
+  background-color: transparent;
+  height: 50px;
+}
+.closeBtn:hover {
+  background-color: var(--primary-bg-color);
+}
+.tafsirWindow.active {
+  opacity: 1;
+  z-index: 2;
+}
+.surahJuzContainer {
+  background-color: var(--secondary-bg-color);
+  width: 50vw;
+  height: 150px;
+}
+.optionsBg {
+  background-color: var(--primary-bg-color);
+  width: 90%;
+  height: 50%;
+}
+.surahJuzContainer a {
+  width: 49.5%;
+  height: 100%;
+  background-color: var(--Territory-bg-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: background-color 0.3s;
+}
+.surahJuzContainer a.active {
+  background-color: var(--bs-green);
+}
+
+.page {
+  border: 3px solid var(--bs-green);
+  background-color: var(--Territory-bg-color);
+  min-height: 200px;
+}
+.pageInfo {
+  background-color: var(--secondary-bg-color);
+  top: 70px;
+  position: sticky;
+  transition: 0.2s ease all;
+}
+.allPages .pageInfo:hover {
+  background-color: var(--bs-green);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  transform: scale(1.01);
+  color: var(--secondary-bg-color);
+}
+
+.quran {
+  font-family: "Uthmani", serif;
+  direction: rtl;
+  font-size: 30px;
+  font-weight: bold;
+  letter-spacing: 1.2;
+  line-height: 1.2;
+}
+.quran .ayah.active {
+  background-color: var(--bs-green);
+}
+.quran .ayah {
+  transition: 0.3s ease all;
+}
+.ayahOptions {
+  width: auto;
+  background-color: var(--primary-bg-color);
+  left: 50%;
+  top: -55px;
+}
+.ayahOptions div {
+  padding: 5px;
+  border-radius: 10px;
+  color: var(--bs-green);
+}
+.ayahOptions div:hover {
+  color: var(--primary-bg-color);
+  background-color: var(--bs-green);
+}
+.ayahSymbol {
+  white-space: nowrap;
+}
+.ayahNumber {
+  position: absolute;
+  font-size: 9px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+}
+.ayah:hover {
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: var(--primary-bg-color);
+}
+.quran {
+  font-family: "Uthmani", serif;
+  direction: rtl;
+  font-size: 30px;
+  font-weight: bold;
+  letter-spacing: 1.2;
+  line-height: 1.2;
+}
+.ayah.active {
+  background-color: var(--bs-green);
+}
+.ayah {
+  transition: 0.3s ease all;
+}
+.ayah.active {
+  background-color: var(--bs-green-hover);
+}
+.ayahOptions {
+  width: auto;
+  background-color: var(--primary-bg-color);
+  left: 50%;
+  top: -55px;
+}
+.quran .ayah .ayahOptions div {
+  padding: 5px;
+  border-radius: 10px;
+  color: var(--bs-green);
+}
+.quran .ayah .ayahOptions div:hover {
+  color: var(--primary-bg-color);
+  background-color: var(--bs-green);
+}
+ .ayahSymbol {
+  white-space: nowrap;
+}
+ .ayahNumber {
+  position: absolute;
+  font-size: 9px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+}
+.quran .ayah:hover {
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: var(--primary-bg-color);
+}
+
+.readingQuranContent a {
+  background-color: var(--Territory-bg-color);
+  min-width: 200px;
+}
+.readingQuranContent a:hover {
+  color: var(--bs-green);
+  transform: scale(1.05);
+}
+.sign {
+  transition: 0.3s ease all;
+  background-color: var(--Territory-bg-color);
+}
+.sign:hover {
+  transform: scale(1.05);
+}
+.sign svg {
+  color: var(--bs-green-hover);
+}
+.sign .ayahInfo {
+  width: 70%;
+}
+.sign .ayahInfo .info p {
+  font-size: 15px;
+}
+.sign .ayahInfo .ayah {
+  font-family: "Uthmani", serif;
+  direction: rtl;
+  font-size: 16;
+  font-weight: bold;
+  letter-spacing: 1.2;
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

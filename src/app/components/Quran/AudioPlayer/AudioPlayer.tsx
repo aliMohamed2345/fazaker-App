@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/app/redux/store";
+import styles from '../ListeningToQuran/ListeningToQuran.module.css'
 import {
     FaPlay,
     FaPause,
@@ -126,17 +127,17 @@ const AudioPlayer = () => {
     return (
         <>
             {Open && (
-                <div className="d-flex flex-column position-fixed w-100 gap-2 audio-player z-3">
+                <div className={`d-flex flex-column position-fixed w-100 gap-2 ${styles.audioPlayer} z-3`}>
                     <IoMdClose
                         size={18}
                         onClick={() => {
                             SetOpen(!Open);
                         }}
-                        className="close-btn"
+                        className={`${styles.closeBtn}`}
                     />
                     <audio src={ActiveAudioSrc} ref={AudioRef} preload="metadata" />
-                    <div className="upper-body d-flex justify-content-center align-items-center gap-3 mt-2">
-                        <div className="controls d-flex align-items-center gap-2">
+                    <div className={`${styles.upperBody} d-flex justify-content-center align-items-center gap-3 mt-2`}>
+                        <div className=" d-flex align-items-center gap-2">
                             <FaBackward
                                 onClick={() => handleSkipTimeBackward(AudioRef, setAudioStates)}
                                 size={20}
@@ -147,7 +148,7 @@ const AudioPlayer = () => {
                                 onClick={() => handlePlayBtn(AudioRef, audioStates, setAudioStates)}
                                 type="button"
                                 title="play"
-                                className="btn-success play btn rounded-circle d-flex align-items-center justify-content-center"
+                                className={`btn-success ${styles.play} btn rounded-circle d-flex align-items-center justify-content-center`}
                             >
                                 {audioStates.isPlay ? <FaPause size={25} /> : <FaPlay size={25} />}
                             </button>
@@ -158,7 +159,7 @@ const AudioPlayer = () => {
                                 className="d-none d-sm-block"
                             />
                         </div>
-                        <div className="volume d-flex align-items-center gap-1 justify-content-start">
+                        <div className=" d-flex align-items-center gap-1 justify-content-start">
                             {React.createElement(
                                 ChangeVolumeIcon(audioStates.isMute, audioStates.volume),
                                 {
@@ -169,7 +170,7 @@ const AudioPlayer = () => {
                             <input
                                 title="Change Volume"
                                 type="range"
-                                className="volume-slider position-relative"
+                                className={`${styles.volumeSlider} position-relative`}
                                 min="0"
                                 max="1"
                                 step="0.01"
@@ -178,12 +179,12 @@ const AudioPlayer = () => {
                             />
                         </div>
                     </div>
-                    <div className="lower-body d-flex align-items-center gap-4 justify-content-center">
+                    <div className={`${styles.lowerBody} d-flex align-items-center gap-4 justify-content-center`}>
                         <p className="m-0">{audioStates.currentTime}</p>
                         <input
                             title="Change The Current Time"
                             type="range"
-                            className="progress-slider position-relative"
+                            className={`${styles.progressSlider} position-relative`}
                             min="0"
                             max="100"
                             step="0.1"

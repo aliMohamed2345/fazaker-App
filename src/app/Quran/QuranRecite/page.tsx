@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import NotFound from '@/app/components/Quran/ListeningToQuran/NotFound';
 import ReciterLoadingScreen from '@/app/components/Quran/ListeningToQuran/QuranLoadingScreen';
 import RecitersSearchArea from '@/app/components/Quran/ListeningToQuran/RecitersSearchArea';
+import styles from '../../components/Quran/ListeningToQuran/ListeningToQuran.module.css'
 export interface MoshafProps {
     name?: string;
     server: string;
@@ -50,11 +51,11 @@ const QuranRecite = () => {
 
     return (
         <>
-            <h2 className="text-center pt-5">تلاوه القران</h2>
+            <h2 className="text-center pt-5">الاستماع للقران</h2>
             <p className='text-center pt-3 pb-3'>تشكيله منوعه وكبيره من كبار القراء للقران الكريم بروايه حفص عن عاصم</p>
             {/* Pass searchVal and SetSearchVal to RecitersSearchArea */}
             <RecitersSearchArea searchVal={searchVal} SetSearchVal={SetSearchVal} />
-            <div className="reciters d-flex flex-wrap gap-3 container mt-5 justify-content-center">
+            <div className=" d-flex flex-wrap gap-3 container mt-5 justify-content-center">
                 {!filteredReciters.length && !IsLoading && <NotFound text='لا يوجد قارئ بهذا الاسم' />}
                 {IsLoading ? (
                     <ReciterLoadingScreen Number={30} />
@@ -77,7 +78,7 @@ const QuranRecite = () => {
                                         ReciterName: name,
                                     },
                                 }}
-                                className=' reciter p-2 p-sm-3 rounded-3 col-4 col-sm-3 text-center'
+                                className={` ${styles.reciter} p-2 p-sm-3 rounded-3 col-4 col-sm-3 text-center`}
                             >
                                 <p className='m-0'>{name}</p>
                             </Link>

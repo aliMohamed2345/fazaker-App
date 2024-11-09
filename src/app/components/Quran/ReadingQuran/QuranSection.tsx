@@ -4,7 +4,7 @@ import AyahOptions from "./AyahOptions/AyahOptions";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/app/redux/store";
 import { setAyahData } from "@/app/redux/Slices/AyahDataSlice";
-
+import styles from './ReadingQuran.module.css'
 // Calculate hizb based on hizbQuarter
 function calculateHizb(hizbQuarter: number): string {
     const hizb = Math.floor(hizbQuarter / 4);
@@ -37,7 +37,6 @@ const QuranSection = () => {
 
     // Toggle ayah options
     function toggleAyahOptions(ayahNumber: number) {
-        // dispatch(setAyahData({ ayahNumber: ayahNumber, data: {} }));
         SetAyahOptionsState((prev) => ({
             ...Object.keys(prev).reduce((acc, key) => {
                 acc[+(key)] = false; // Close all other ayah options
@@ -46,17 +45,17 @@ const QuranSection = () => {
             [ayahNumber]: !prev[ayahNumber], // Toggle the clicked ayah
         }));
     }
-
+    console.log(styles)
     return (
-        <div className="d-flex flex-column all-pages">
+        <div className={`d-flex flex-column ${styles.allPages}`}>
             {Pages.map((page) => (
-                <div className="page p-3 rounded-4 mb-4" key={page.page}>
-                    <div className="page-info border-success border-3 w-100 d-flex align-items-center justify-content-between p-2 rounded-3 mb-3">
+                <div className={`p-3 rounded-4 ${styles.page} mb-4`} key={page.page}>
+                    <div className={`${styles.pageInfo} border-success border-3 w-100 d-flex align-items-center justify-content-between p-2 rounded-3 mb-3`}>
                         <p className="m-0">جزء: {page.juz}</p>
                         <p className="m-0">حزب: {calculateHizb(page.hizbQuarter)}</p>
                         <p className="m-0">صفحه: {page.page}</p>
                     </div>
-                    <div className="quran text-center">
+                    <div className={`${styles.quran} text-center`}>
                         {page.ayahs.map((ayah) => {
                             dispatch(setAyahData({
                                 ayahNumber: ayah.numberInSurah,
@@ -70,7 +69,7 @@ const QuranSection = () => {
                                 <p
                                     id={`ayah-${ayah.numberInSurah}`}
                                     onClick={() => toggleAyahOptions(ayah.numberInSurah)}
-                                    className={`d-inline position-relative ayah ${AyahOptionsState[ayah.numberInSurah] ? "active" : ""}`}
+                                    className={`d-inline position-relative ${styles.ayah} ${AyahOptionsState[ayah.numberInSurah] ? `${styles.active}` : ""}`}
                                     key={ayah.numberInSurah}
                                 >
                                     {ayah.text}
@@ -80,10 +79,9 @@ const QuranSection = () => {
                                             AyahNumber={ayah.numberInSurah}
                                         />
                                     )}
-
-                                    <span className="ayah-symbol position-relative d-inline mx-1">
+                                    <span className={`${styles.ayahSymbol} position-relative d-inline mx-1`}>
                                         ۝
-                                        <span className="ayah-number">{ayah.numberInSurah}</span>
+                                        <span className={`${styles.ayahNumber}`}>{ayah.numberInSurah}</span>
                                     </span>
                                 </p>
                             );

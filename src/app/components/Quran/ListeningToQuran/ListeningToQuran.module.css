@@ -1,0 +1,176 @@
+.surahContainer {
+  max-height: 180px;
+  background-color: var(--Territory-bg-color);
+  transition: 0.3s ease all;
+}
+.surahMoreOptions {
+  position: absolute;
+  max-width: 130px;
+  height: 95px;
+  left: 0px;
+  top: 55px;
+  z-index: 4;
+  cursor: pointer;
+  background-color: var(--secondary-bg-color);
+  transition: opacity 0.3s ease, display 0.3s ease;
+}
+.surahMoreOptions ul li:hover {
+  transition: 0.3s ease all;
+  background-color: var(--bs-green-hover);
+  border-radius: 0.375rem;
+}
+.quranLoadingScreen {
+  max-width: 280px;
+  height: 60px;
+}
+.audioPlayer {
+  height: 120px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--secondary-bg-color);
+}
+.closeBtn {
+  position: absolute;
+  color: var(--bs-green);
+  font-size: 25px;
+  top: 10px;
+  right: 17px;
+}
+.audioPlayer svg {
+  cursor: pointer;
+}
+.play {
+  width: 45px;
+  height: 45px;
+}
+
+.fullProgress {
+  height: 10px;
+  max-width: 100%;
+  width: 650px;
+  background-color: var(--primary-bg-color);
+  border-radius: 0.375rem;
+}
+.realProgress {
+  height: 10px;
+  background-color: var(--bs-green);
+  border-radius: 0.375rem;
+}
+input[type="range"].volumeSlider {
+  -webkit-appearance: none;
+  width: 100px;
+  height: 8px;
+  background: transparent;
+  outline: none;
+  border-radius: 5px;
+}
+
+input[type="range"].volumeSlider::before {
+  content: "";
+  border-radius: 5px;
+  background-color: var(--bs-green);
+  width: var(--slider-before-width, 50%);
+  height: 8px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+}
+
+/* Style for the track of the slider */
+input[type="range"].volumeSlider::-webkit-slider-runnable-track {
+  height: 8px;
+  max-width: 100%;
+  width: 100%;
+  background-color: var(--primary-bg-color);
+  border-radius: 0.375rem;
+}
+
+/* Style for the thumb of the slider */
+input[type="range"].volumeSlider::-webkit-slider-thumb {
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Style for the range input in Firefox */
+input[type="range"].volumeSlider::-moz-range-track {
+  height: 8px;
+  max-width: 100%;
+  width: 100%;
+  background-color: var(--primary-bg-color);
+  border-radius: 0.375rem;
+}
+
+input[type="range"].volumeSlider::-moz-range-thumb {
+  opacity: 0;
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+/* Style for the range input in Edge and Internet Explorer */
+input[type="range"].volumeSlider::-ms-track {
+  width: 100%;
+  height: 8px;
+  background: transparent; /* Remove background */
+  border-color: transparent; /* Remove border color */
+  color: transparent; /* Remove color */
+}
+
+input[type="range"].volumeSlider::-ms-fill-lower {
+  background: var(--bs-green); /* Green color for the filled part */
+  border-radius: 5px; /* Rounded corners */
+}
+
+input[type="range"].volumeSlider::-ms-fill-upper {
+  background: var(--primary-bg-color); /* Background color of the track */
+  border-radius: 5px; /* Rounded corners */
+}
+
+input[type="range"].volumeSlider::-ms-thumb {
+  height: 20px;
+  max-width: 100%;
+  width: 20px;
+  background-color: var(--bs-green);
+  border-radius: 0.375rem;
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+input[type="range"].progressSlider {
+  height: 8px;
+  max-width: 100%;
+  width: 400px;
+  background-color: var(--primary-bg-color);
+  border-radius: 0.375rem;
+  -webkit-appearance: none; /* Remove default appearance in WebKit browsers */
+  outline: none; /* Remove outline */
+}
+
+input[type="range"].progressSlider::before {
+  content: "";
+  border-radius: 5px;
+  background-color: var(--bs-green);
+  width: var(--slider-before-width-progress, 0%);
+  height: 8px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+}
+
+input[type="range"].progressSlider::-webkit-slider-thumb {
+  opacity: 0;
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+ .reciter {
+  transition: 0.3s;
+  background-color: var(--Territory-bg-color);
+}
+ .reciter:hover {
+  transform: scale(1.05);
+  color: var(--bs-green-hover);
+}
+
+.reciterSearchArea {
+  background-color: var(--secondary-bg-color);
+  transition: 0.3s ease all;
+}

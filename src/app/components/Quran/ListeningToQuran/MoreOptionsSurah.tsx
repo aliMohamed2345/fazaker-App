@@ -4,7 +4,7 @@ import { copyToClipboard } from "@/app/utils/handleCopyBtn";
 // icons
 import { IoMdClipboard } from "react-icons/io";
 import { IoMdDownload } from "react-icons/io";
-
+import styles from './ListeningToQuran.module.css'
 import { useSelector } from "react-redux";
 import { RootState } from "@/app/redux/store";
 const MoreOptionsSurah = ({ isOptionsOpened }: { isOptionsOpened: boolean }) => {
@@ -37,15 +37,15 @@ const MoreOptionsSurah = ({ isOptionsOpened }: { isOptionsOpened: boolean }) => 
     return (
         <>
             {isOptionsOpened && (
-                <div className={`surah-more-options rounded-2 pb-1 pt-1`}>
+                <div className={`${styles.surahMoreOptions} rounded-2 pb-1 pt-1`}>
                     <ul className="p-0 m-0">
                         <li onClick={handleDownloadBtn} className="d-flex align-items-center gap-3 p-2 p-sm-0 p-md-0">
-                            <p className="logo m-0"><IoMdDownload /></p>
-                            <p className="option m-0 d-none d-sm-block d-md-block">تحميل</p>
+                            <p className="m-0"><IoMdDownload /></p>
+                            <p className="m-0 d-none d-sm-block d-md-block">تحميل</p>
                         </li>
                         <li onClick={() => copyToClipboard(AudioSrc)} className="d-flex align-items-center gap-3 p-2 p-sm-0 p-md-0">
-                            <p className="logo m-0"><IoMdClipboard /></p>
-                            <p className="option m-0 d-none d-sm-block d-md-block">نسخ الرابط</p>
+                            <p className="m-0"><IoMdClipboard /></p>
+                            <p className="m-0 d-none d-sm-block d-md-block">نسخ الرابط</p>
                         </li>
                     </ul>
                 </div>
